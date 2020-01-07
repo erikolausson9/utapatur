@@ -1,6 +1,32 @@
 @import "leaflet/dist/leaflet.css";
 
+
+h1, h2, h3, h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 34px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: black;
+}
+
+h2 {
+        font-size: 26px;
+}
+
+h3 {
+        font-size: 20px;
+}
+
+h4 {
+        font-size: 16px;
+}
+
+p {
+    font-size: 14px;
+    font-family: 'Lora', serif;
+}
+
 #map {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
