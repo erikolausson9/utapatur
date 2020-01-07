@@ -47,7 +47,7 @@ let popUp = L.popup();
 function onMapClick(e) {
   popUp
     .setLatLng(e.latlng)
-    .setContent("koordinater: " + e.latlng.toString())
+    .setContent("Koordinater: " + e.latlng.toString())
     .openOn(map);
 }
 
