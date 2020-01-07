@@ -1,0 +1,24 @@
+{
+  "name": "utpatur",
+  "version": "1.0.0",
+  "description": "",
+  "main": "parcel index.html",
+  "dependencies": {
+    "leaflet": "^1.6.0",
+    "proj4leaflet": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikolausson9/utapatur.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikolausson9/utapatur/issues"
+  },
+  "homepage": "https://github.com/erikolausson9/utapatur#readme"
+}
