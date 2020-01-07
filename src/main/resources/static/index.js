@@ -34,6 +34,11 @@ new L.TileLayer(
 
 map.setView([65.104326, 16.875124], 1.5);
 
+map.pm.setPathOptions({
+  color: 'orange',
+  fillColor: 'green',
+});
+
 //ritar ut en rutt
 let route = [
   [63.195372, 14.536352],
@@ -58,7 +63,7 @@ map.on("click", onMapClick);
 
 let marker = L.marker([63.215495, 14.732213]).addTo(map);
 
-L.PM.initialize({ optIn: true });
+//L.PM.initialize({ optIn: true });
 
 
 // adding leaflet-geoman controls/toolbar with some options to the map
@@ -73,6 +78,11 @@ map.pm.addControls({
   cutPolygon: false
 });
 
+//map.pm.enableDraw('Polygon', {
+//  snappable: true,
+//  snapDistance: 20,
+//});
+
 //let position = [];
 let userRouteArray = [];
 
@@ -82,8 +92,55 @@ map.on('pm:drawstart', ({ workingLayer }) => {
   workingLayer.on('pm:vertexadded', e => {
 
     userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
-    console.log(userRouteArray.toString());
+    //console.log(userRouteArray.toString());
 
   });
 });
+
+map.on('pm:create', e => {
+
+
+  console.log("draw end")
+
+  if (e.shape === "Marker") {
+    console.log("creating marker")
+    console.log(e.layer._latlng)
+  }
+
+
+  else if (e.shape === "Line") {
+    console.log(e.layer._latlngs[0])
+    for (const position of e.layer._latlngs) {
+      console.log(position)
+    }
+  }
+  else {
+    console.log("Error, no marker or line")
+  }
+
+
+  e.layer.on('pm:edit', e => {
+    console.log("new position(s): ")
+    console.log(e)
+    if (e.shape === "Marker") { //Todo: this will never be true. How should we know it is a marker we are moving?
+      console.log("editing marker")
+      console.log(e.target._latlng)
+    } else {
+      console.log("editing line")
+      for (const position of e.target._latlngs) {
+        console.log(position)
+      }
+
+    }
+
+
+
+
+
+
+  })
+
+});
+
+
 
