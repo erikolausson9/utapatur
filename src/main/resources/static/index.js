@@ -73,4 +73,17 @@ map.pm.addControls({
   cutPolygon: false
 });
 
-/* kommentar */
+//let position = [];
+let userRouteArray = [];
+
+
+// listen to vertexes being added to currently drawn layer (called workingLayer)
+map.on('pm:drawstart', ({ workingLayer }) => {
+  workingLayer.on('pm:vertexadded', e => {
+
+    userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
+    console.log(userRouteArray.toString());
+
+  });
+});
+
