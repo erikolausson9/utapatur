@@ -72,3 +72,5 @@ map.pm.addControls({
   drawCircleMarker: false,
   cutPolygon: false
 });
+
+/* kommentar */
