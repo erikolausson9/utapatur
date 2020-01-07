@@ -4,6 +4,7 @@
   "description": "",
   "main": "parcel index.html",
   "dependencies": {
+    "@geoman-io/leaflet-geoman-free": "^2.3.0",
     "leaflet": "^1.6.0",
     "proj4leaflet": "^1.0.2"
   },

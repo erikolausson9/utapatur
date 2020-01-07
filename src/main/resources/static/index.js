@@ -1,6 +1,9 @@
 import L from "leaflet";
 import { CRS } from "proj4leaflet";
 
+import '@geoman-io/leaflet-geoman-free';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
@@ -54,3 +57,18 @@ function onMapClick(e) {
 map.on("click", onMapClick);
 
 let marker = L.marker([63.215495, 14.732213]).addTo(map);
+
+L.PM.initialize({ optIn: true });
+
+
+// adding leaflet-geoman controls/toolbar with some options to the map
+map.pm.addControls({
+  position: 'topleft',
+  drawCircle: false,
+  dragMode: false,
+  drawPolygon: false,
+  drawMarker: true,
+  drawRectangle: false,
+  drawCircleMarker: false,
+  cutPolygon: false
+});
