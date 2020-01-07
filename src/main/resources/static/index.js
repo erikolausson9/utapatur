@@ -29,4 +29,28 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-map.setView([59.3367, 18.0667], 7);
+map.setView([65.104326, 16.875124], 1.5);
+
+//ritar ut en rutt
+let route = [
+  [63.195372, 14.536352],
+  [63.196272, 14.530312],
+  [63.195268, 14.720513],
+  [63.195372, 14.536352]
+];
+
+let polyline = L.polyline(route, { color: "purple" }).addTo(map);
+
+// skapar en pop-up med koordinater, long/lat
+let popUp = L.popup();
+
+function onMapClick(e) {
+  popUp
+    .setLatLng(e.latlng)
+    .setContent("koordinater: " + e.latlng.toString())
+    .openOn(map);
+}
+
+map.on("click", onMapClick);
+
+let marker = L.marker([63.215495, 14.732213]).addTo(map);
