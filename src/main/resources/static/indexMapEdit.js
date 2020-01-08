@@ -146,11 +146,20 @@ map.on('pm:create', e => {
 
     else if (e.shape === "Line") {
         console.log("creating line")
-        //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
-        for (const position of e.layer._latlngs) {
-            console.log("lat: " + position.lat + " lng: " + position.lng)
-        }
+        console.log("first point: " + e.layer._latlngs[0])
+        console.log("lenght of points array: " + e.layer._latlngs.length)
+        console.log("second point: " + e.layer._latlngs[1])
+        console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
 
+        let totaldistance = 0;
+
+        //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
+        for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
+
+            totaldistance += (e.layer._latlngs[ii]).distanceTo(e.layer._latlngs[ii + 1])
+
+        }
+        console.log("total distance: " + totaldistance)
 
 
 
@@ -169,8 +178,11 @@ map.on('pm:create', e => {
             console.log(e.target._latlng)
         } else {
             console.log("Editing line")
+
+            //console.log("distance between first two points: " + e.target._latlngs[0].distanceTo(e.taget._latlngs[1]))
             for (const position of e.target._latlngs) {
-                console.log("lat: " + position.lat + " lng: " + position.lng)
+                console.log(position)
+
             }
 
         }
