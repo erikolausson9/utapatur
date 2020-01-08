@@ -1,23 +1,24 @@
 package com.example.Utpatur;
 
 public class Route {
-    private int routeId;
+    private Integer routeId;
     private String routeName;
     private String routeType;
-    private float height;
+    private Integer height;
     private String difficulty;
-    private float length;
+    private Integer length;
     private String duration;
     private String season;
     private String description;
     private String dateOfCompletion;
     private String routeCreated;
     private String routeLastUpdated;
+    private Integer memberId;
 
     public Route(){
     }
 
-    public Route(int routeId, String routeName, String routeType, float height, String difficulty, float length, String duration, String season, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated) {
+    public Route(Integer routeId, String routeName, String routeType, Integer height, String difficulty, Integer length, String duration, String season, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
         this.routeId = routeId;
         this.routeName = routeName;
         this.routeType = routeType;
@@ -30,13 +31,14 @@ public class Route {
         this.dateOfCompletion = dateOfCompletion;
         this.routeCreated = routeCreated;
         this.routeLastUpdated = routeLastUpdated;
+        this.memberId = memberId;
     }
 
     public int getRouteId() {
         return routeId;
     }
 
-    public void setRouteId(int routeId) {
+    public void setRouteId(Integer routeId) {
         this.routeId = routeId;
     }
 
@@ -56,11 +58,11 @@ public class Route {
         this.routeType = routeType;
     }
 
-    public float getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
@@ -72,11 +74,11 @@ public class Route {
         this.difficulty = difficulty;
     }
 
-    public float getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public void setLength(float length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
@@ -126,5 +128,13 @@ public class Route {
 
     public void setRouteLastUpdated(String routeLastUpdated) {
         this.routeLastUpdated = routeLastUpdated;
+    }
+
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 }
