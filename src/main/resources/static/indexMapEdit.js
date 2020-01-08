@@ -1,8 +1,8 @@
-import L from "leaflet";
-import { CRS } from "proj4leaflet";
-
-import '@geoman-io/leaflet-geoman-free';
-import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+//import L from "leaflet";
+//import { CRS } from "proj4leaflet";
+//
+//import '@geoman-io/leaflet-geoman-free';
+//import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 

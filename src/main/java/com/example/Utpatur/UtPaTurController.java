@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UtPaTurController {
 
-    @GetMapping("/index")
+    @GetMapping("/")
     String startsida(){
         return "index";
     }
+
+    @GetMapping("/skapa-ny-tur")
+        String skapanytur() {
+            return "skapa-ny-tur";
+        }
+
 
 }
