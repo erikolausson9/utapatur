@@ -11,7 +11,7 @@ import java.sql.SQLException;
 class UtpaturApplicationTests {
 
 	@Autowired
-	dbRepository repository;
+    DbRepository repository;
 
 	@Test
 	void contextLoads() {

@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UtPaTurController {
 
+    @Autowired
+    DbRepository dbRepository;
+
     @GetMapping("/")
     String startsida(){
         return "index";
@@ -14,6 +17,9 @@ public class UtPaTurController {
 
     @GetMapping("/skapa-ny-tur")
         String skapanytur() {
+
+        dbRepository.testCreateNewRouteObject();
+
             return "skapa-ny-tur";
         }
 

@@ -5,26 +5,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 @Repository
-public class dbRepository {
+public class DbRepository {
 
     @Autowired
     private DataSource dataSource;
 
     private List<Route> routs;
 
-    public dbRepository() {
+    public DbRepository() {
         routs = new ArrayList<>();
     }
+
 
 
     public Route rsRoute(ResultSet rs) throws SQLException {
@@ -32,9 +30,9 @@ public class dbRepository {
         route.setRouteId(rs.getInt("routeId"));
         route.setRouteName(rs.getString("routeName"));
         route.setRouteType(rs.getString("routeType"));
-        route.setHeight(rs.getFloat("height"));
+        route.setHeight(rs.getDouble("height"));
         route.setDifficulty(rs.getString("difficulty"));
-        route.setLength(rs.getFloat("length"));
+        route.setLength(rs.getDouble("length"));
         route.setDuration(rs.getString("duration"));
         route.setSeason(rs.getString("season"));
         route.setDescription(rs.getString("description"));
@@ -60,4 +58,34 @@ public class dbRepository {
     }
 
 
+    public void testCreateNewRouteObject() {
+
+        System.out.println("Inne i metoden");
+
+        Route testRoute = new Route(null, "testname", "hike", 0.0, null, 0.0, null, null, null, null, null, null, 1);
+
+        System.out.println("Objekt skapat");
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Duration, Season, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
+            ps.setString(1, testRoute.getRouteName());
+            ps.setString(2, testRoute.getRouteType());
+            ps.setDouble(3, testRoute.getHeight());
+            ps.setString(4, testRoute.getDifficulty());
+            ps.setDouble(5, testRoute.getLength());
+            ps.setString(6, testRoute.getDuration());
+            ps.setString(7, testRoute.getSeason());
+            ps.setString(8, testRoute.getDescription());
+            ps.setString(9, testRoute.getDateOfCompletion());
+            ps.setString(10, testRoute.getRouteCreated());
+            ps.setString(11, testRoute.getRouteLastUpdated());
+            ps.setInt(12, testRoute.getMemberId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Borde vara sparat i databasen?");
+
+    }
 }
