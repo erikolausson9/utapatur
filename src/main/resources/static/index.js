@@ -34,20 +34,39 @@ new L.TileLayer(
 
 map.setView([65.104326, 16.875124], 1.5);
 
-map.pm.setPathOptions({
-  color: 'orange',
-  fillColor: 'green',
-});
+//map.pm.setPathOptions({
+//  color: 'orange',
+//  fillColor: 'green',
+//});
 
-//ritar ut en rutt
+//hard-coded routes to start with
 let route = [
-  [63.195372, 14.536352],
-  [63.196272, 14.530312],
-  [63.195268, 14.720513],
-  [63.195372, 14.536352]
+  [63.43336264092851, 13.100512530890732],
+  [63.42612654639262, 13.162583161441411],
+  [63.395953086104676, 13.231165979318754],
+  [63.38021322970091, 13.168080742484434],
+  [63.379097388031624, 13.170713930555567]
 ];
 
-let polyline = L.polyline(route, { color: "purple" }).addTo(map);
+let route2 = [
+  [67.4777659389, 19.88225463636],
+  [67.4975352569, 19.76008683650],
+  [67.4838912798, 19.59515819672],
+  [67.4295552309, 19.72250342069]
+];
+
+let route3 = [
+  [63.16248165247, 12.36796303705],
+  [63.08423965644, 12.42831493833],
+  [63.003404162007, 12.22797964426],
+  [62.919686257953, 12.42257997620],
+  [63.069424547189, 12.58503363623],
+  [63.155588700623, 12.38705480770]
+];
+
+let polyline = L.polyline(route, { color: "blue" }).addTo(map);
+let polyline2 = L.polyline(route2, { color: "blue" }).addTo(map);
+let polyline3 = L.polyline(route3, { color: "blue" }).addTo(map);
 
 // skapar en pop-up med koordinater, long/lat
 let popUp = L.popup();
@@ -59,11 +78,11 @@ function onMapClick(e) {
     .openOn(map);
 }
 
-map.on("click", onMapClick);
+//map.on("click", onMapClick);
 
-let marker = L.marker([63.215495, 14.732213]).addTo(map);
+//hard-coded markers to start out with
+let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
 
-//L.PM.initialize({ optIn: true });
 
 
 // adding leaflet-geoman controls/toolbar with some options to the map
@@ -72,47 +91,68 @@ map.pm.addControls({
   drawCircle: false,
   dragMode: false,
   drawPolygon: false,
+  drawPolyline: true,
   drawMarker: true,
   drawRectangle: false,
   drawCircleMarker: false,
-  cutPolygon: false
+  cutPolygon: false,
+  editMode: false,
+  removalMode: false
 });
 
-//map.pm.enableDraw('Polygon', {
-//  snappable: true,
-//  snapDistance: 20,
-//});
 
 //let position = [];
-let userRouteArray = [];
+//let userRouteArray = [];
 
 
 // listen to vertexes being added to currently drawn layer (called workingLayer)
-map.on('pm:drawstart', ({ workingLayer }) => {
-  workingLayer.on('pm:vertexadded', e => {
+//map.on('pm:drawstart', ({ workingLayer }) => {
+//  workingLayer.on('pm:vertexadded', e => {
+//
+//    userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
+//console.log(userRouteArray.toString());
+//
+//  });
+//});
 
-    userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
-    //console.log(userRouteArray.toString());
 
-  });
-});
 
 map.on('pm:create', e => {
 
 
   console.log("draw end")
+  map.pm.addControls({
+    position: 'topleft',
+    drawCircle: false,
+    dragMode: false,
+    drawPolygon: false,
+    drawMarker: false,
+    drawPolyline: false,
+    drawRectangle: false,
+    drawCircleMarker: false,
+    cutPolygon: false,
+    editMode: true
+
+  });
 
   if (e.shape === "Marker") {
     console.log("creating marker")
     console.log(e.layer._latlng)
+    map.pm.disableDraw('Marker')
   }
 
 
   else if (e.shape === "Line") {
-    console.log(e.layer._latlngs[0])
+    console.log("creating line")
+    console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
     for (const position of e.layer._latlngs) {
       console.log(position)
     }
+
+
+
+
+
   }
   else {
     console.log("Error, no marker or line")
@@ -121,8 +161,8 @@ map.on('pm:create', e => {
 
   e.layer.on('pm:edit', e => {
     console.log("new position(s): ")
-    console.log(e)
-    if (e.shape === "Marker") { //Todo: this will never be true. How should we know it is a marker we are moving?
+    console.log(e.target._latlngs)
+    if (!e.target._latlngs) {
       console.log("editing marker")
       console.log(e.target._latlng)
     } else {
