@@ -4,9 +4,9 @@ public class Route {
     private Integer routeId;
     private String routeName;
     private String routeType;
-    private Double height;
+    private Integer height;
     private String difficulty;
-    private Double length;
+    private Integer length;
     private String duration;
     private String season;
     private String description;
@@ -18,7 +18,7 @@ public class Route {
     public Route(){
     }
 
-    public Route(Integer routeId, String routeName, String routeType, Double height, String difficulty, Double length, String duration, String season, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
+    public Route(Integer routeId, String routeName, String routeType, Integer height, String difficulty, Integer length, String duration, String season, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
         this.routeId = routeId;
         this.routeName = routeName;
         this.routeType = routeType;
@@ -58,11 +58,11 @@ public class Route {
         this.routeType = routeType;
     }
 
-    public Double getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(Double height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
@@ -74,11 +74,11 @@ public class Route {
         this.difficulty = difficulty;
     }
 
-    public Double getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public void setLength(Double length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
