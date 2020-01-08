@@ -1,4 +1,6 @@
 
+
+
 h1, h2, h3, h4 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 34px;
@@ -24,7 +26,58 @@ p {
     font-family: 'Lora', serif;
 }
 
+a {
+    color: #2d874c;
+}
+
+a:hover {
+    color: #2d874c;
+    text-decoration: underline;
+}
+
+/*primary button*/
+.primary-button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2d874c;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 16px 18px 14px 18px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #2d874c;
+    text-align: center;
+    line-height:0px;
+}
+
+.primary-button:hover {
+    background-color: transparent;
+    color: #2d874c;
+    text-decoration: none;
+}
+
+/*social media icons:*/
+i {
+    color:#2d874c;
+}
+
+i:hover {
+    color: #36a15b;
+}
+
+.sec-bg {
+    background-color:#f7f6eb;
+}
+
+
+
+
 #map {
   height: 100vh;
   width: 100%;
 }
+

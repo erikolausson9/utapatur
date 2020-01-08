@@ -22,29 +22,37 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+    
+<script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 
-  <link
-    href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-
-</head>
-
-<body>
-  <div class="row">
-    <div class="col">
-      <div id="map"></div>
-    </div>
-  </div>
-
-  <div class="container">
+  </head>
+  <body>
+  <div th:replace="fragments :: header"></div>
     <div class="row">
       <div class="col">
-        <h4>Lägg till ny tur eller punkt på kartan</h4>
-        <p><a href="./skapa-ny-tur.html">klicka här</a></p>
+        <div id="map"></div>
       </div>
     </div>
-  </div>
+
+    <section class="sec-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col mt-5 mb-5">
+          <h2>Om Ut på tur</h2>
+<p><a href="./skapa-ny-tur.html">klicka här</a></p>
+
+          <p>Lorem Ipsum <a href="#">bla</a> bal blAAAAA</p>
+            <button class="primary-button" href="#">button</button>
+            <i class="fab fa-facebook fa-lg"></i>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-pinterest fa-lg"></i>
+            <i class="fas fa-user"></i>
+        </div>
+      </div>
+    </div>
+    </section>
 
 
 
