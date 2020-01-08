@@ -146,10 +146,10 @@ map.on('pm:create', e => {
 
     else if (e.shape === "Line") {
         console.log("creating line")
-        console.log("first point: " + e.layer._latlngs[0])
-        console.log("lenght of points array: " + e.layer._latlngs.length)
-        console.log("second point: " + e.layer._latlngs[1])
-        console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
+        //console.log("first point: " + e.layer._latlngs[0])
+        //console.log("lenght of points array: " + e.layer._latlngs.length)
+        //console.log("second point: " + e.layer._latlngs[1])
+        //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
 
         let totaldistance = 0;
 
