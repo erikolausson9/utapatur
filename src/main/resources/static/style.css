@@ -126,9 +126,21 @@ i.dark-bg:hover {
      text-decoration: none;
  }
 
+/* Map styling */
+
 #map {
   height: 550px;
   width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+#top-content {
+    height: 550px;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(45, 135, 76, 0.3);
+    padding: 200px 100px 100px 100px;
 }
 
 
