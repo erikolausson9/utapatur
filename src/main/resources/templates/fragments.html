@@ -41,30 +41,72 @@
 <body>
 <div th:fragment="header">
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-md bg-custom sticky-top">
         ​<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
 
         <a class="navbar-brand" href="/">
             <img src="/clown-fish.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span id="fishyheader"> Ut på tur</span>
+            <span id="brandName"> Ut på tur</span>
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item">
-                    <a class="nav-link" href="/fiskar/1">Karta</a>
+                    <a class="nav-link" href="#">Karta</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/kontaktaoss">Logga in</a>
+                    <a class="nav-link" href="#">Logga in</a>
                 </li>
             </ul>
+            <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
+
+
         </div>
     </nav>
 </div>
+
+<!--FOOTER-->
+<section id="footer" th:fragment="footer">
+    <div class="container">
+        <div class="row mt-5 mb-3">
+            <div class="col-sm">
+                <h4>Genvägar</h4>
+                <ul class="footer-lists">
+                    <li><a class="footer-links" href="/logga-in">Logga in</a></li>
+                    <li><a class="footer-links" href="/karta">Karta</a></li>
+                </ul>
+            </div>
+            <div class="col-sm ">
+                <h4>Kontakta oss</h4>
+                <ul class="footer-lists">
+                    <li class="list-item">Skogsmullegatan 43</li>
+                    <li class="list-item">531 31 Skogen</li>
+                    <li><a class="footer-links" href="00468101510">08-10 15 10</a></li>
+                    <li><a class="footer-links" href="mailto:info@utpatur.se">info[a]utpatur.se</a></li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <h4>Häng med på tur</h4>
+                <ul class="footer-lists">
+                    <li><a class="footer-icon-links" href="#"><i class="fab fa-facebook fa-lg dark-bg"></i></a><a class="footer-icon-links" href="#"><i class="fab fa-instagram fa-lg dark-bg"></i></a><a class="footer-icon-links" href="#"><i class="fab fa-pinterest fa-lg dark-bg"></i></a></li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm text-center">
+                <p id="footer-copyright">&copy Ut på tur 2020</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 
 </body>
 </html>
