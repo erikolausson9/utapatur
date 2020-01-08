@@ -17,10 +17,10 @@ public class DbRepository {
     @Autowired
     private DataSource dataSource;
 
-    private List<Route> routs;
+    private List<Route> routes;
 
     public DbRepository() {
-        routs = new ArrayList<>();
+        routes = new ArrayList<>();
     }
 
 
