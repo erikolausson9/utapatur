@@ -86,6 +86,7 @@ let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
 
 
 // adding leaflet-geoman controls/toolbar with some options to the map
+/*
 map.pm.addControls({
   position: 'topleft',
   drawCircle: false,
@@ -99,7 +100,7 @@ map.pm.addControls({
   editMode: false,
   removalMode: false
 });
-
+*/
 
 //let position = [];
 //let userRouteArray = [];
