@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<head>
+    <title>Ut På Tur</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+
+<div class="container">
+    <div class="row mt-5 mb-5">
+    <div class="col-8">
+    <img src="../images/temp-img-tur.jpg" width="100%" height="400px">
+    </div>
+    <div class="col-4">
+        <div id="map-route"></div>
+    </div>
+</div>
+
+    <div class="row justify-content-start mt-5 mb-5">
+        <div class="col-8">
+            <h1>$Namn på turen</h1>
+            <span><i class="fas fa-star"></i>Spara i turlistan </span>
+            <span>Senast uppdaterad: $2019-12-29 </span>
+            <span>Datum vid turvandring: $2018-10-15</span>
+
+        </div>
+
+    </div>
+
+    <div class="row justify-content-start">
+        <div class="col-4">
+            <table>
+                <tr>
+                    <td><span>Typ av tur</span></td>
+                    <td><span>$Hiking</span></td>
+                </tr>
+                <tr>
+                    <td><span>Höjd</span></td>
+                    <td><span>$123 m</span></td>
+                </tr>
+                <tr>
+                    <td><span>Sträcka</span></td>
+                    <td><span>$123 km</span></td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="col-4">
+            <table>
+                <tr>
+                    <td><span>Svårighetsgrad</span></td>
+                    <td><span>$Medel</span></td>
+                </tr>
+                <tr>
+                    <td><span>Säsong</span></td>
+                    <td><span>$Sommar $Vår </span></td>
+                </tr>
+                <tr>
+                    <td><span>Längd</span></td>
+                    <td><span>$Hiking</span></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+
+    <div class="row justify-content-start mt-5 mb-5">
+        <div class="col-8">
+            <h3>Beskrivning</h3>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum sem sit amet tortor convallis, a consectetur mauris facilisis. Morbi quis porttitor ligula. Praesent a arcu dictum, commodo nibh et, egestas ipsum. Fusce nulla nunc, tincidunt tristique tellus et, lobortis sodales felis. Donec et purus ut nibh vestibulum rutrum. Ut vitae nunc libero. Curabitur convallis rutrum gravida. Quisque augue mi, porta nec est quis, ultricies imperdiet eros. In feugiat volutpat nisl a tempus. Praesent eu varius magna, sodales posuere dolor. Sed pulvinar fermentum turpis id ultricies. Nam tincidunt lorem orci, eget fermentum est ullamcorper vitae. Praesent tellus eros, ultrices id maximus a, aliquam ac neque. Cras et orci scelerisque, congue lectus id, dictum quam.</p>
+            <p>
+                Suspendisse consectetur arcu vitae erat eleifend dignissim. Mauris dapibus mattis consequat. Phasellus auctor nunc vel volutpat malesuada. Aenean sed massa iaculis, ornare odio a, suscipit sapien. Nulla ullamcorper, arcu ut commodo ullamcorper, arcu ante condimentum tortor, in posuere ligula tortor sed elit. Duis pellentesque cursus nisi scelerisque vulputate. Nam eget odio quis metus pharetra mollis interdum et diam. Cras nec mi lacus. Pellentesque in tortor accumsan, cursus mi non, vulputate est. Nam et sagittis lorem. Donec vel leo volutpat, tempor enim at, condimentum purus.
+            </p>
+        </div>
+    </div>
+
+
+</div>
+
+<section class="sec-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col mt-5 mb-5">
+                <h2>Ut på tur</h2>
+                <p>En samlingsplats för att dela och hitta turförslag i Sverige, sommar som vinter.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="fragments :: footer"></div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+<script type="module" src="map-route.js"></script>
+
+
+</body>
+
+</html>

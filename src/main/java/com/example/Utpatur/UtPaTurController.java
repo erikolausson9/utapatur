@@ -29,4 +29,12 @@ public class UtPaTurController {
         }
 
 
+    //tillfälligt, detta behöver sen ändras med routeID och pathvariable
+    @GetMapping("tur")
+    String tur() {
+        return "tur";
+    }
+
+
+
 }
