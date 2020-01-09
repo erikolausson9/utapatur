@@ -4,16 +4,22 @@
 //import '@geoman-io/leaflet-geoman-free';
 //import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
+//Modal (Select type of route)
+function setTypeForRouteCreation(typeOfRoute) {
+  console.log(typeOfRoute);
+  document.getElementById("").innerText = typeOfRoute;
+}
+
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
-    "EPSG:3006",
-    "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
-    {
-        resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8],
-        origin: [-1200000.0, 8500000.0],
-        bounds: L.bounds([-1200000.0, 8500000.0], [4305696.0, 2994304.0])
-    }
+  "EPSG:3006",
+  "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
+  {
+    resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8],
+    origin: [-1200000.0, 8500000.0],
+    bounds: L.bounds([-1200000.0, 8500000.0], [4305696.0, 2994304.0])
+  }
 );
 
 const map = new L.Map("map-new-route", {
@@ -22,14 +28,14 @@ const map = new L.Map("map-new-route", {
 });
 
 new L.TileLayer(
-    `https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/1.0.0/topowebb/default/3006/{z}/{y}/{x}.png`,
-    {
-        maxZoom: 18,
-        minZoom: 0,
-        continuousWorld: true,
-        attribution:
-            '&copy; <a href="https://www.lantmateriet.se/en/">Lantmäteriet</a> Topografisk Webbkarta Visning, CCB'
-    }
+  `https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/1.0.0/topowebb/default/3006/{z}/{y}/{x}.png`,
+  {
+    maxZoom: 18,
+    minZoom: 0,
+    continuousWorld: true,
+    attribution:
+      '&copy; <a href="https://www.lantmateriet.se/en/">Lantmäteriet</a> Topografisk Webbkarta Visning, CCB'
+  }
 ).addTo(map);
 
 map.setView([65.104326, 16.875124], 1.5);
@@ -85,27 +91,23 @@ let route3 = [
 //hard-coded markers to start out with
 //let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
 
-
-
 // adding leaflet-geoman controls/toolbar with some options to the map
 map.pm.addControls({
-    position: 'topleft',
-    drawCircle: false,
-    dragMode: false,
-    drawPolygon: false,
-    drawPolyline: true,
-    drawMarker: true,
-    drawRectangle: false,
-    drawCircleMarker: false,
-    cutPolygon: false,
-    editMode: false,
-    removalMode: false
+  position: "topleft",
+  drawCircle: false,
+  dragMode: false,
+  drawPolygon: false,
+  drawPolyline: true,
+  drawMarker: true,
+  drawRectangle: false,
+  drawCircleMarker: false,
+  cutPolygon: false,
+  editMode: false,
+  removalMode: false
 });
-
 
 //let position = [];
 //let userRouteArray = [];
-
 
 // listen to vertexes being added to currently drawn layer (called workingLayer)
 //map.on('pm:drawstart', ({ workingLayer }) => {
@@ -137,19 +139,16 @@ map.on('pm:create', e => {
 
     });
 
-    if (e.shape === "Marker") {
-        console.log("creating marker")
-        //console.log(e.layer._latlng)
-        map.pm.disableDraw('Marker')
-    }
-
-
-    else if (e.shape === "Line") {
-        console.log("creating line")
-        //console.log("first point: " + e.layer._latlngs[0])
-        //console.log("lenght of points array: " + e.layer._latlngs.length)
-        //console.log("second point: " + e.layer._latlngs[1])
-        //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
+  if (e.shape === "Marker") {
+    console.log("creating marker");
+    //console.log(e.layer._latlng)
+    map.pm.disableDraw("Marker");
+  } else if (e.shape === "Line") {
+    console.log("creating line");
+    //console.log("first point: " + e.layer._latlngs[0])
+    //console.log("lenght of points array: " + e.layer._latlngs.length)
+    //console.log("second point: " + e.layer._latlngs[1])
+    //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
 
 
 
