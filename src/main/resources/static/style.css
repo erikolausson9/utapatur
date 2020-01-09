@@ -181,7 +181,7 @@ i.dark-bg:hover {
     width: 60%;
     position: relative;
     z-index: 2;
-    background-color: rgba(45, 135, 76);
+    background-color: #2d874c;
     padding: 40px;
 
 }
@@ -229,6 +229,6 @@ p#footer-copyright {
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
 
-    padding: 20px 10px 20px 10px;
+    padding: 50px;
 
 }
