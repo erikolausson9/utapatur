@@ -48,65 +48,71 @@
 <body>
     <div th:replace="fragments :: header"></div>
     <div class="row">
-        <div class="col-8">
-            <div id="map"></div>
+        <div class="col-sm-8">
+            <div id="map-new-route"></div>
         </div>
-        <div class="col-4">
-            <h3>Lägg till ny tur</h3>
-            <form>
-                <div class="form-group">
-                    <label>Namn på tur</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                        placeholder="Lägg till ett namn på turen">
+        <div class="col-sm-4">
+            <div class="ny-tur-form-container">
+                <h1>Lägg till ny tur</h1>
+                <form>
+                    <div class="form-group">
+                        <label>Namn på tur</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                            placeholder="Lägg till ett namn på turen">
 
-                </div>
-                <div class="form-group">
-                    <label>Beskrivning</label>
-                    <input type="text" class="form-control" id="description"
-                        placeholder="Lägg till en beskrivning av turen">
-                </div>
-
-
-
-
-                <div class="form-group">
-                    <label for="difficultySelect">Ange svårighetsgrad:</label>
-                    <select class="form-control" id="difficultySelect">
-                        <option value="easy">Lätt</option>
-                        <option value="medium">Medel</option>
-                        <option value="hard">Krävande</option>
-                    </select>
-                </div>
-
-
-
-
-                <div class="form-group row mt-2">
-                    <label class="col-sm-4 control-label">Tidsåtgång:</label>
-                    <div class="col-sm-4">
-                        <input type="number" class="form-control" id="days" placeholder="Dagar">
                     </div>
-                    <div class="col-sm-4">
-                        <input type="number" class="form-control" id="hours" placeholder="Timmar">
+                    <div class="form-group">
+                        <label>Beskrivning</label>
+                        <input type="text" class="form-control" id="description"
+                            placeholder="Lägg till en beskrivning av turen">
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="example-date-input" class="col-7 col-form-label">Datum då du gick/skidade turen:
-                    </label>
-                    <div class="col-5">
-                        <input class="form-control" type="date" id="datum">
+
+
+
+                    <div class="form-group">
+                        <label for="difficultySelect">Ange svårighetsgrad:</label>
+                        <select class="form-control" id="difficultySelect">
+                            <option value="easy">Lätt</option>
+                            <option value="medium">Medel</option>
+                            <option value="hard">Krävande</option>
+                        </select>
                     </div>
-                </div>
 
 
 
-                <button type="submit" class="primary-button">Avbryt</button>
-                <button type="submit" class="primary-button">Spara tur</button>
 
-            </form>
+                    <div class="form-group row">
+                        <label class="col-sm-4 control-label">Tidsåtgång:</label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="days" placeholder="Dagar">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" id="hours" placeholder="Timmar">
+                        </div>
+                    </div>
 
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-7 col-form-label">Datum då du gick/skidade turen:
+                        </label>
+                        <div class="col-5">
+                            <input class="form-control" type="date" id="datum">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="length"></div>
+                    </div>
+
+
+
+                    <button type="submit" class="white-button">Avbryt</button>
+                    <button type="submit" class="primary-button">Spara tur</button>
+
+                </form>
+            </div>
         </div>
+
     </div>
 
     <!--
