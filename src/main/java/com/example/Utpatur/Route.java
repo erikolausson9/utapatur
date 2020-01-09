@@ -9,6 +9,7 @@ public class Route {
     private Integer length;
     private String duration;
     private String season;
+
     private String description;
     private String dateOfCompletion;
     private String routeCreated;
