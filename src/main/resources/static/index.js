@@ -32,7 +32,7 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-map.setView([65.104326, 16.875124], 1.5);
+map.setView([67.893153, 18.75682], 7);
 
 //map.pm.setPathOptions({
 //  color: 'orange',
@@ -50,7 +50,7 @@ let route = [
 
 let route2 = [
   [67.4777659389, 19.88225463636],
-  [67.4975352569, 19.76008683650],
+  [67.4975352569, 19.7600868365],
   [67.4838912798, 19.59515819672],
   [67.4295552309, 19.72250342069]
 ];
@@ -59,9 +59,9 @@ let route3 = [
   [63.16248165247, 12.36796303705],
   [63.08423965644, 12.42831493833],
   [63.003404162007, 12.22797964426],
-  [62.919686257953, 12.42257997620],
+  [62.919686257953, 12.4225799762],
   [63.069424547189, 12.58503363623],
-  [63.155588700623, 12.38705480770]
+  [63.155588700623, 12.3870548077]
 ];
 
 let polyline = L.polyline(route, { color: "blue" }).addTo(map);
@@ -83,8 +83,6 @@ function onMapClick(e) {
 //hard-coded markers to start out with
 let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
 
-
-
 // adding leaflet-geoman controls/toolbar with some options to the map
 /*
 map.pm.addControls({
@@ -105,7 +103,6 @@ map.pm.addControls({
 //let position = [];
 //let userRouteArray = [];
 
-
 // listen to vertexes being added to currently drawn layer (called workingLayer)
 //map.on('pm:drawstart', ({ workingLayer }) => {
 //  workingLayer.on('pm:vertexadded', e => {
@@ -116,14 +113,10 @@ map.pm.addControls({
 //  });
 //});
 
-
-
-map.on('pm:create', e => {
-
-
-  console.log("draw end")
+map.on("pm:create", e => {
+  console.log("draw end");
   map.pm.addControls({
-    position: 'topleft',
+    position: "topleft",
     drawCircle: false,
     dragMode: false,
     drawPolygon: false,
@@ -133,55 +126,33 @@ map.on('pm:create', e => {
     drawCircleMarker: false,
     cutPolygon: false,
     editMode: true
-
   });
 
   if (e.shape === "Marker") {
-    console.log("creating marker")
-    console.log(e.layer._latlng)
-    map.pm.disableDraw('Marker')
-  }
-
-
-  else if (e.shape === "Line") {
-    console.log("creating line")
-    console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
+    console.log("creating marker");
+    console.log(e.layer._latlng);
+    map.pm.disableDraw("Marker");
+  } else if (e.shape === "Line") {
+    console.log("creating line");
+    console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng);
     for (const position of e.layer._latlngs) {
-      console.log(position)
+      console.log(position);
     }
-
-
-
-
-
-  }
-  else {
-    console.log("Error, no marker or line")
+  } else {
+    console.log("Error, no marker or line");
   }
 
-
-  e.layer.on('pm:edit', e => {
-    console.log("new position(s): ")
-    console.log(e.target._latlngs)
+  e.layer.on("pm:edit", e => {
+    console.log("new position(s): ");
+    console.log(e.target._latlngs);
     if (!e.target._latlngs) {
-      console.log("editing marker")
-      console.log(e.target._latlng)
+      console.log("editing marker");
+      console.log(e.target._latlng);
     } else {
-      console.log("editing line")
+      console.log("editing line");
       for (const position of e.target._latlngs) {
-        console.log(position)
+        console.log(position);
       }
-
     }
-
-
-
-
-
-
-  })
-
+  });
 });
-
-
-
