@@ -59,15 +59,46 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logga in</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Logga in</a>
                 </li>
             </ul>
             <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
-
-
         </div>
     </nav>
+    <!--Log in pop up -->
+
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header heading-center">
+                    <h4 class="modal-title w-100">Logga in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body mx-3">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">E-post</label>
+     <!-- OBS! ändra innehåll-->                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ange e-post">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Lösenord</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Lösenord">
+                        </div>
+                        <button type="submit" class="primary-button">Logga in</button>
+                        <p>Är du inte medlem? <a href="/registrering">Registrera nytt konto</a> </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
 
 <!--FOOTER-->
 <section id="footer" th:fragment="footer">

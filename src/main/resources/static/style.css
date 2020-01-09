@@ -35,6 +35,14 @@ a:hover {
     text-decoration: underline;
 }
 
+
+/* center headings*/
+.heading-center {
+text-align: center
+}
+
+
+
 /*primary button*/
 .primary-button {
     font-family: 'Josefin Sans', sans-serif;
