@@ -85,10 +85,36 @@
             </button>
           </div>
           <div class="modal-body">
-            <button type="button" class="btn btn-primary">Fottur</button>
-            <button type="button" class="btn btn-primary">Skidtur</button>
-            <button type="button" class="btn btn-primary">Topp</button>
-            <button type="button" class="btn btn-primary">
+            <button
+              type="button"
+              class="primary-button"
+              id="hike"
+              onclick="setTypeForRouteCreation('hike')"
+            >
+              Fottur
+            </button>
+            <button
+              type="button"
+              class="primary-button"
+              id="skiing"
+              onclick="setTypeForRouteCreation('skiing')"
+            >
+              Skidtur
+            </button>
+            <button
+              type="button"
+              class="primary-button"
+              id="mountainTop"
+              onclick="setTypeForRouteCreation('mountainTop')"
+            >
+              Topp
+            </button>
+            <button
+              type="button"
+              class="primary-button"
+              id="poi"
+              onclick="setTypeForRouteCreation('poi')"
+            >
               Intressant plats
             </button>
           </div>
@@ -133,6 +159,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script type="module" src="indexMapEdit.js"></script>
+    <script type="text/javascript" src="indexMapEdit.js"></script>
   </body>
 </html>
