@@ -170,7 +170,11 @@ i.dark-bg:hover {
   z-index: 2;
 }
 
+#map-new-route {
+    height: 100%;
+    width: 100%;
 
+  }
 
 .top-content {
     margin: auto;
@@ -220,4 +224,11 @@ p#footer-copyright {
     color: #f7f6eb;
     font-size: 12px;
     text-decoration: none !important;
+}
+
+/* formulär på skapa-ny-rutt */
+.ny-tur-form-container {
+
+    padding: 20px 10px 20px 10px;
+
 }
