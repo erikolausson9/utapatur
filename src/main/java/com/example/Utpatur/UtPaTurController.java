@@ -23,5 +23,10 @@ public class UtPaTurController {
             return "skapa-ny-tur";
         }
 
+        @GetMapping("/profil")
+        String profil() {
+        return "profile";
+        }
+
 
 }

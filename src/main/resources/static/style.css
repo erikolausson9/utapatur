@@ -127,10 +127,15 @@ i.dark-bg:hover {
  }
 
 #map {
-  height: 550px;
-  width: 100%;
+    height: 550px;
+    width: 100%;
 }
 
+.profil-bgimg {
+   background-image: url('../images/profilsida-startbild.jpg');
+   background-position: center;
+
+}
 
 /* FOOTER */
 section#footer {
