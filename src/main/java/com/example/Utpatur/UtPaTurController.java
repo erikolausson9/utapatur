@@ -25,6 +25,13 @@ public class UtPaTurController {
 
         //dbRepository.testCreateNewRouteObject();
 
-        return "skapa-ny-tur";
-    }
+            return "skapa-ny-tur";
+        }
+
+        @GetMapping("/profil")
+        String profil() {
+        return "profile";
+        }
+
+
 }

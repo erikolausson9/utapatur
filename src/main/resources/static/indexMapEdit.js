@@ -16,7 +16,7 @@ const crs = new L.Proj.CRS(
     }
 );
 
-const map = new L.Map("map", {
+const map = new L.Map("map-new-route", {
     crs: crs,
     continuousWorld: true
 });
@@ -121,7 +121,7 @@ map.pm.addControls({
 
 map.on('pm:create', e => {
 
-
+    let totaldistance = 0;
     //console.log("draw end")
     map.pm.addControls({
         position: 'topleft',
@@ -151,7 +151,7 @@ map.on('pm:create', e => {
         //console.log("second point: " + e.layer._latlngs[1])
         //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
 
-        let totaldistance = 0;
+
 
         //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
         for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
@@ -160,6 +160,7 @@ map.on('pm:create', e => {
 
         }
         console.log("total distance: " + totaldistance)
+        updateDistance(totaldistance);
 
 
 
@@ -178,20 +179,22 @@ map.on('pm:create', e => {
             console.log(e.target._latlng)
         } else {
             console.log("Editing line")
+            totaldistance = 0;
 
             //console.log("distance between first two points: " + e.target._latlngs[0].distanceTo(e.taget._latlngs[1]))
-            for (const position of e.target._latlngs) {
-                console.log(position)
 
+            for (let ii = 0; ii < e.target._latlngs.length - 1; ii++) {
+                totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
             }
+            updateDistance(totaldistance);
 
         }
-
-
-
-
-
 
     })
 
 });
+
+function updateDistance(totalDistance) {
+
+    document.getElementById("length").innerText = "Längd på markerad tur: " + (totalDistance / 1000).toFixed(1) + " km"
+}
