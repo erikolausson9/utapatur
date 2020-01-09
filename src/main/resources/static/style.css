@@ -23,6 +23,11 @@ p {
     font-family: 'Lora', serif;
 }
 
+span {
+    font-size: 16px;
+    font-family: 'Lora', serif;
+}
+
 
 a {
     color: #2d874c;
@@ -45,7 +50,23 @@ h1.white-heading {
     color: white;
 }
 
+h2.white-heading {
+    color: white;
+}
+
+h3.white-heading {
+    color: white;
+}
+
+h4.white-heading {
+    color: white;
+}
+
 p.white-p {
+    color: white;
+}
+
+span.white-s {
     color: white;
 }
 
@@ -73,6 +94,29 @@ p.white-p {
     color: #2d874c;
     text-decoration: none;
 }
+
+.mini-primary-button {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: white;
+    background-color: #2d874c;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 11px 9px 9px 9px;
+    display: inline-block;
+    margin-left: 5px;
+    text-align: center;
+    line-height:0px;
+}
+
+.mini-primary-button:hover {
+    background-color: #329654;
+    color: white;
+    text-decoration: none;
+}
+
 
 
 .white-button {
@@ -124,6 +168,10 @@ i.dark-bg:hover {
     background-color: #f7f6eb;
     margin-top: 225px;
 }
+/*gäller för section med #f7f6eb bakgrund*/
+.sec-light-bg {
+    background-color: #f7f6eb;
+ }
 
 /*NAVBAR (HEADER)*/
 .bg-custom {
@@ -167,6 +215,12 @@ i.dark-bg:hover {
      text-decoration: none;
  }
 
+  .profil {
+    border-collapse: separate;
+    border-spacing: 20px 0;
+  }
+
+
 /* Map styling */
 
 #map {
@@ -193,9 +247,21 @@ i.dark-bg:hover {
 }
 
 .profil-bgimg {
-    background-image: url('../images/profilsida-startbild.jpg');
+    background-image: url('../images/prof2.jpg');
     background-position: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
     }
+
+td {
+    padding-right: 20px;
+}
+
+.profilbild-placeholder {
+    border-radius: 50%;
+    padding: 10px;
+
+}
 
 /* FOOTER */
 section#footer {
