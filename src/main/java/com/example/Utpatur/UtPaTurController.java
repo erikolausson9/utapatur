@@ -18,7 +18,7 @@ public class UtPaTurController {
     @GetMapping("/skapa-ny-tur")
         String skapanytur() {
 
-        dbRepository.testCreateNewRouteObject();
+        //dbRepository.testCreateNewRouteObject();
 
             return "skapa-ny-tur";
         }
