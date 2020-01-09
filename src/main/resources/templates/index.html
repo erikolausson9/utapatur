@@ -36,19 +36,24 @@
     crossorigin="anonymous"></script>
     
 <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 
   </head>
   <body>
   <div th:replace="fragments :: header"></div>
 
+
+
   <div class="row">
       <div class="col text-center">
         <div id="map"></div>
-        <div id="top-content">
-          <h1>Ut På Tur - din guide i naturen</h1>
-          <p>En samlingsplats för att dela och hitta turförslag i Sverige, sommar som vinter.</p>
+        <div class="top-content">
+          <h1 class="white-heading">Ut På Tur - din guide i naturen</h1>
+          <p class="white-p">En samlingsplats för att dela och hitta turförslag i Sverige, sommar som vinter.</p>
+          <button class="white-button" href="/karta">Till kartan</button>
         </div>
       </div>
     </div>
