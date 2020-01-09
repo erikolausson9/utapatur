@@ -170,9 +170,7 @@ i.dark-bg:hover {
   z-index: 2;
 }
 
-.profil-bgimg {
-   background-image: url('../images/profilsida-startbild.jpg');
-   background-position: center;
+
 
 .top-content {
     margin: auto;
@@ -183,6 +181,11 @@ i.dark-bg:hover {
     padding: 40px;
 
 }
+
+.profil-bgimg {
+    background-image: url('../images/profilsida-startbild.jpg');
+    background-position: center;
+    }
 
 /* FOOTER */
 section#footer {
