@@ -29,7 +29,8 @@ public class UtPaTurController {
         }
 
         @GetMapping("/profil")
-        String profil() {
+        String profil(Model model) {
+
         return "profile";
         }
 
