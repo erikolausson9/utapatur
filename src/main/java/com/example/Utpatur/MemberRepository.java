@@ -72,7 +72,7 @@ public class MemberRepository {
         Member member = null;
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE email = " + email)) {     //Email el email? påverkar det?
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE Email = " + email)) {     //Email el email? påverkar det?
             if (rs.next()) {
                 member = rsMember(rs);
             }
