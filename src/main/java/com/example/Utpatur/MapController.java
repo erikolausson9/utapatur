@@ -22,7 +22,7 @@ public class MapController {
     DbRepository dbRepository;
 
     @Autowired
-    //ServiceLayer serviceLayer;
+    ServiceLayer serviceLayer;
 
     @GetMapping("/")
     String startsida() {
@@ -31,19 +31,31 @@ public class MapController {
 
     @GetMapping("/skapa-ny-tur")
     String skapanytur(Model model) {
-        model.addAttribute("route", new Route());
+        model.addAttribute("createNewRoute", new CreateNewRoute());
         //dbRepository.testCreateNewRouteObject();
         System.out.println("Vi är på rad 36");
         return "skapa-ny-tur";
     }
 
     @PostMapping("/skapa-ny-tur")
-    String skapaNyTurForm(@ModelAttribute Route route, Model model){
+    String skapaNyTurForm(@ModelAttribute CreateNewRoute createNewRoute, Model model){
 
         System.out.println("vi är på rad 43");
-        model.addAttribute("route", route);
-        //System.out.println("route name: " + route.getRouteName());
-        System.out.println("route type: " + route.getRouteType());
+        model.addAttribute("createNewRoute", createNewRoute);
+        System.out.println("route name: " + createNewRoute.getRouteName());
+        System.out.println("route type: " + createNewRoute.getRouteType());
+        System.out.println("route description: " + createNewRoute.getDescription());
+        System.out.println("route days: " + createNewRoute.getDays());
+        System.out.println("route hours: " + createNewRoute.getHours());
+        System.out.println("route date: " + createNewRoute.getDateOfCompletion());
+        System.out.println("length: " + createNewRoute.getLength());
+        System.out.println("height: " + createNewRoute.getHeight());
+        System.out.println("latitudes: " + createNewRoute.getLongitudes());
+        System.out.println("longitudes: " + createNewRoute.getLatitudes());
+
+        createNewRoute.setMemberId(1);
+
+        serviceLayer.addRoute(createNewRoute);
 
         return "index";
     }

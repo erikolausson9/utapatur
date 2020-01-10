@@ -1,6 +1,8 @@
 package com.example.Utpatur;
 
-public class Route {
+public class CreateNewRoute {
+    //this class is only used as a means of transport of data from the HTML form to the MapController class when creating a new form
+
     private Integer routeId;
     private String routeName;
     private String routeType;
@@ -14,28 +16,14 @@ public class Route {
     private String routeCreated;
     private String routeLastUpdated;
     private Integer memberId;
+    private String latitudes;
+    private String longitudes;
 
-    public Route(){
-        
+    public CreateNewRoute(){
+
     }
 
-    public Route(Integer routeId, String routeName, String routeType, Integer height, String difficulty, Integer length, Integer days, Double hours, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
-        this.routeId = routeId;
-        this.routeName = routeName;
-        this.routeType = routeType;
-        this.height = height;
-        this.difficulty = difficulty;
-        this.length = length;
-        this.days = days;
-        this.hours = hours;
-        this.description = description;
-        this.dateOfCompletion = dateOfCompletion;
-        this.routeCreated = routeCreated;
-        this.routeLastUpdated = routeLastUpdated;
-        this.memberId = memberId;
-    }
-
-    public int getRouteId() {
+    public Integer getRouteId() {
         return routeId;
     }
 
@@ -138,4 +126,24 @@ public class Route {
     public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
+
+    public String getLatitudes() {
+        return latitudes;
+    }
+
+    public void setLatitudes(String latitudes) {
+        this.latitudes = latitudes;
+    }
+
+    public String getLongitudes() {
+        return longitudes;
+    }
+
+    public void setLongitudes(String longitudes) {
+        this.longitudes = longitudes;
+    }
+
+
+
+
 }

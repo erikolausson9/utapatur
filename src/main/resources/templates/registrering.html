@@ -42,7 +42,39 @@
 <body>
 <div th:replace="fragments :: header"></div>
 
+<section class="sec-light-bg">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-8 mt-5 mb-5">
+                <h1>Bli medlem</h1>
 
+                <form action="/registrering" method="POST" th:object="${member}">
+                    <div>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input type="text" class="form-reg" placeholder="Ange användarnamn" th:field="*{memberName}"
+                               th:errorclass="fieldError"/>
+                    </div>
+                    <div>
+                        <input type="text" class="form-reg" placeholder="Ange e-postadress" th:field="*{email}"
+                               th:errorclass="fieldError"/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-reg" placeholder="Lösenord" th:field="*{password}"
+                               th:errorclass="fieldError"/>
+                    </div>
+                    <div>
+                        <button type="submit" class="primary-button">Registrera mig</button>
+                    </div>
+                    <p th:if="${#fields.hasErrors('memberName')}">Användarnamnet måste vara minst 5 tecken långt.</p>
+                    <p th:if="${#fields.hasErrors('email')}">Skriv in en giltig e-postadress.</p>
+                    <p th:if="${#fields.hasErrors('password')}">Lösenordet måste vara mellan 5 och 30 tecken långt.</p>
+                </form>
+                <p th:if="${memberExists!=null}">Det finns redan en användare med denna e-postadress.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
 <div th:replace="fragments :: footer"></div>
 
 </body>
