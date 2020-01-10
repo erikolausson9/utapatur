@@ -2,16 +2,15 @@ package com.example.Utpatur;
 
 public class Position {
     private Integer positionId;
-    private Double longitude;
-    private Double latitude;
+    private double longitude;
+    private double latitude;
     private Integer altitude;
     private Integer routeId;
 
     public Position() {
     }
 
-    public Position(Integer positionId, Double longitude, Double latitude, Integer altitude, Integer routeId) {
-        this.positionId = positionId;
+    public Position(double longitude, double latitude, Integer altitude, Integer routeId) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
@@ -26,19 +25,19 @@ public class Position {
         this.positionId = positionId;
     }
 
-    public Double getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public Double getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 

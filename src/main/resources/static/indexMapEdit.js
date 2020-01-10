@@ -242,7 +242,9 @@ function calculateDistance(routeObject) {
 
 function updateDistance(totalDistance) {
 
-    document.getElementById("length").innerText = "Längd på markerad tur: " + (totalDistance / 1000).toFixed(1) + " km"
+    document.getElementById("lengthToShow").innerText = "Längd på markerad tur: " + (totalDistance / 1000).toFixed(1) + " km"
+    document.getElementById("length").value = Math.round(totalDistance) //distance will be saved in meters
+    document.getElementById("height").value = 0; //todo: replace with actual height
 }
 
 
@@ -263,8 +265,8 @@ function savePositions(routeObject) {
 
 function saveRouteToDatabase() {
 
-    document.getElementById("latitudes").innerText = latitudes;
-    document.getElementById("longitudes").innerText = longitudes;
+    document.getElementById("latitudes").value = latitudes;
+    document.getElementById("longitudes").value = longitudes;
 }
 
 

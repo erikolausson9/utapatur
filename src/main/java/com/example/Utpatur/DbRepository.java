@@ -24,6 +24,46 @@ public class DbRepository {
     }
 
 
+    public void addRoute(CreateNewRoute route){
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Days, Hours, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
+            ps.setString(1, route.getRouteName());
+            ps.setString(2, route.getRouteType());
+            ps.setInt(3, route.getHeight());
+            ps.setString(4, route.getDifficulty());
+            ps.setInt(5, route.getLength());
+            ps.setInt(6, route.getDays());
+            ps.setDouble(7, route.getHours());
+            ps.setString(8, route.getDescription());
+            ps.setString(9, route.getDateOfCompletion());
+            ps.setString(10, route.getRouteCreated());
+            ps.setString(11, route.getRouteLastUpdated());
+            ps.setInt(12, route.getMemberId());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Nu ska vi ha laddat in till databasen");
+
+    }
+
+    public void addPosition(Position position){
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Position(Longitude, Latitude, Altitude, RouteID) VALUES(?,?,?,?)")) {
+            ps.setFloat(1, (float)position.getLongitude());
+            ps.setFloat(2, (float)position.getLatitude());
+            ps.setInt(3, position.getAltitude());
+            ps.setInt(4, position.getRouteId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Position borde vara laddad till databasen nu?");
+    }
+
 
     public Route rsRoute(ResultSet rs) throws SQLException {
         Route route = new Route();

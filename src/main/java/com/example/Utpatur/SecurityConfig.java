@@ -16,6 +16,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll();
 
+        //http.csrf().disable(); //TODO: even if this works, we should use a csrf token instead
+
     }
 
 }
