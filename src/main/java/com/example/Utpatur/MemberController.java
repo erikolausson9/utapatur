@@ -25,7 +25,7 @@ public class MemberController {
     @GetMapping("/profil")
     String profil(Model model) {
 
-        return "profile";
+        return "profil";
     }
 
 
@@ -35,40 +35,31 @@ public class MemberController {
         Member member = memberRepository.getMemberByEmail("email");
         //check if member exist or not
         //
-        return "profile";
+        return "profil";
     }
 
 
-     @GetMapping("/addMember")
+     @GetMapping("/registrering")
     String addMember(Model model) {
         model.addAttribute("member", new Member());
 
-        return "member-registration";
+        return "registrering";
     }
 
-    @PostMapping("/addMember")
+    @PostMapping("/registrering")
     String addMember(HttpSession session, Model model, @Valid Member member, BindingResult result) {
         if (result.hasErrors()) {
-            return "member-registration";
+            return "registrering";
         }
 
         if(serviceLayer.getMember(member.getEmail()) != null) {
             model.addAttribute("memberExists", true);
-            return "addMember";
+            return "registrering";
         }
         model.addAttribute("member", member);
         serviceLayer.addMember(member);
 
-        List<Member> members = (List<Member>)session.getAttribute("members");
-        if (members == null) {
-            members = new ArrayList<>();
-            session.setAttribute("members", members);
-            }
-
-        members.add(member);
-        model.addAttribute("noErrors", true);
-
-        return "member-registration";
+        return "registrering";
     }
 
 }

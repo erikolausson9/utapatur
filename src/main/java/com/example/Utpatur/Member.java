@@ -1,9 +1,15 @@
 package com.example.Utpatur;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 public class Member {
     private Integer memberId;
+    @Email
     private String email;
+    @Size(min=5, max=30)
     private String memberName;
+    @Size(min=5, max=30)
     private String password;
 
     public Member(){

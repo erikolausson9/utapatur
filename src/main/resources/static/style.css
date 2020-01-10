@@ -196,6 +196,7 @@ i.fa-star {
  }
 
 
+
 /*NAVBAR (HEADER)*/
 .bg-custom {
   background-color: #2d874c;
@@ -336,4 +337,17 @@ p#footer-copyright {
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
   padding: 50px;
+}
+
+/*formulär för att registrera ny medlem*/
+.form-reg {
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #2d874c;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    width: 23%;
+
 }
