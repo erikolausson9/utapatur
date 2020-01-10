@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:src="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-
-
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
@@ -39,57 +37,13 @@
           rel="stylesheet">
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 
-    <title>Profil</title>
+    <title>Registrering</title>
 </head>
-
 <body>
 <div th:replace="fragments :: header"></div>
 
-<section class="profil-bgimg">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <table>
-                    <tr>
-                        <td>
-                            <img class="profilbild-placeholder" src="../images/profilbild.png" width="100px"/>
-                        </td>
-                        <td>
-                            <h1 class="white-heading">Min profil</h1>
-                            <h3 class="white-heading">$fullname</h3>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="sec-light-bg">
-    <div class="container">
-            <div class="row">
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Sparade turer</h2>
-                    <span>$Inga sparade turer</span>
-                </div>
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Mina bidrag</h2>
-                    <span>$Inga bidrag</span>
-                    <a class="mini-primary-button" href="skapa-ny-tur">Lägg till tur</a>
-
-                </div>
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Mina kommentarer</h2>
-                    <span>$Inga kommentarer</span>
-                </div>
-            </div>
-        </div>
-</section>
 
 <div th:replace="fragments :: footer"></div>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
 </body>
 </html>

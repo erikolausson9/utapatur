@@ -1,3 +1,9 @@
+/*body {
+    min-height: 129vh;
+    position: relative;
+    margin: 0;
+}*/
+
 h1, h2, h3, h4 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 34px;
@@ -171,6 +177,7 @@ i.dark-bg:hover {
 /*gäller för section med #f7f6eb bakgrund*/
 .sec-light-bg {
     background-color: #f7f6eb;
+    /*min-height: 100vh;*/
  }
 
 /*NAVBAR (HEADER)*/
@@ -297,6 +304,13 @@ p#footer-copyright {
     font-size: 12px;
     text-decoration: none !important;
 }
+
+/*footer {
+    position: absolute;
+    bottom: 0;
+    background-color: #918a78;
+    width: 100%;
+}*/
 
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
