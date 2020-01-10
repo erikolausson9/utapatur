@@ -37,7 +37,7 @@ new L.TileLayer(
 map.setView([67.893153, 18.75682], 7);
 
 //Code for custom icons
-var peak = L.icon({
+var mountainTop = L.icon({
   iconUrl: "peak.png",
   shadowUrl: "",
 
@@ -48,7 +48,7 @@ var peak = L.icon({
   popupAnchor: [0, -55] // point from which the popup should open relative to the iconAnchor
 });
 
-var walking = L.icon({
+var hiking = L.icon({
   iconUrl: "walking.png",
   shadowUrl: "",
 
@@ -59,8 +59,19 @@ var walking = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
+var skiing = L.icon({
+  iconUrl: "skiing.png",
+  shadowUrl: "",
+
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
+
 //hard-coded top to start out with
-let marker = L.marker([67.904363, 18.527085], { icon: peak }).addTo(map);
+let marker = L.marker([67.904363, 18.527085], { icon: mountainTop }).addTo(map);
 
 marker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
 //marker.bindTooltip("my tooltip text").openTooltip();
@@ -76,7 +87,7 @@ let route = [
 
 let polyline = L.polyline(route, { color: "blue" }).addTo(map);
 
-let polylineMarker = L.marker([67.893922, 18.646379], { icon: walking }).addTo(
+let polylineMarker = L.marker([67.893922, 18.646379], { icon: hiking }).addTo(
   map
 );
 
@@ -95,6 +106,48 @@ function onMapClick(e) {
 }
 
 //map.on("click", onMapClick);
+
+//Test of API-call to back end
+function testGetRoute() {
+  console.log("Inne i metoden testGetRoute");
+
+  fetch("http://localhost:8080/testRoute")
+    .then(test => test.json())
+    .then(out => {
+      console.log("Checkout this JSON! ", out);
+
+      let routeType = out.type;
+      let newMarker;
+
+      switch (routeType) {
+        case "hiking":
+          newMarker = L.marker([out.positions[0], out.positions[1]], {
+            icon: hiking
+          }).addTo(map);
+          break;
+
+        case "skiing":
+          newMarker = L.marker([out.positions[0], out.positions[1]], {
+            icon: skiing
+          }).addTo(map);
+          break;
+
+        case "mountainTop":
+          newMarker = L.marker([out.positions[0], out.positions[1]], {
+            icon: mountainTop
+          }).addTo(map);
+
+          break;
+
+        default:
+          break;
+      }
+      newMarker.bindPopup(out.name);
+    })
+    .catch(err => {
+      throw err;
+    });
+}
 
 // adding leaflet-geoman controls/toolbar with some options to the map
 /*
