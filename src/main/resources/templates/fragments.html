@@ -71,12 +71,7 @@
             </li>
 
             <li class="nav-item">
-              <a
-                class="nav-link"
-                data-toggle="modal"
-                data-target="#modalLoginForm"
-                >Logga in</a
-              >
+              <a class="nav-link" href="login">Logga in</a>
             </li>
           </ul>
           <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
@@ -107,12 +102,18 @@
             </div>
 
                 <div class="modal-body mx-3">
-                    <form action="/inloggning" method="post">
+                    <form th:action="@{/login}" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">E-post</label>
-     <!-- OBS! ändra innehåll-->                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ange e-post">
+     <!-- OBS! ändra innehåll-->                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ange e-post">
                            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                         </div>
+
+                      <div class="form-group">
+                        <label for="exampleUsername">Username</label>
+                        <input type="text" class="form-control" id="exampleUsername" placeholder="Användarnamn">
+                      </div>
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Lösenord</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Lösenord">

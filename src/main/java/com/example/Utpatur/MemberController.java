@@ -25,18 +25,21 @@ public class MemberController {
     @GetMapping("/profil")
     String profil(Model model) {
 
-        return "profile";
+        return "profil";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
 
-    @PostMapping("/inloggning")
-    String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
-
-        Member member = memberRepository.getMemberByEmail("email");
-        //check if member exist or not
-        //
-        return "profile";
+/*    @PostMapping("/inloggning")
+    public String inloggning() {
+        return "profil";
     }
+
+ */
 
 
      @GetMapping("/addMember")
