@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 */
 
                 .authorizeRequests()
-                    .antMatchers("/", "/kartvy", "/registrera-konto", "/tur", "/style.css", "/index.js", "/map-route.js", "mapview.js").permitAll()
+                    .antMatchers("/", "/kartvy", "/registrera-konto", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js").permitAll()
                 .antMatchers("/static/**").permitAll()
                     .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
                 .anyRequest().authenticated()
