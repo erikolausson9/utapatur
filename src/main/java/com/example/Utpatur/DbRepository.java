@@ -33,8 +33,8 @@ public class DbRepository {
         route.setHeight(rs.getInt("height"));
         route.setDifficulty(rs.getString("difficulty"));
         route.setLength(rs.getInt("length"));
-        route.setDuration(rs.getString("duration"));
-        route.setSeason(rs.getString("season"));
+        route.setDays(rs.getInt("days"));
+        route.setHours(rs.getDouble("hours"));
         route.setDescription(rs.getString("description"));
         route.setDateOfCompletion(rs.getString("dateOfCompletion"));
         route.setRouteCreated(rs.getString("routeCreated"));
@@ -67,14 +67,14 @@ public class DbRepository {
         System.out.println("Objekt skapat");
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Duration, Season, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Days, Hours, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
             ps.setString(1, testRoute.getRouteName());
             ps.setString(2, testRoute.getRouteType());
             ps.setInt(3, testRoute.getHeight());
             ps.setString(4, testRoute.getDifficulty());
             ps.setInt(5, testRoute.getLength());
-            ps.setString(6, testRoute.getDuration());
-            ps.setString(7, testRoute.getSeason());
+            ps.setInt(6, testRoute.getDays());
+            ps.setDouble(7, testRoute.getHours());
             ps.setString(8, testRoute.getDescription());
             ps.setString(9, testRoute.getDateOfCompletion());
             ps.setString(10, testRoute.getRouteCreated());

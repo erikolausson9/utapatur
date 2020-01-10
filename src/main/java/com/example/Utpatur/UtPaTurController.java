@@ -34,5 +34,4 @@ public class UtPaTurController {
         return "profile";
         }
 
-
 }
