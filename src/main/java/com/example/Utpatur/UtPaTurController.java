@@ -34,5 +34,11 @@ public class UtPaTurController {
         return "profile";
         }
 
+    @GetMapping("/kartvy")
+    String kartvy(){
+        return "kartvy";
+    }
+
+
 
 }
