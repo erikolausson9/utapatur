@@ -13,7 +13,8 @@ public class ServiceLayer {
     MemberRepository memberRepository;
 
 
-    //instance methods
+
+    //instance methods for member operations
     public void addMember (Member member) {
         memberRepository.addMember(member);
     }
@@ -21,4 +22,11 @@ public class ServiceLayer {
     public Member getMember (String email) {
         return memberRepository.getMemberByEmail(email);
     }
+
+    //instance methods for map/route operations
+    public void addRoute(CreateNewRoute routeToAdd){
+        dbRepository.addRoute(routeToAdd);
+    }
 }
+
+

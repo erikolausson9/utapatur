@@ -100,22 +100,25 @@
             <div class="ny-tur-form-container">
                 <h1>Lägg till ny tur</h1>
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
-                <form action="/skapa-ny-tur" method="POST" th:object="${route}">
+                <form action="/skapa-ny-tur" method="POST" th:object="${createNewRoute}">
                     <input type="hidden" id="typeOfRoute" th:field="*{routeType}"></input>
-                    <input type="hidden" id="latitudes"></input> <!-- Todo: hur ska positionerna skickas vidare?-->
-                    <input type="hidden" id="longitudes"></input>
+                    <input type="hidden" id="length" th:field="*{length}"></input>
+                    <input type="hidden" id="height" th:field="*{height}"></input>
+                    <input type="hidden" id="latitudes" th:field="*{latitudes}"></input>
+                    <input type="hidden" id="longitudes" th:field="*{longitudes}"></input>
+                    <!-- Todo: hur ska positionerna skickas vidare?-->
 
                     <div class="form-group">
-                        <label>Namn på tur</label>
+
                         <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                            placeholder="Lägg till ett namn på turen">
+                            placeholder="Lägg till ett namn på turen" th:field="*{routeName}">
 
                     </div>
 
                     <div class="form-group">
                         <label>Beskrivning</label>
                         <input type="text" class="form-control" id="description"
-                            placeholder="Lägg till en beskrivning av turen">
+                            placeholder="Lägg till en beskrivning av turen" th:field="*{description}">
                     </div>
 
 
@@ -123,7 +126,7 @@
 
                     <div class="form-group">
                         <label for="difficultySelect">Ange svårighetsgrad:</label>
-                        <select class="form-control" id="difficultySelect">
+                        <select class="form-control" id="difficultySelect" th:field="*{difficulty}">
                             <option value="easy">Lätt</option>
                             <option value="medium">Medel</option>
                             <option value="hard">Krävande</option>
@@ -136,10 +139,11 @@
                     <div class="form-group row">
                         <label class="col-sm-4 control-label">Tidsåtgång:</label>
                         <div class="col-sm-4">
-                            <input type="number" class="form-control" id="days" placeholder="Dagar">
+                            <input type="number" class="form-control" id="days" placeholder="Dagar" th:field="*{days}">
                         </div>
                         <div class="col-sm-4">
-                            <input type="number" class="form-control" id="hours" placeholder="Timmar">
+                            <input type="number" class="form-control" id="hours" placeholder="Timmar"
+                                th:field="*{hours}">
                         </div>
                     </div>
 
@@ -147,12 +151,12 @@
                         <label for="example-date-input" class="col-7 col-form-label">Datum då du gick/skidade turen:
                         </label>
                         <div class="col-5">
-                            <input class="form-control" type="date" id="datum">
+                            <input class="form-control" type="date" id="datum" th:field="*{dateOfCompletion}">
                         </div>
                     </div>
 
                     <div class="row">
-                        <div id="length"></div>
+                        <div id="lengthToShow"></div>
                     </div>
 
 
@@ -162,6 +166,8 @@
                     <button type="submit" class="primary-button" onclick="saveRouteToDatabase()">Spara tur</button>
 
                 </form>
+
+
             </div>
         </div>
         <!-- end of form on right column-->
