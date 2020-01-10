@@ -1,5 +1,6 @@
-package com.example.Utpatur;
+/*package com.example.Utpatur;
 
+import com.example.Utpatur.DbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ServiceLayer {
@@ -13,4 +14,4 @@ public class ServiceLayer {
     public Member getMember (String memberName) {
         return dbRepository.getMemberByMemberName(memberName);
     }
-}
+}*/

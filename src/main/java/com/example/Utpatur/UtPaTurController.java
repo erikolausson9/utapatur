@@ -21,7 +21,7 @@ public class UtPaTurController {
     DbRepository dbRepository;
 
     @Autowired
-    ServiceLayer serviceLayer;
+    //ServiceLayer serviceLayer;
 
     @GetMapping("/")
     String startsida() {
@@ -42,78 +42,15 @@ public class UtPaTurController {
         return "profile";
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @PostMapping("/inloggning")
-    String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
-
-        Member member = dbRepository.getMemberEmail("email");
-        //check if member exist or not
-        //
-        return "profile";
-    }
-
-    @GetMapping("/kartvy")
-    String kartvy(){
-        return "kartvy";
-    }
-
-
-
-    //tillfälligt, detta behöver sen ändras med routeID och pathvariable
-    @GetMapping("tur")
-    String tur() {
-        return "tur";
-    }
-
-
-        @GetMapping("/addMember")
-        String addMember(Model model) {
+    /*@GetMapping("/addMember")
+    String addMember(Model model) {
         model.addAttribute("member", new Member());
 
         return "member-registration";
-        }
+    }
 
-        @PostMapping("/addMember")
-        String addMember(HttpSession session, Model model, @Valid Member member, BindingResult result) {
+    @PostMapping("/addMember")
+    String addMember(HttpSession session, Model model, @Valid Member member, BindingResult result) {
         if (result.hasErrors()) {
             return "member-registration";
         }
@@ -135,7 +72,28 @@ public class UtPaTurController {
         model.addAttribute("noErrors", true);
 
         return "member-registration";
-        }
+    }*/
+
+    @PostMapping("/inloggning")
+    String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
+
+        Member member = dbRepository.getMemberEmail("email");
+        //check if member exist or not
+        //
+        return "profile";
+    }
+
+    @GetMapping("/kartvy")
+    String kartvy(){
+        return "kartvy";
+    }
+
+
+    //tillfälligt, detta behöver sen ändras med routeID och pathvariable
+    @GetMapping("tur")
+    String tur() {
+        return "tur";
+    }
 
 
 }
