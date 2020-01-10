@@ -65,6 +65,51 @@ public class DbRepository {
     }
 
 
+    public List<Route> getAllRoutes(){ //Todo: testa om denna funktion gör vad den ska!
+        List<Route> routes = new ArrayList();
+        try(Connection conn = dataSource.getConnection();
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * FROM Route")){
+            if(rs.next()){
+                System.out.println("en rad till");
+                routes.add(rsRoute(rs));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return routes;
+    }
+
+    public Route getRoute(int routeID){
+
+        Route route = new Route();
+        try(Connection conn = dataSource.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Route WHERE RouteID=" + routeID)){
+            if(rs.next()){
+                route= rsRoute(rs);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    return route;
+    }
+
+    public int getLastRouteID(){
+        int id=0;
+        try {Connection conn = dataSource.getConnection();
+             Statement statement = conn.createStatement();
+             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;"); //TODO: this doesn't seem to be the right sql statement
+            if(rs.next()){
+                id = rs.getInt("C");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
     public Route rsRoute(ResultSet rs) throws SQLException {
         Route route = new Route();
         route.setRouteId(rs.getInt("routeId"));

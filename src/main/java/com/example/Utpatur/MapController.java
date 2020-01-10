@@ -40,8 +40,9 @@ public class MapController {
     @PostMapping("/skapa-ny-tur")
     String skapaNyTurForm(@ModelAttribute CreateNewRoute createNewRoute, Model model){
 
-        System.out.println("vi är på rad 43");
+        //System.out.println("vi är på rad 43");
         model.addAttribute("createNewRoute", createNewRoute);
+        /*
         System.out.println("route name: " + createNewRoute.getRouteName());
         System.out.println("route type: " + createNewRoute.getRouteType());
         System.out.println("route description: " + createNewRoute.getDescription());
@@ -52,7 +53,7 @@ public class MapController {
         System.out.println("height: " + createNewRoute.getHeight());
         System.out.println("latitudes: " + createNewRoute.getLongitudes());
         System.out.println("longitudes: " + createNewRoute.getLatitudes());
-
+        */
         createNewRoute.setMemberId(1);
 
         serviceLayer.addRoute(createNewRoute);
