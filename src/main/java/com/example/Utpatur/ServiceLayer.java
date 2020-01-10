@@ -1,17 +1,24 @@
-/*package com.example.Utpatur;
+package com.example.Utpatur;
 
 import com.example.Utpatur.DbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ServiceLayer {
     @Autowired
     DbRepository dbRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
+
+
+    //instance methods
     public void addMember (Member member) {
-        dbRepository.addMember(member);
+        memberRepository.addMember(member);
     }
 
-    public Member getMember (String memberName) {
-        return dbRepository.getMemberByMemberName(memberName);
+    public Member getMember (String email) {
+        return memberRepository.getMemberByEmail(email);
     }
-}*/
+}

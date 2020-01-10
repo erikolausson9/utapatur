@@ -74,6 +74,13 @@ span.white-s {
   color: white;
 }
 
+span.small-desc {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight 300;
+}
+
 /*primary button*/
 .primary-button {
   font-family: 'Josefin Sans', sans-serif;
@@ -163,15 +170,31 @@ i.dark-bg:hover {
   color: #fff;
 }
 
+i.fa-star {
+    color: #2d874c;
+}
+
+
+.fa-star:active {
+    color: #e3a209;
+}
+
+/* Gäller endast på startsida*/
 .sec-bg {
   background-color: #f7f6eb;
   margin-top: 225px;
 }
+
 /*gäller för section med #f7f6eb bakgrund*/
 .sec-light-bg {
     background-color: #f7f6eb;
 /*min-height: 100vh;*/
  }
+
+ .sec-yellow-bg {
+    background-color: #e3a209;
+ }
+
 
 /*NAVBAR (HEADER)*/
 .bg-custom {

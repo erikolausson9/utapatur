@@ -42,35 +42,6 @@ public class DbRepository {
         return route;
     }
 
-    public Member rsMember(ResultSet rs) throws SQLException {
-        Member member = new Member();
-        member.setMemberId(rs.getInt("memberId"));
-        member.setEmail(rs.getString("email"));
-        member.setMemberName(rs.getString("memberName"));
-        member.setPassword(rs.getString("password"));
-        return member;
-    }
-
-
-
-    //Check email for login
-
-    public Member getMemberEmail(String email) {
-        Member member = null;
-        try (Connection conn = dataSource.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE email = " + email)) {     //Email el email? påverkar det?
-            if (rs.next()) {
-                member = rsMember(rs);
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return member;
-    }
-
-
     //Method to Test DB-connection
     public boolean testDB() throws SQLException {
         int two = 0;
