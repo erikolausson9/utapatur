@@ -41,7 +41,7 @@ public class DbRepository {
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
         return route;
     }
-    
+
     //Method to Test DB-connection
     public boolean testDB() throws SQLException {
         int two = 0;

@@ -3,17 +3,24 @@ package com.example.Utpatur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MemberController {
 
     @Autowired
-    DbRepository dbRepository;
+    MemberRepository memberRepository;
+
+   @Autowired
+    ServiceLayer serviceLayer;
 
     @GetMapping("/profil")
     String profil(Model model) {
@@ -25,14 +32,14 @@ public class MemberController {
     @PostMapping("/inloggning")
     String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
 
-        Member member = dbRepository.getMemberEmail("email");
+        Member member = memberRepository.getMemberByEmail("email");
         //check if member exist or not
         //
         return "profile";
     }
 
 
-     /*@GetMapping("/addMember")
+     @GetMapping("/addMember")
     String addMember(Model model) {
         model.addAttribute("member", new Member());
 
@@ -62,6 +69,6 @@ public class MemberController {
         model.addAttribute("noErrors", true);
 
         return "member-registration";
-    }*/
+    }
 
 }
