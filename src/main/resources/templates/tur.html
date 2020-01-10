@@ -45,87 +45,80 @@
 <body>
 <div th:replace="fragments :: header"></div>
 
-
+<section class="sec-light-bg">
 <div class="container">
-    <div class="row mt-5 mb-5">
-    <div class="col-8">
+    <div class="row">
+    <div class="col-8 mt-5">
     <img src="../images/temp-img-tur.jpg" width="100%" height="400px">
     </div>
-    <div class="col-4">
+    <div class="col-4 mt-5">
         <div id="map-route"></div>
     </div>
 </div>
 
     <div class="row justify-content-start mt-5 mb-5">
         <div class="col-8">
-            <h1>$Namn på turen</h1>
-            <span><i class="fas fa-star"></i>Spara i turlistan </span>
-            <span>Senast uppdaterad: $2019-12-29 </span>
-            <span>Datum vid turvandring: $2018-10-15</span>
-
+            <h1>$Namn på turen <i class="fas fa-star"></i></h1>
+            <span class="small-desc">Publicerad av $username $2019-12-29 · Turen utfördes $2018-10-15</span>
         </div>
 
     </div>
 
     <div class="row justify-content-start">
-        <div class="col-4">
-            <table>
+        <div class="col-8">
+            <table class="table">
+                <tbody>
                 <tr>
-                    <td><span>Typ av tur</span></td>
-                    <td><span>$Hiking</span></td>
+                    <th scope="row">Typ av tur</th>
+                    <td>$Hiking</td>
                 </tr>
                 <tr>
-                    <td><span>Höjd</span></td>
-                    <td><span>$123 m</span></td>
+                    <th scope="row">Sträcka</th>
+                    <td>$123 km</td>
+
                 </tr>
                 <tr>
-                    <td><span>Sträcka</span></td>
-                    <td><span>$123 km</span></td>
+                    <th scope="row">Höjd</th>
+                    <td>$163 m</td>
                 </tr>
+                <tr>
+                    <th scope="row">Svårighetsgrad</th>
+                    <td>$Medel</td>
+                </tr>
+                <tr>
+                    <th scope="row">Tidsåtgång</th>
+                    <td>$2 dagar $ och 3 timmar</td>
+                </tr>
+                </tbody>
             </table>
 
-        </div>
-        <div class="col-4">
-            <table>
-                <tr>
-                    <td><span>Svårighetsgrad</span></td>
-                    <td><span>$Medel</span></td>
-                </tr>
-                <tr>
-                    <td><span>Säsong</span></td>
-                    <td><span>$Sommar $Vår </span></td>
-                </tr>
-                <tr>
-                    <td><span>Längd</span></td>
-                    <td><span>$Hiking</span></td>
-                </tr>
-            </table>
         </div>
 
 
     </div>
 
 
-    <div class="row justify-content-start mt-5 mb-5">
-        <div class="col-8">
-            <h3>Beskrivning</h3>
+    <div class="row justify-content-start">
+        <div class="col-8 mt-5 mb-5">
+            <h2>Beskrivning</h2>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum sem sit amet tortor convallis, a consectetur mauris facilisis. Morbi quis porttitor ligula. Praesent a arcu dictum, commodo nibh et, egestas ipsum. Fusce nulla nunc, tincidunt tristique tellus et, lobortis sodales felis. Donec et purus ut nibh vestibulum rutrum. Ut vitae nunc libero. Curabitur convallis rutrum gravida. Quisque augue mi, porta nec est quis, ultricies imperdiet eros. In feugiat volutpat nisl a tempus. Praesent eu varius magna, sodales posuere dolor. Sed pulvinar fermentum turpis id ultricies. Nam tincidunt lorem orci, eget fermentum est ullamcorper vitae. Praesent tellus eros, ultrices id maximus a, aliquam ac neque. Cras et orci scelerisque, congue lectus id, dictum quam.</p>
+                $Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vestibulum sem sit amet tortor convallis, a consectetur mauris facilisis. Morbi quis porttitor ligula. Praesent a arcu dictum, commodo nibh et, egestas ipsum. Fusce nulla nunc, tincidunt tristique tellus et, lobortis sodales felis. Donec et purus ut nibh vestibulum rutrum. Ut vitae nunc libero. Curabitur convallis rutrum gravida. Quisque augue mi, porta nec est quis, ultricies imperdiet eros. In feugiat volutpat nisl a tempus. Praesent eu varius magna, sodales posuere dolor. Sed pulvinar fermentum turpis id ultricies. Nam tincidunt lorem orci, eget fermentum est ullamcorper vitae. Praesent tellus eros, ultrices id maximus a, aliquam ac neque. Cras et orci scelerisque, congue lectus id, dictum quam.</p>
             <p>
                 Suspendisse consectetur arcu vitae erat eleifend dignissim. Mauris dapibus mattis consequat. Phasellus auctor nunc vel volutpat malesuada. Aenean sed massa iaculis, ornare odio a, suscipit sapien. Nulla ullamcorper, arcu ut commodo ullamcorper, arcu ante condimentum tortor, in posuere ligula tortor sed elit. Duis pellentesque cursus nisi scelerisque vulputate. Nam eget odio quis metus pharetra mollis interdum et diam. Cras nec mi lacus. Pellentesque in tortor accumsan, cursus mi non, vulputate est. Nam et sagittis lorem. Donec vel leo volutpat, tempor enim at, condimentum purus.
             </p>
         </div>
     </div>
 
-
 </div>
+</section>
 
-<section class="sec-bg">
+
+<section class="sec-light-bg">
     <div class="container">
         <div class="row">
             <div class="col mt-5 mb-5">
-                <h2>Ut på tur</h2>
-                <p>En samlingsplats för att dela och hitta turförslag i Sverige, sommar som vinter.</p>
+                <h3>Kommentarer</h3>
+                <p>Lägg till en kommentar</p>
             </div>
         </div>
     </div>
