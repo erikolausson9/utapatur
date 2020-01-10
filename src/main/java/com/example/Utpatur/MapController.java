@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class UtPaTurController {
+public class MapController {
 
     @Autowired
     DbRepository dbRepository;
@@ -28,10 +28,6 @@ public class UtPaTurController {
             return "skapa-ny-tur";
         }
 
-        @GetMapping("/profil")
-        String profil(Model model) {
 
-        return "profile";
-        }
 
 }
