@@ -265,8 +265,8 @@ function savePositions(routeObject) {
 
 function saveRouteToDatabase() {
 
-    document.getElementById("latitudes").innerText = latitudes;
-    document.getElementById("longitudes").innerText = longitudes;
+    document.getElementById("latitudes").value = latitudes;
+    document.getElementById("longitudes").value = longitudes;
 }
 
 
