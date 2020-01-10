@@ -59,15 +59,6 @@ public class MemberController {
         model.addAttribute("member", member);
         serviceLayer.addMember(member);
 
-        List<Member> members = (List<Member>)session.getAttribute("members");
-        if (members == null) {
-            members = new ArrayList<>();
-            session.setAttribute("members", members);
-            }
-
-        members.add(member);
-        model.addAttribute("noErrors", true);
-
         return "registrering";
     }
 
