@@ -2,7 +2,7 @@ package com.example.Utpatur;
 
 public class Member {
     private Integer memberId;
-    private String fullName;
+    private String email;
     private String memberName;
     private String password;
 
@@ -10,9 +10,9 @@ public class Member {
 
     }
 
-    public Member(Integer memberId, String fullName, String memberName, String password) {
+    public Member(Integer memberId, String email, String memberName, String password) {
         this.memberId = memberId;
-        this.fullName = fullName;
+        this.email = email;
         this.memberName = memberName;
         this.password = password;
     }
@@ -25,12 +25,12 @@ public class Member {
         this.memberId = memberId;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMemberName() {

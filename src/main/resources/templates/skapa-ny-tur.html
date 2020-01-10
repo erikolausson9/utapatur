@@ -53,7 +53,7 @@
 <body>
     <div th:replace="fragments :: header"></div>
 
-
+    <!---Modal: popup-box to choose type of route--->
     <div class="modal" id="myModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -64,18 +64,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="primary-button" id="hike" onclick="setTypeForRouteCreation('hike')">
-                        Fottur
+                    <button type="button" class="primary-button" id="hike" onclick="setTypeForRouteCreation('hiking')"
+                        data-dismiss="modal">
+                        Vandringstur
                     </button>
-                    <button type="button" class="primary-button" id="skiing"
-                        onclick="setTypeForRouteCreation('skiing')">
+                    <button type="button" class="primary-button" id="skiing" onclick="setTypeForRouteCreation('skiing')"
+                        data-dismiss="modal">
                         Skidtur
                     </button>
                     <button type="button" class="primary-button" id="mountainTop"
-                        onclick="setTypeForRouteCreation('mountainTop')">
+                        onclick="setTypeForRouteCreation('mountainTop')" data-dismiss="modal">
                         Topp
                     </button>
-                    <button type="button" class="primary-button" id="poi" onclick="setTypeForRouteCreation('poi')">
+                    <button type="button" class="primary-button" id="poi" onclick="setTypeForRouteCreation('poi')"
+                        data-dismiss="modal">
                         Intressant plats
                     </button>
                 </div>
@@ -87,17 +89,19 @@
             </div>
         </div>
     </div>
-
+    <!--end of modal -->
 
     <div class="row">
         <div class="col-sm-8">
             <div id="map-new-route"></div>
         </div>
+        <!-- form on right colum-->
         <div class="col-sm-4">
             <div class="ny-tur-form-container">
                 <h1>Lägg till ny tur</h1>
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
                 <form>
+                    <input type="hidden" id="typeOfRoute"></input>
                     <div class="form-group">
                         <label>Namn på tur</label>
                         <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
@@ -156,20 +160,10 @@
                 </form>
             </div>
         </div>
+        <!-- end of form on right column-->
 
     </div>
-    <!--
-    <section class="sec-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col mt-5 mb-5">
-                    <h2>Skapa nytt turförslag</h2>
-                    <p>Här kan du rita ut en rutt, markera ut en topp eller någon intressant plats på kartan</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    -->
+
 
     <div th:replace="fragments :: footer"></div>
 

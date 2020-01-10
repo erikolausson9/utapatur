@@ -33,14 +33,77 @@ public class UtPaTurController {
 
         //dbRepository.testCreateNewRouteObject();
 
-            return "skapa-ny-tur";
-        }
+        return "skapa-ny-tur";
+    }
 
-        @GetMapping("/profil")
-        String profil(Model model) {
+    @GetMapping("/profil")
+    String profil(Model model) {
 
         return "profile";
-        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @PostMapping("/inloggning")
+    String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
+
+        Member member = dbRepository.getMemberEmail("email");
+        //check if member exist or not
+        //
+        return "profile";
+    }
+
+    @GetMapping("/kartvy")
+    String kartvy(){
+        return "kartvy";
+    }
+
+
+
+    //tillfälligt, detta behöver sen ändras med routeID och pathvariable
+    @GetMapping("tur")
+    String tur() {
+        return "tur";
+    }
+
 
         @GetMapping("/addMember")
         String addMember(Model model) {

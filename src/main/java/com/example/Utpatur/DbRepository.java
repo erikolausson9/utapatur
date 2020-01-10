@@ -33,14 +33,43 @@ public class DbRepository {
         route.setHeight(rs.getInt("height"));
         route.setDifficulty(rs.getString("difficulty"));
         route.setLength(rs.getInt("length"));
-        route.setDuration(rs.getString("duration"));
-        route.setSeason(rs.getString("season"));
+        route.setDays(rs.getInt("days"));
+        route.setHours(rs.getDouble("hours"));
         route.setDescription(rs.getString("description"));
         route.setDateOfCompletion(rs.getString("dateOfCompletion"));
         route.setRouteCreated(rs.getString("routeCreated"));
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
         return route;
     }
+
+    public Member rsMember(ResultSet rs) throws SQLException {
+        Member member = new Member();
+        member.setMemberId(rs.getInt("memberId"));
+        member.setEmail(rs.getString("email"));
+        member.setMemberName(rs.getString("memberName"));
+        member.setPassword(rs.getString("password"));
+        return member;
+    }
+
+
+
+    //Check email for login
+
+    public Member getMemberEmail(String email) {
+        Member member = null;
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE email = " + email)) {     //Email el email? påverkar det?
+            if (rs.next()) {
+                member = rsMember(rs);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return member;
+    }
+
 
     //Method to Test DB-connection
     public boolean testDB() throws SQLException {
@@ -67,14 +96,14 @@ public class DbRepository {
         System.out.println("Objekt skapat");
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Duration, Season, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Route(RouteName, RouteType, Height, Difficulty, Length, Days, Hours, Description, DateOfCompletion, RouteCreated, RouteLastUpdated, MemberID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)")) {
             ps.setString(1, testRoute.getRouteName());
             ps.setString(2, testRoute.getRouteType());
             ps.setInt(3, testRoute.getHeight());
             ps.setString(4, testRoute.getDifficulty());
             ps.setInt(5, testRoute.getLength());
-            ps.setString(6, testRoute.getDuration());
-            ps.setString(7, testRoute.getSeason());
+            ps.setInt(6, testRoute.getDays());
+            ps.setDouble(7, testRoute.getHours());
             ps.setString(8, testRoute.getDescription());
             ps.setString(9, testRoute.getDateOfCompletion());
             ps.setString(10, testRoute.getRouteCreated());

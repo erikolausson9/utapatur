@@ -1,142 +1,179 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-
+  <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
     ></script>
-
 
     <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
     />
 
     <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
     ></script>
 
-    <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/9fea19c3fb.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
 
     <!--<link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">-->
 
     <title>Ut på Tur</title>
-</head>
+  </head>
 
-<body>
-<div th:fragment="header">
-
-    <nav class="navbar navbar-expand-md bg-custom sticky-top">
-        ​<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+  <body>
+    <div th:fragment="header">
+      <nav class="navbar navbar-expand-md bg-custom sticky-top">
+        ​<button
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
         <a class="navbar-brand" href="/">
-            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span id="brandName"> Ut på tur</span>
+          <img
+            src="images/logo.png"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          <span id="brandName"> Ut på tur</span>
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item">
+              <a class="nav-link" href="kartvy">Karta</a>
+            </li>
 
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Karta</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Logga in</a>
-                </li>
-            </ul>
-            <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="modal"
+                data-target="#modalLoginForm"
+                >Logga in</a
+              >
+            </li>
+          </ul>
+          <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
         </div>
-    </nav>
-    <!--Log in pop up -->
+      </nav>
+      <!--Log in pop up -->
 
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
+      <div
+        class="modal fade"
+        id="modalLoginForm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header heading-center">
-                    <h4 class="modal-title w-100">Logga in</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header heading-center">
+              <h4 class="modal-title w-100">Logga in</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 
                 <div class="modal-body mx-3">
-                    <form>
+                    <form action="/inloggning" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">E-post</label>
      <!-- OBS! ändra innehåll-->                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ange e-post">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Lösenord</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Lösenord">
                         </div>
                         <button type="submit" class="primary-button">Logga in</button>
-                        <p>Är du inte medlem? <a href="/registrering">Registrera nytt konto</a> </p>
+                        <p>Är du inte medlem? <a href="/registrering">Registrera nytt konto</a></p>
                     </form>
                 </div>
             </div>
         </div>
+      </div>
     </div>
-</div>
 
-
-
-<!--FOOTER-->
-<section id="footer" th:fragment="footer">
-    <div class="container">
+    <!--FOOTER-->
+    <section id="footer" th:fragment="footer">
+      <div class="container">
         <div class="row mt-5 mb-3">
-            <div class="col-sm">
-                <h4>Genvägar</h4>
-                <ul class="footer-lists">
-                    <li><a class="footer-links" href="/logga-in">Logga in</a></li>
-                    <li><a class="footer-links" href="/karta">Karta</a></li>
-                </ul>
-            </div>
-            <div class="col-sm ">
-                <h4>Kontakta oss</h4>
-                <ul class="footer-lists">
-                    <li class="list-item">Skogsmullegatan 43</li>
-                    <li class="list-item">531 31 Skogen</li>
-                    <li><a class="footer-links" href="00468101510">08-10 15 10</a></li>
-                    <li><a class="footer-links" href="mailto:info@utpatur.se">info[a]utpatur.se</a></li>
-                </ul>
-            </div>
-            <div class="col-sm">
-                <h4>Häng med på tur</h4>
-                <ul class="footer-lists">
-                    <li><a class="footer-icon-links" href="#"><i class="fab fa-facebook fa-lg dark-bg"></i></a><a class="footer-icon-links" href="#"><i class="fab fa-instagram fa-lg dark-bg"></i></a><a class="footer-icon-links" href="#"><i class="fab fa-pinterest fa-lg dark-bg"></i></a></li>
-
-
-                </ul>
-            </div>
+          <div class="col-sm">
+            <h4>Genvägar</h4>
+            <ul class="footer-lists">
+              <li><a class="footer-links" href="/logga-in">Logga in</a></li>
+              <li><a class="footer-links" href="kartvy">Karta</a></li>
+            </ul>
+          </div>
+          <div class="col-sm ">
+            <h4>Kontakta oss</h4>
+            <ul class="footer-lists">
+              <li class="list-item">Skogsmullegatan 43</li>
+              <li class="list-item">531 31 Skogen</li>
+              <li>
+                <a class="footer-links" href="00468101510">08-10 15 10</a>
+              </li>
+              <li>
+                <a class="footer-links" href="mailto:info@utpatur.se"
+                  >info[a]utpatur.se</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm">
+            <h4>Häng med på tur</h4>
+            <ul class="footer-lists">
+              <li>
+                <a class="footer-icon-links" href="#"
+                  ><i class="fab fa-facebook fa-lg dark-bg"></i></a
+                ><a class="footer-icon-links" href="#"
+                  ><i class="fab fa-instagram fa-lg dark-bg"></i></a
+                ><a class="footer-icon-links" href="#"
+                  ><i class="fab fa-pinterest fa-lg dark-bg"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="row">
-            <div class="col-sm text-center">
-                <p id="footer-copyright">&copy Ut på tur 2020</p>
-            </div>
+          <div class="col-sm text-center">
+            <p id="footer-copyright">&copy Ut på tur 2020</p>
+          </div>
         </div>
     </div>
 </section>
-
 
 <!--FIXED FOOTER-->
 <!--<footer th:fragment="footer2">
@@ -174,5 +211,7 @@
         </div>
     </div>
 </footer>-->
+
+
 </body>
 </html>
