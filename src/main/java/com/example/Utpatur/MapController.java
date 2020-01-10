@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,13 +30,23 @@ public class MapController {
     }
 
     @GetMapping("/skapa-ny-tur")
-    String skapanytur() {
-
+    String skapanytur(Model model) {
+        model.addAttribute("route", new Route());
         //dbRepository.testCreateNewRouteObject();
-
+        System.out.println("Vi är på rad 36");
         return "skapa-ny-tur";
     }
 
+    @PostMapping("/skapa-ny-tur")
+    String skapaNyTurForm(@ModelAttribute Route route, Model model){
+
+        System.out.println("vi är på rad 43");
+        model.addAttribute("route", route);
+        //System.out.println("route name: " + route.getRouteName());
+        System.out.println("route type: " + route.getRouteType());
+
+        return "index";
+    }
 
 
 

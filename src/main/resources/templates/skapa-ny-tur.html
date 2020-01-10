@@ -100,9 +100,9 @@
             <div class="ny-tur-form-container">
                 <h1>Lägg till ny tur</h1>
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
-                <form>
-                    <input type="hidden" id="typeOfRoute"></input>
-                    <input type="hidden" id="latitudes"></input>
+                <form action="/skapa-ny-tur" method="POST" th:object="${route}">
+                    <input type="hidden" id="typeOfRoute" th:field="*{routeType}"></input>
+                    <input type="hidden" id="latitudes"></input> <!-- Todo: hur ska positionerna skickas vidare?-->
                     <input type="hidden" id="longitudes"></input>
 
                     <div class="form-group">
