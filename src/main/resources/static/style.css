@@ -225,6 +225,8 @@ i.dark-bg:hover {
   z-index: 2;
 }
 
+
+
 #map-new-route {
   height: 100%;
   width: 100%;
@@ -236,13 +238,20 @@ i.dark-bg:hover {
 }
 
 .top-content {
-  margin: auto;
-  width: 60%;
-  position: relative;
-  z-index: 2;
-  background-color: #2d874c;
-  padding: 40px;
+    margin: auto;
+    width: 60%;
+    position: relative;
+    z-index: 2;
+    background-color: #2d874c;
+    padding: 40px;
 }
+
+
+#map-route {
+  height: 400px;
+  width: 100%;
+}
+
 
 .profil-bgimg {
   background-image: url("../images/prof2.jpg");
