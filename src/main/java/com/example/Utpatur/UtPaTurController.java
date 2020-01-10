@@ -25,13 +25,62 @@ public class UtPaTurController {
 
         //dbRepository.testCreateNewRouteObject();
 
-            return "skapa-ny-tur";
-        }
+        return "skapa-ny-tur";
+    }
 
-        @GetMapping("/profil")
-        String profil(Model model) {
+    @GetMapping("/profil")
+    String profil(Model model) {
 
         return "profile";
-        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @PostMapping("/inloggning")
+    String inloggning(HttpSession httpSession, @RequestParam String email, @RequestParam String password) {
+
+        Member member = dbRepository.getMemberEmail("email");
+        //check if member exist or not
+        //
+        return "profile";
+    }
 
 }
