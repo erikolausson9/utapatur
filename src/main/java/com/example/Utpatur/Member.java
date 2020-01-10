@@ -29,8 +29,8 @@ public class Member {
         return email;
     }
 
-    public void setEmail(String fullName) {
-        this.email = fullName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMemberName() {

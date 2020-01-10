@@ -1,51 +1,6 @@
-//import L from "leaflet";
-//import { CRS } from "proj4leaflet";
-//
-//import '@geoman-io/leaflet-geoman-free';
-//import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
-
-//Modal (Select type of route)
-function setTypeForRouteCreation(typeOfRoute) {
-    console.log(typeOfRoute);
-
-    if (typeOfRoute === "hiking" || typeOfRoute === "skiing") {
-
-        console.log("vi är på rad 13")
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: false,
-            drawPolyline: true,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false
-
-        });
-    } else {
-
-        console.log("vi är i else")
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: true,
-            drawPolyline: false,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false
-
-        });
-    }
 
 
 
-    document.getElementById("typeOfRoute").value = typeOfRoute;
-}
 
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
@@ -76,6 +31,7 @@ new L.TileLayer(
 ).addTo(map);
 
 map.setView([65.104326, 16.875124], 1.5);
+//end of map configuration
 
 //map.pm.setPathOptions({
 //  color: 'orange',
@@ -156,6 +112,8 @@ map.pm.addControls({
 //  });
 //});
 
+let latitudes = "";
+let longitudes = "";
 
 
 map.on('pm:create', e => {
@@ -190,13 +148,14 @@ map.on('pm:create', e => {
 
 
         //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
-        for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
+        // for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
 
-            totaldistance += (e.layer._latlngs[ii]).distanceTo(e.layer._latlngs[ii + 1])
+        //    totaldistance += (e.layer._latlngs[ii]).distanceTo(e.layer._latlngs[ii + 1])
 
-        }
+        //}
         console.log("total distance: " + totaldistance)
-        updateDistance(totaldistance);
+        updateDistance(calculateDistance(e.layer));
+        savePositions(e.layer);
 
 
 
@@ -215,14 +174,15 @@ map.on('pm:create', e => {
             console.log(e.target._latlng)
         } else {
             console.log("Editing line")
-            totaldistance = 0;
+            //totaldistance = 0;
 
             //console.log("distance between first two points: " + e.target._latlngs[0].distanceTo(e.taget._latlngs[1]))
 
-            for (let ii = 0; ii < e.target._latlngs.length - 1; ii++) {
-                totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
-            }
-            updateDistance(totaldistance);
+            //for (let ii = 0; ii < e.target._latlngs.length - 1; ii++) {
+            //    totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
+            //}
+            updateDistance(calculateDistance(e.target));
+            savePositions(e.target);
 
         }
 
@@ -230,7 +190,83 @@ map.on('pm:create', e => {
 
 });
 
+//Modal (Select type of route)
+function setTypeForRouteCreation(typeOfRoute) {
+    console.log(typeOfRoute);
+
+    if (typeOfRoute === "hiking" || typeOfRoute === "skiing") {
+
+        console.log("vi är på rad 13")
+        map.pm.addControls({
+            position: 'topleft',
+            drawCircle: false,
+            dragMode: false,
+            drawPolygon: false,
+            drawMarker: false,
+            drawPolyline: true,
+            drawRectangle: false,
+            drawCircleMarker: false,
+            cutPolygon: false,
+            editMode: false
+
+        });
+    } else {
+
+        console.log("vi är i else")
+        map.pm.addControls({
+            position: 'topleft',
+            drawCircle: false,
+            dragMode: false,
+            drawPolygon: false,
+            drawMarker: true,
+            drawPolyline: false,
+            drawRectangle: false,
+            drawCircleMarker: false,
+            cutPolygon: false,
+            editMode: false
+
+        });
+    }
+
+    document.getElementById("typeOfRoute").value = typeOfRoute;
+}
+
+function calculateDistance(routeObject) {
+    let returnDistance = 0;
+    for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
+        returnDistance += (routeObject._latlngs[ii]).distanceTo(routeObject._latlngs[ii + 1])
+    }
+    return returnDistance;
+
+}
+
 function updateDistance(totalDistance) {
 
     document.getElementById("length").innerText = "Längd på markerad tur: " + (totalDistance / 1000).toFixed(1) + " km"
 }
+
+
+function savePositions(routeObject) {
+    //erase any old positions
+    latitudes = "";
+    longitudes = "";
+
+    for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
+        latitudes += routeObject._latlngs[ii].lat + ", ";
+        longitudes += routeObject._latlngs[ii].lng + ", ";
+    }
+    latitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lat + ", ";
+    longitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lng + ", ";
+
+
+}
+
+function saveRouteToDatabase() {
+
+    document.getElementById("latitudes").innerText = latitudes;
+    document.getElementById("longitudes").innerText = longitudes;
+}
+
+
+
+
