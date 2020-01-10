@@ -102,6 +102,9 @@
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
                 <form>
                     <input type="hidden" id="typeOfRoute"></input>
+                    <input type="hidden" id="latitudes"></input>
+                    <input type="hidden" id="longitudes"></input>
+
                     <div class="form-group">
                         <label>Namn på tur</label>
                         <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
@@ -154,8 +157,9 @@
 
 
 
+
                     <button type="submit" class="white-button">Avbryt</button>
-                    <button type="submit" class="primary-button">Spara tur</button>
+                    <button type="submit" class="primary-button" onclick="saveRouteToDatabase()">Spara tur</button>
 
                 </form>
             </div>
