@@ -1,225 +1,220 @@
-h1, h2, h3, h4 {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 34px;
-    text-transform: uppercase;
-    font-weight: 400;
-    color: black;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 34px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: black;
 }
 
 h2 {
-        font-size: 26px;
+  font-size: 26px;
 }
 
 h3 {
-        font-size: 20px;
+  font-size: 20px;
 }
 
 h4 {
-        font-size: 16px;
+  font-size: 16px;
 }
 
 p {
-    font-size: 16px;
-    font-family: 'Lora', serif;
+  font-size: 16px;
+  font-family: "Lora", serif;
 }
 
 span {
-    font-size: 16px;
-    font-family: 'Lora', serif;
+  font-size: 16px;
+  font-family: "Lora", serif;
 }
 
-
 a {
-    color: #2d874c;
+  color: #2d874c;
 }
 
 a:hover {
-    color: #2d874c;
-    text-decoration: underline;
+  color: #2d874c;
+  text-decoration: underline;
 }
-
 
 /* center headings*/
 .heading-center {
-text-align: center
+  text-align: center;
 }
 
 /* SECONDARY TEXTS */
 
 h1.white-heading {
-    color: white;
+  color: white;
 }
 
 h2.white-heading {
-    color: white;
+  color: white;
 }
 
 h3.white-heading {
-    color: white;
+  color: white;
 }
 
 h4.white-heading {
-    color: white;
+  color: white;
 }
 
 p.white-p {
-    color: white;
+  color: white;
 }
 
 span.white-s {
-    color: white;
+  color: white;
 }
 
 /*primary button*/
 .primary-button {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: white;
-    background-color: #2d874c;
-    text-transform: uppercase;
-    border-radius: 3px;
-    padding: 16px 18px 14px 18px;
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #2d874c;
-    text-align: center;
-    line-height:0px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #2d874c;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #2d874c;
+  text-align: center;
+  line-height: 0px;
 }
 
 .primary-button:hover {
-    background-color: transparent;
-    color: #2d874c;
-    text-decoration: none;
+  background-color: transparent;
+  color: #2d874c;
+  text-decoration: none;
 }
 
 .mini-primary-button {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: white;
-    background-color: #2d874c;
-    text-transform: uppercase;
-    border-radius: 3px;
-    padding: 11px 9px 9px 9px;
-    display: inline-block;
-    margin-left: 5px;
-    text-align: center;
-    line-height:0px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #2d874c;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 11px 9px 9px 9px;
+  display: inline-block;
+  margin-left: 5px;
+  text-align: center;
+  line-height: 0px;
 }
 
 .mini-primary-button:hover {
-    background-color: #329654;
-    color: white;
-    text-decoration: none;
+  background-color: #329654;
+  color: white;
+  text-decoration: none;
 }
 
-
-
 .white-button {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #2d874c;
-    background-color: white;
-    text-transform: uppercase;
-    border-radius: 3px;
-    padding: 16px 18px 14px 18px;
-    display: inline-block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 2px solid white;
-    text-align: center;
-    line-height:0px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #2d874c;
+  background-color: white;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid white;
+  text-align: center;
+  line-height: 0px;
 }
 
 .white-button:hover {
-    background-color: transparent;
-    color: white;
-    text-decoration: none;
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
 }
-
-
-
 
 /*social media icons:*/
 i {
-    color:#2d874c;
-    margin: 0px 10px 0px 0px;
+  color: #2d874c;
+  margin: 0px 10px 0px 0px;
 }
 
 i.dark-bg {
-    color:#e3a209;
+  color: #e3a209;
 }
 
 i:hover {
-    color: #36a15b;
+  color: #36a15b;
 }
 
 i.dark-bg:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .sec-bg {
-    background-color: #f7f6eb;
-    margin-top: 225px;
+  background-color: #f7f6eb;
+  margin-top: 225px;
 }
 /*gäller för section med #f7f6eb bakgrund*/
 .sec-light-bg {
-    background-color: #f7f6eb;
- }
+  background-color: #f7f6eb;
+}
 
 /*NAVBAR (HEADER)*/
 .bg-custom {
-    background-color:#2d874c;
+  background-color: #2d874c;
 }
 
 #brandName {
-    font-family: 'Josefin Sans', sans-serif;
-    text-transform: uppercase;
-    color: white;
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  color: white;
 }
 
 .nav-link {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 14px;
-    color: white !important;
-    text-transform: uppercase;
-    padding-top: 12px !important;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 14px;
+  color: white !important;
+  text-transform: uppercase;
+  padding-top: 12px !important;
 }
 
 .btn-newroute {
-     font-family: 'Josefin Sans', sans-serif;
-         font-size: 13px;
-         font-weight: 600;
-         letter-spacing: 1px;
-         color: white;
-         background-color: #2d874c;
-         text-transform: uppercase;
-         border-radius: 3px;
-         padding: 16px 18px 14px 18px;
-         display: inline-block;
-         margin: 10px 0px 10px 10px;
-         border: 2px solid #fff;
-         text-align: center;
-         line-height:0px;
- }
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #2d874c;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin: 10px 0px 10px 10px;
+  border: 2px solid #fff;
+  text-align: center;
+  line-height: 0px;
+}
 
- .btn-newroute:hover {
-     background-color: white;
-     color: #2d874c;
-     text-decoration: none;
- }
+.btn-newroute:hover {
+  background-color: white;
+  color: #2d874c;
+  text-decoration: none;
+}
 
-  .profil {
-    border-collapse: separate;
-    border-spacing: 20px 0;
-  }
-
+.profil {
+  border-collapse: separate;
+  border-spacing: 20px 0;
+}
 
 /* Map styling */
 
@@ -230,11 +225,17 @@ i.dark-bg:hover {
   z-index: 2;
 }
 
-#map-new-route {
-    height: 100%;
-    width: 100%;
 
-  }
+
+#map-new-route {
+  height: 100%;
+  width: 100%;
+}
+
+#mapview {
+  height: 100%;
+  width: 100%;
+}
 
 .top-content {
     margin: auto;
@@ -243,64 +244,66 @@ i.dark-bg:hover {
     z-index: 2;
     background-color: #2d874c;
     padding: 40px;
-
 }
 
+
+#map-route {
+  height: 400px;
+  width: 100%;
+}
+
+
 .profil-bgimg {
-    background-image: url('../images/prof2.jpg');
-    background-position: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    }
+  background-image: url("../images/prof2.jpg");
+  background-position: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
 td {
-    padding-right: 20px;
+  padding-right: 20px;
 }
 
 .profilbild-placeholder {
-    border-radius: 50%;
-    padding: 10px;
-
+  border-radius: 50%;
+  padding: 10px;
 }
 
 /* FOOTER */
 section#footer {
-    background-color: #918a78;
-    padding-top: 1px;
+  background-color: #918a78;
+  padding-top: 1px;
 }
-#footer h4{
-    /*padding-bottom: 6px;
+#footer h4 {
+  /*padding-bottom: 6px;
     margin-bottom: 10px;*/
-    color:#ffffff;
+  color: #ffffff;
 }
 ul.footer-lists {
-    list-style: none;
-    padding-left: 0px;
+  list-style: none;
+  padding-left: 0px;
 }
 li.list-item {
-    font-family: 'Lora', serif;
-    color: #ffffff;
-    list-style: none;
-    padding-left: 0px;
-
+  font-family: "Lora", serif;
+  color: #ffffff;
+  list-style: none;
+  padding-left: 0px;
 }
 a.footer-links {
-    font-family: 'Lora', serif;
-    color: #ffffff !important;
+  font-family: "Lora", serif;
+  color: #ffffff !important;
 }
 a.footer-links:hover {
-    text-decoration: underline !important;
+  text-decoration: underline !important;
 }
 
 p#footer-copyright {
-    color: #f7f6eb;
-    font-size: 12px;
-    text-decoration: none !important;
+  color: #f7f6eb;
+  font-size: 12px;
+  text-decoration: none !important;
 }
 
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
-
-    padding: 50px;
-
+  padding: 50px;
 }

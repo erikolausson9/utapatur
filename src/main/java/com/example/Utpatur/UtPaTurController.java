@@ -83,4 +83,19 @@ public class UtPaTurController {
         return "profile";
     }
 
+    @GetMapping("/kartvy")
+    String kartvy(){
+        return "kartvy";
+    }
+
+
+
+    //tillfälligt, detta behöver sen ändras med routeID och pathvariable
+    @GetMapping("tur")
+    String tur() {
+        return "tur";
+    }
+
+
+
 }
