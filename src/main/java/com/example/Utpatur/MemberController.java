@@ -52,7 +52,7 @@ public class MemberController {
             return "member-registration";
         }
 
-        if(serviceLayer.getMember(member.getMemberName()) != null) {
+        if(serviceLayer.getMember(member.getEmail()) != null) {
             model.addAttribute("memberExists", true);
             return "addMember";
         }
