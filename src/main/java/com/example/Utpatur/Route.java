@@ -7,9 +7,8 @@ public class Route {
     private Integer height;
     private String difficulty;
     private Integer length;
-    private String duration;
-    private String season;
-
+    private Integer days;
+    private Double hours;
     private String description;
     private String dateOfCompletion;
     private String routeCreated;
@@ -19,15 +18,15 @@ public class Route {
     public Route(){
     }
 
-    public Route(Integer routeId, String routeName, String routeType, Integer height, String difficulty, Integer length, String duration, String season, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
+    public Route(Integer routeId, String routeName, String routeType, Integer height, String difficulty, Integer length, Integer days, Double hours, String description, String dateOfCompletion, String routeCreated, String routeLastUpdated, Integer memberId) {
         this.routeId = routeId;
         this.routeName = routeName;
         this.routeType = routeType;
         this.height = height;
         this.difficulty = difficulty;
         this.length = length;
-        this.duration = duration;
-        this.season = season;
+        this.days = days;
+        this.hours = hours;
         this.description = description;
         this.dateOfCompletion = dateOfCompletion;
         this.routeCreated = routeCreated;
@@ -83,20 +82,20 @@ public class Route {
         this.length = length;
     }
 
-    public String getDuration() {
-        return duration;
+    public Integer getDays() {
+        return days;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
-    public String getSeason() {
-        return season;
+    public Double getHours() {
+        return hours;
     }
 
-    public void setSeason(String season) {
-        this.season = season;
+    public void setHours(Double hours) {
+        this.hours = hours;
     }
 
     public String getDescription() {
