@@ -45,7 +45,8 @@ var mountainTop = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -55] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var hiking = L.icon({
@@ -85,7 +86,7 @@ let route = [
   [67.868984, 18.617324]
 ];
 
-let polyline = L.polyline(route, { color: "blue" }).addTo(map);
+let polyline = L.polyline(route, { className: "polyline" }).addTo(map);
 
 let polylineMarker = L.marker([67.893922, 18.646379], { icon: hiking }).addTo(
   map

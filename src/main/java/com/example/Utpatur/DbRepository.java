@@ -100,7 +100,7 @@ public class DbRepository {
         int id=0;
         try {Connection conn = dataSource.getConnection();
              Statement statement = conn.createStatement();
-             ResultSet rs = statement.executeQuery("SELECT SCOPE_IDENTITY() AS C FROM Route;");
+             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;"); //TODO: this doesn't seem to be the right sql statement
             if(rs.next()){
                 id = rs.getInt("C");
             }

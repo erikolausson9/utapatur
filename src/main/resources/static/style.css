@@ -277,6 +277,31 @@ i.fa-star {
   width: 100%;
 }
 
+.polyline {
+    stroke: blue;
+    fill: none; 
+    stroke-width: 5;  
+}
+
+.polyline:hover {
+    stroke: blue;
+    fill: none; 
+    border: black;
+    stroke-width: 7;  
+}
+
+.typeIcon {
+    border:none; 
+}
+
+.typeIcon:hover { 
+    border: black;
+    border-style: solid;
+  border-width: 5px;
+}
+
+/* Profil */
+
 .profil-bgimg {
   background-image: url('../images/prof2.jpg');
   background-position: center;
