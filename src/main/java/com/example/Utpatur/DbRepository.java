@@ -48,6 +48,22 @@ public class DbRepository {
 
     }
 
+    public void addPosition(Position position){
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Position(Longitude, Latitude, Altitude, RouteID) VALUES(?,?,?,?)")) {
+            ps.setFloat(1, (float)position.getLongitude());
+            ps.setFloat(2, (float)position.getLatitude());
+            ps.setInt(3, position.getAltitude());
+            ps.setInt(4, position.getRouteId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Position borde vara laddad till databasen nu?");
+    }
+
 
     public Route rsRoute(ResultSet rs) throws SQLException {
         Route route = new Route();
