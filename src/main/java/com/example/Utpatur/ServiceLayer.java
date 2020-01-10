@@ -29,16 +29,15 @@ public class ServiceLayer {
     //instance methods for map/route operations
     public void addRoute(CreateNewRoute routeToAdd){
 
-        dbRepository.addRoute(routeToAdd);
+        dbRepository.addRoute(routeToAdd); //this will add the route to the database, ignoring the strings storing lat and lng
 
+        System.out.println("last routeID: " + dbRepository.getLastRouteID());
         Integer routeId = 1; //TODO: when fetching a route from database works, this should be used to find correct routeID for the new route
-
 
         String[] tempLatitudes;
         String[] tempLongitudes;
         tempLatitudes = routeToAdd.getLatitudes().split(", ");
         tempLongitudes = routeToAdd.getLongitudes().split(", ");
-
 
         if(tempLatitudes.length != tempLongitudes.length){
             System.out.println("Error! Latitude array and longitude array differs in length.");
@@ -47,11 +46,11 @@ public class ServiceLayer {
                 Position newPosition = new Position(Double.parseDouble(tempLatitudes[ii]), Double.parseDouble(tempLongitudes[ii]), 0, routeId);
                 dbRepository.addPosition(newPosition);
             }
-
         }
+    }
 
-
-
+    public List<Route> getAllRoutes(){
+        return dbRepository.getAllRoutes();
     }
 }
 
