@@ -36,39 +36,53 @@ new L.TileLayer(
 
 map.setView([67.893153, 18.75682], 7);
 
-//map.pm.setPathOptions({
-//  color: 'orange',
-//  fillColor: 'green',
-//});
+//Code for custom icons
+var peak = L.icon({
+  iconUrl: "peak.png",
+  shadowUrl: "",
+
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -55] // point from which the popup should open relative to the iconAnchor
+});
+
+var walking = L.icon({
+  iconUrl: "walking.png",
+  shadowUrl: "",
+
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
+
+//hard-coded top to start out with
+let marker = L.marker([67.904363, 18.527085], { icon: peak }).addTo(map);
+
+marker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
+//marker.bindTooltip("my tooltip text").openTooltip();
 
 //hard-coded routes to start with
 let route = [
-  [63.43336264092851, 13.100512530890732],
-  [63.42612654639262, 13.162583161441411],
-  [63.395953086104676, 13.231165979318754],
-  [63.38021322970091, 13.168080742484434],
-  [63.379097388031624, 13.170713930555567]
-];
-
-let route2 = [
-  [67.4777659389, 19.88225463636],
-  [67.4975352569, 19.7600868365],
-  [67.4838912798, 19.59515819672],
-  [67.4295552309, 19.72250342069]
-];
-
-let route3 = [
-  [63.16248165247, 12.36796303705],
-  [63.08423965644, 12.42831493833],
-  [63.003404162007, 12.22797964426],
-  [62.919686257953, 12.4225799762],
-  [63.069424547189, 12.58503363623],
-  [63.155588700623, 12.3870548077]
+  [67.918486, 18.601353],
+  [67.903964, 18.621239],
+  [67.893922, 18.646379],
+  [67.870871, 18.648868],
+  [67.868984, 18.617324]
 ];
 
 let polyline = L.polyline(route, { color: "blue" }).addTo(map);
-let polyline2 = L.polyline(route2, { color: "blue" }).addTo(map);
-let polyline3 = L.polyline(route3, { color: "blue" }).addTo(map);
+
+let polylineMarker = L.marker([67.893922, 18.646379], { icon: walking }).addTo(
+  map
+);
+
+polylineMarker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
+
+polyline.bindPopup("<b>Hello line!</b><br>I am a popup.");
 
 // skapar en pop-up med koordinater, long/lat
 let popUp = L.popup();
@@ -81,9 +95,6 @@ function onMapClick(e) {
 }
 
 //map.on("click", onMapClick);
-
-//hard-coded markers to start out with
-let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
 
 // adding leaflet-geoman controls/toolbar with some options to the map
 /*
