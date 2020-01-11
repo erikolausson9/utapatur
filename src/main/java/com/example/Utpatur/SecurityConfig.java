@@ -17,25 +17,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**", "/js/**");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-              /*  .authorizeRequests()
-                .antMatchers("/").permitAll()
-                */
-
                 .authorizeRequests()
-                    .antMatchers("/", "/kartvy", "/registrera-konto", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
-                    .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
+                .antMatchers("/", "/kartvy", "/registrera-konto", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
+                .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
                 .anyRequest().authenticated()
-
                 .and()
-
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
