@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/", "/kartvy", "/registrera-konto", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
+                .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
                 .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
