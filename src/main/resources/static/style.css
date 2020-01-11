@@ -70,6 +70,10 @@ p.white-p {
   color: white;
 }
 
+p.ingress {
+    font-size: 20px;
+}
+
 span.white-s {
   color: white;
 }

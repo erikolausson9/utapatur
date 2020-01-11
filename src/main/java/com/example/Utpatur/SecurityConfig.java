@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService () {
         //creating a new user in memory and therefore overriding the userDetailsService
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("Josse").password("abc").roles("USER").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("abc").roles("USER").build());
         return manager;
     }
 
