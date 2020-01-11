@@ -182,7 +182,8 @@ i.fa-star {
 /* Gäller endast på startsida*/
 .sec-bg {
   background-color: #f7f6eb;
-  margin-top: 225px;
+  margin-top: 120px;
+  position: static;
 }
 
 /*gäller för section med #f7f6eb bakgrund*/
@@ -253,6 +254,15 @@ i.fa-star {
   z-index: 2;
 }
 
+.top-content {
+    margin: auto;
+    width: 60%;
+    position: relative;
+    z-index: 2;
+    background-color: #2d874c;
+    padding: 40px;
+    margin-top: 100px;
+}
 #map-new-route {
   height: 100%;
   width: 100%;
@@ -263,14 +273,6 @@ i.fa-star {
   width: 100%;
 }
 
-.top-content {
-  margin: auto;
-  width: 60%;
-  position: relative;
-  z-index: 2;
-  background-color: #2d874c;
-  padding: 40px;
-}
 
 #map-route {
   height: 400px;
