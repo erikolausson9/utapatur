@@ -209,12 +209,14 @@ i.fa-star {
 }
 
 .nav-link {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 14px;
-  color: white !important;
-  text-transform: uppercase;
-  padding-top: 12px !important;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    /* padding: 0.5rem 1rem;
+    color: white !important;
+    */
 }
+
 
 .btn-newroute {
   font-family: 'Josefin Sans', sans-serif;

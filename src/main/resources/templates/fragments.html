@@ -44,7 +44,7 @@
 
   <body>
     <div th:fragment="header">
-      <nav class="navbar navbar-expand-md bg-custom sticky-top">
+      <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #2d874c">
         ​<button
           class="navbar-toggler"
           data-toggle="collapse"
@@ -65,15 +65,11 @@
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item">
-              <a class="nav-link" href="kartvy">Karta</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" href="login">Logga in</a>
-            </li>
-          </ul>
+          <div class="navbar-nav ml-auto nav-flex-icons">
+              <!-- Todo: ordnar så att current page blir vit-->
+              <a class="nav-item nav-link" href="kartvy">Karta</span></a>
+              <a class="nav-item nav-link" href="login">Logga in</a>
+          </div>
           <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
         </div>
       </nav>
