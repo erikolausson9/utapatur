@@ -1,8 +1,8 @@
-/*body {
-    min-height: 129vh;
-    position: relative;
-    margin: 0;
-}*/
+
+section {
+    min-height: 64.2vh;
+    position: static;
+}
 
 h1, h2, h3, h4 {
     font-family: 'Josefin Sans', sans-serif;
@@ -355,27 +355,20 @@ p#footer-copyright {
   text-decoration: none !important;
 }
 
-/*footer {
-    position: absolute;
+footer {
+    /*clear: both;
+    position: relative;
     bottom: 0;
     background-color: #918a78;
-    width: 100%;
-}*/
+    width: 100%;*/
+       float: left;
+       width: 100%;
+       background-color: #918a78;
+       padding: 10px 0 18px;
+}
 
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
   padding: 50px;
 }
 
-/*formulär för att registrera ny medlem*/
-.form-reg {
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #2d874c;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 25px;
-    width: 23%;
-
-}
