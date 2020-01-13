@@ -365,11 +365,6 @@ p#footer-copyright {
 }
 
 footer {
-    /*clear: both;
-    position: relative;
-    bottom: 0;
-    background-color: #918a78;
-    width: 100%;*/
        float: left;
        width: 100%;
        background-color: #918a78;
