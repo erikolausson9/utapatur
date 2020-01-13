@@ -81,7 +81,7 @@ public class DbRepository {
         return routes;
     }
 
-    public Route getRoute(int routeID){
+    public Route getRoute(int routeID){ //TODO: testa om denna funktion gör vad den ska!
 
         Route route = new Route();
         try(Connection conn = dataSource.getConnection();
@@ -96,11 +96,30 @@ public class DbRepository {
     return route;
     }
 
+    //TODO: make sure this method does what it's supposed to!
+    public List<Position> getPositions(int routeID){
+        List<Position> positionsToReturn = new ArrayList();
+        try(Connection conn = dataSource.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Position WHERE RouteID=" + routeID)){
+            if(rs.next()){
+                positionsToReturn.add(rsPosition(rs));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return positionsToReturn;
+    }
+
+
+
+    //public helper method(s) used in this class and in the ServiceLayer class
     public int getLastRouteID(){
         int id=0;
         try {Connection conn = dataSource.getConnection();
              Statement statement = conn.createStatement();
-             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;"); //TODO: this doesn't seem to be the right sql statement
+             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;");
             if(rs.next()){
                 id = rs.getInt("C");
             }
@@ -109,8 +128,9 @@ public class DbRepository {
         }
         return id;
     }
-
-    public Route rsRoute(ResultSet rs) throws SQLException {
+    //private helper methods used by other methods in this class
+    //TODO: make sure these methods can be private without any problems
+    private Route rsRoute(ResultSet rs) throws SQLException {
         Route route = new Route();
         route.setRouteId(rs.getInt("routeId"));
         route.setRouteName(rs.getString("routeName"));
@@ -125,6 +145,18 @@ public class DbRepository {
         route.setRouteCreated(rs.getString("routeCreated"));
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
         return route;
+    }
+
+    //TODO: make sure this function does what it's supposed to, column labels are correct etc.
+    private Position rsPosition(ResultSet rs) throws SQLException {
+        Position position = new Position();
+        position.setPositionId(rs.getInt("routeId"));
+        position.setLatitude(rs.getDouble("latitutde"));
+        position.setLongitude(rs.getDouble("longitude"));
+        position.setAltitude(rs.getInt("altitude"));
+        position.setRouteId(rs.getInt("routeID"));
+
+        return position;
     }
 
     //Method to Test DB-connection

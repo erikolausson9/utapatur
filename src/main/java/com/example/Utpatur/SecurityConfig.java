@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-        //http.csrf().disable(); //TODO: even if this works, we should use a csrf token instead
+
 
     }
 

@@ -22,4 +22,17 @@ class UtpaturApplicationTests {
 		Assertions.assertTrue(repository.testDB());
 	}
 
+	@Test
+	void testAddRoute(){
+		CreateNewRoute testRoute = new CreateNewRoute();
+		testRoute.setRouteName("testRoute");
+		testRoute.setDifficulty("easy");
+		testRoute.setLength(100);
+		repository.addRoute(testRoute);
+		Route responseRoute = repository.getRoute(repository.getLastRouteID());
+		Assertions.assertEquals(testRoute.getRouteName(), responseRoute.getRouteName());
+		Assertions.assertEquals(testRoute.getLength(), responseRoute.getLength());
+		Assertions.assertEquals(testRoute.getDifficulty(), responseRoute.getDifficulty());
+	}
+
 }
