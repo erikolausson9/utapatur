@@ -156,6 +156,11 @@ span.small-desc {
   text-decoration: none;
 }
 
+logout-link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
 /*social media icons:*/
 i {
   color: #2d874c;
