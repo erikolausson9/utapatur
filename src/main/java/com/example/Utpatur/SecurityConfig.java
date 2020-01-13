@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
-                .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
+                .antMatchers("/profil", "/skapa-ny-tur", "indexMapEdit.js").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-        http.csrf().disable(); //TODO: even if this works, we should use a csrf token instead
+        //http.csrf().disable(); //TODO: even if this works, we should use a csrf token instead
 
     }
 
