@@ -51,7 +51,8 @@
                 <form action="/registrering" method="POST" th:object="${member}">
 
                     <div class="form-group">
-                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                      <!-- Avkommenterar tillfälligt
+                      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
                         <label for="exampleUsername">Ange användarnamn</label>
                         <input type="text" class="form-control" placeholder="Användarnamn"  id="exampleUsername" th:field="*{memberName}"
                                th:errorclass="fieldError"/>
