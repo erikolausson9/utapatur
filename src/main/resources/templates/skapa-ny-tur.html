@@ -101,7 +101,9 @@
                 <h1>Lägg till ny tur</h1>
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
                 <form action="/skapa-ny-tur" method="POST" th:object="${createNewRoute}">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                   <!-- avkommenterar tillfälligt
+                   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
                     <input type="hidden" id="typeOfRoute" th:field="*{routeType}"></input>
                     <input type="hidden" id="length" th:field="*{length}"></input>
                     <input type="hidden" id="height" th:field="*{height}"></input>
