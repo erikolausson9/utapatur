@@ -38,7 +38,7 @@ map.setView([67.893153, 18.75682], 7);
 
 //Code for custom icons
 var mountainTop = L.icon({
-  iconUrl: "/images/peak.png",
+  iconUrl: "/images/mountaintop.png",
   shadowUrl: "",
 
   iconSize: [50, 50], // size of the icon
@@ -50,7 +50,7 @@ var mountainTop = L.icon({
 });
 
 var hiking = L.icon({
-  iconUrl: "/images/walking.png",
+  iconUrl: "/images/hiking.png",
   shadowUrl: "",
 
   iconSize: [50, 50], // size of the icon
@@ -71,11 +71,25 @@ var skiing = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-//hard-coded top to start out with
-let marker = L.marker([67.904363, 18.527085], { icon: mountainTop }).addTo(map);
+var poi = L.icon({
+  iconUrl: "/images/poi.png",
+  shadowUrl: "",
 
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
+
+//hard-coded top to start out with
+let post = [67.904363, 18.527085];
+console.log(post);
+
+//let marker = L.marker(post, { icon: mountainTop }).addTo(map);
+/*
 marker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
-//marker.bindTooltip("my tooltip text").openTooltip();
+marker.bindTooltip("my tooltip text");
 
 //hard-coded routes to start with
 let route = [
@@ -98,6 +112,7 @@ polyline.bindPopup("<b>Hello line!</b><br>I am a popup.");
 
 // skapar en pop-up med koordinater, long/lat
 let popUp = L.popup();
+*/
 
 function onMapClick(e) {
   popUp
@@ -108,34 +123,137 @@ function onMapClick(e) {
 
 //map.on("click", onMapClick);
 
+//Test of getting all routes to map from back end
+
+function testGetAllRoutes() {
+  console.log("Inne i metoden testGetAllRoutes");
+
+  fetch("http://localhost:8080/testgetallroutes")
+    .then(test => test.json())
+    .then(dbRoutes => {
+      console.log("Checkout this JSON! ", dbRoutes);
+
+      for (let i = 0; i < dbRoutes.length; i++) {
+        let routeType = dbRoutes[i].type;
+        console.log(routeType);
+
+        let coords = [];
+        for (let index = 0; index < dbRoutes[i].positions.length; index++) {
+          coords.push(dbRoutes[i].positions[index].lat);
+          coords.push(dbRoutes[i].positions[index].lng);
+        }
+        console.log("Koordinaterna borde vara:");
+        console.log(coords);
+
+        let marker;
+        let polyline;
+        let polylineMarker;
+        let polylinePopUp;
+
+        //If route object is route (containing more than 1 position object)
+        if (dbRoutes[i].positions.length > 1) {
+          console.log("Inne i rutt-if-satsen");
+
+          switch (routeType) {
+            case "hiking":
+              polyline = L.polyline(dbRoutes[i].positions, {
+                className: "polyline"
+              }).addTo(map);
+              polylineMarker = L.marker(
+                [dbRoutes[i].positions[0].lat, dbRoutes[i].positions[1].lng],
+                { icon: hiking }
+              ).addTo(map);
+              polyline.bindPopup(dbRoutes[i].name);
+              polylineMarker.bindPopup(dbRoutes[i].name);
+
+              break;
+
+            case "skiing":
+              polyline = L.polyline(dbRoutes[i].positions, {
+                className: "polyline"
+              }).addTo(map);
+              polylineMarker = L.marker(
+                [dbRoutes[i].positions[0].lat, dbRoutes[i].positions[1].lng],
+                { icon: skiing }
+              ).addTo(map);
+              polyline.bindPopup(dbRoutes[i].name);
+              polylineMarker.bindPopup(dbRoutes[i].name);
+
+              break;
+
+            default:
+              break;
+          }
+        }
+
+        //If route object contains only one position object
+        else {
+          console.log("Inne i punkt-else-satsen");
+          console.log(coords);
+
+          switch (routeType) {
+            case "mountaintop":
+              marker = L.marker(coords, {
+                icon: mountainTop
+              }).addTo(map);
+              marker.bindPopup(dbRoutes[i].name);
+              break;
+
+            case "poi":
+              console.log("Korrekt inne i POI");
+
+              marker = L.marker(coords, {
+                icon: poi
+              }).addTo(map);
+              marker.bindPopup(dbRoutes[i].name);
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    })
+    .catch(err => {
+      throw err;
+    });
+}
+
 //Test of API-call to back end
 function testGetRoute() {
   console.log("Inne i metoden testGetRoute");
 
-  fetch("http://localhost:8080/testRoute")
+  fetch("http://localhost:8080/testgetobject")
     .then(test => test.json())
-    .then(out => {
-      console.log("Checkout this JSON! ", out);
+    .then(dbRoutes => {
+      console.log("Checkout this JSON! ", dbRoutes);
 
-      let routeType = out.type;
+      let routeType = dbRoutes.type;
       let newMarker;
 
       switch (routeType) {
         case "hiking":
-          newMarker = L.marker([out.positions[0], out.positions[1]], {
+          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
             icon: hiking
           }).addTo(map);
           break;
 
         case "skiing":
-          newMarker = L.marker([out.positions[0], out.positions[1]], {
+          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
             icon: skiing
           }).addTo(map);
           break;
 
-        case "mountainTop":
-          newMarker = L.marker([out.positions[0], out.positions[1]], {
+        case "mountaintop":
+          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
             icon: mountainTop
+          }).addTo(map);
+
+          break;
+
+        case "poi":
+          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
+            icon: poi
           }).addTo(map);
 
           break;
@@ -143,7 +261,7 @@ function testGetRoute() {
         default:
           break;
       }
-      newMarker.bindPopup(out.name);
+      newMarker.bindPopup(dbRoutes.name);
     })
     .catch(err => {
       throw err;

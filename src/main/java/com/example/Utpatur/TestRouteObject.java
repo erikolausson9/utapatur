@@ -6,9 +6,9 @@ public class TestRouteObject {
 
     String name;
     String type;
-    List<Double> positions;
+    List<TestPosition> positions;
 
-    public TestRouteObject(String name, String type, List<Double> positions) {
+    public TestRouteObject(String name, String type, List<TestPosition> positions) {
         this.name = name;
         this.type = type;
         this.positions = positions;
@@ -30,11 +30,11 @@ public class TestRouteObject {
         this.type = type;
     }
 
-    public List<Double> getPositions() {
+    public List<TestPosition> getPositions() {
         return positions;
     }
 
-    public void setPositions(List<Double> positions) {
+    public void setPositions(List<TestPosition> positions) {
         this.positions = positions;
     }
 }
