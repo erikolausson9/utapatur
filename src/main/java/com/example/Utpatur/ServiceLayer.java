@@ -64,6 +64,18 @@ public class ServiceLayer {
         //return a list of positions for a given route
         return dbRepository.getPositions(routeID);
     }
+
+
+    public Route mergeRouteAndPosition(int id) {
+
+        Route route =  getRoute(id);
+        List<Position> positions = getPositions(id);
+
+        route.setPositions(positions);
+
+        return route;
+
+    }
 }
 
 
