@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
-                .antMatchers("/profil", "/skapa-ny-tur", "indexMapEdit.js").hasRole("USER")
+                .antMatchers( "/profil", "/skapa-ny-tur", "indexMapEdit.js").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

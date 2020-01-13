@@ -4,6 +4,7 @@ section {
     position: static;
 }
 
+
 h1, h2, h3, h4 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 34px;
@@ -304,10 +305,15 @@ i.fa-star {
 }
 
 /* Profil */
+#profile-sec {
+    min-height: 39.2vh;
+    position: static;
+}
 
 .profil-bgimg {
   background-image: url('../images/prof2.jpg');
   background-position: center;
+  min-height: 25vh;
   padding-top: 50px;
   padding-bottom: 50px;
 }
