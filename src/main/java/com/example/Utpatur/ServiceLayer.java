@@ -26,6 +26,8 @@ public class ServiceLayer {
         return memberRepository.getMemberByEmail(email);
     }
 
+    //Get memberByMemberId
+
     //instance methods for map/route operations
     public void addRoute(CreateNewRoute routeToAdd){
 
