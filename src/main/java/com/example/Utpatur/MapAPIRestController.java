@@ -3,6 +3,7 @@ package com.example.Utpatur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
@@ -26,6 +27,18 @@ public class MapAPIRestController {
     public Route getRouteFromDb(@PathVariable int id){
 
         return serviceLayer.getRoute(id);
+    }
+
+    @GetMapping("/testgetpositionfromdb/{id}")
+    public List<Position> getPositionsFromDb(@PathVariable int id){
+        return serviceLayer.getPositions(id);
+    }
+
+    @GetMapping("/testgetrouteandpositionfromdb/{id}")
+    public Route getRouteAndPositionFromDb(@PathVariable int id){
+
+        Route route = serviceLayer.mergeRouteAndPosition(id);
+        return route;
     }
 
 
