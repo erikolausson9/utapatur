@@ -66,62 +66,24 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="navbar-nav ml-auto nav-flex-icons">
+
               <!-- Todo: ordnar så att current page blir vit-->
               <a class="nav-item nav-link" href="kartvy">Karta</span></a>
-              <a class="nav-item nav-link" href="login">Logga in</a>
+              <a class="nav-item nav-link" href="login">Min profil</a>
+
+            <form th:action="@{/logout}" method="post">
+              <input type="submit" value="Log out"/>
+            </form>
           </div>
+
+
+
+
           <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
         </div>
       </nav>
-      <!--Log in pop up -->
-
-      <div
-        class="modal fade"
-        id="modalLoginForm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header heading-center">
-              <h4 class="modal-title w-100">Logga in</h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-                <div class="modal-body mx-3">
-                    <form th:action="@{/login}" method="post">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">E-post</label>
-     <!-- OBS! ändra innehåll-->                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ange e-post">
-                           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-                        </div>
-
-                      <div class="form-group">
-                        <label for="exampleUsername">Username</label>
-                        <input type="text" class="form-control" id="exampleUsername" placeholder="Användarnamn">
-                      </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Lösenord</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Lösenord">
-                        </div>
-                        <button type="submit" class="primary-button">Logga in</button>
-                        <p>Är du inte medlem? <a href="/registrering">Registrera nytt konto</a></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-      </div>
     </div>
+
 
     <!--FOOTER-->
     <section id="footer" th:fragment="footer">
