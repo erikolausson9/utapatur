@@ -56,9 +56,34 @@ public class MapAPIRestController {
 //    }
 
     @GetMapping("/testgetallroutes")
-    public List<TestRouteObject> testGetAllRoutes(){
+    public List<Route> testGetAllRoutes(){
 
-        //Test object 1
+        List<Route> routes = new ArrayList<>();
+
+        List<Position> positions = new ArrayList<>();
+        positions.add(new Position(67.918486, 18.601353, null, 20));
+        positions.add(new Position(67.903964, 18.621239, null, 20));
+        positions.add(new Position(67.893922, 18.646379, null, 20));
+        positions.add(new Position(67.870871, 18.648868, null, 20));
+        positions.add(new Position(67.868984, 18.617324, null, 20));
+
+        Route route = new Route(20, "Tarfala-Kebnekaise", "hiking", null, "Mellan", 22132, null, 8.5, "Fin och enkel tur", "2020-01-08", null, null, 7);
+        route.setPositions(positions);
+
+
+        List<Position> positions2 = new ArrayList<>();
+        positions2.add(new Position(67.916602, 18.583376, null, 21));
+
+        Route route2 = new Route(21, "Kebnekaises sydtopp", "mountaintop", 2034, "Svår", 8000, 0, 12.0, "Fantastisk utsikt från Sveriges högsta berg!", "2020-01-09", null, null, 7);
+        route2.setPositions(positions2);
+
+        routes.add(route);
+        routes.add(route2);
+
+
+        return routes;
+
+      /*  //Test object 1
 
         List<TestPosition> position1 = new ArrayList();
         position1.add(new TestPosition(67.916602, 18.583376));
@@ -86,9 +111,9 @@ public class MapAPIRestController {
 
         testListOfRouteObjects.add(testRouteObject1);
         testListOfRouteObjects.add(testRouteObject2);
-        testListOfRouteObjects.add(testRouteObject3);
+        testListOfRouteObjects.add(testRouteObject3);*/
 
-        return testListOfRouteObjects;
+        //return testListOfRouteObjects;
 
     }
 

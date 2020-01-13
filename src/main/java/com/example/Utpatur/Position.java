@@ -10,7 +10,7 @@ public class Position {
     public Position() {
     }
 
-    public Position(double longitude, double latitude, Integer altitude, Integer routeId) {
+    public Position(double latitude, double longitude, Integer altitude, Integer routeId) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.altitude = altitude;
