@@ -38,7 +38,7 @@ map.setView([67.893153, 18.75682], 7);
 
 //Code for custom icons
 var mountainTop = L.icon({
-  iconUrl: "peak.png",
+  iconUrl: "/images/peak.png",
   shadowUrl: "",
 
   iconSize: [50, 50], // size of the icon
@@ -50,7 +50,7 @@ var mountainTop = L.icon({
 });
 
 var hiking = L.icon({
-  iconUrl: "walking.png",
+  iconUrl: "/images/walking.png",
   shadowUrl: "",
 
   iconSize: [50, 50], // size of the icon
@@ -61,7 +61,7 @@ var hiking = L.icon({
 });
 
 var skiing = L.icon({
-  iconUrl: "skiing.png",
+  iconUrl: "/images/skiing.png",
   shadowUrl: "",
 
   iconSize: [50, 50], // size of the icon

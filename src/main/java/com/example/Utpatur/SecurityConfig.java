@@ -17,26 +17,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**", "/js/**");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-              /*  .authorizeRequests()
-                .antMatchers("/").permitAll()
-                */
-
                 .authorizeRequests()
-                    .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "mapview.js").permitAll()
-                .antMatchers("/static/**").permitAll()
-                    .antMatchers("/profil", "/skapa-ny-tur").hasRole("USER")
+                .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
+                .antMatchers("/profil", "/skapa-ny-tur", "indexMapEdit.js").hasRole("USER")
                 .anyRequest().authenticated()
-
                 .and()
-
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
@@ -53,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService () {
         //creating a new user in memory and therefore overriding the userDetailsService
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder().username("Josse").password("abc").roles("USER").build());
+        manager.createUser(User.withDefaultPasswordEncoder().username("user").password("abc").roles("USER").build());
         return manager;
     }
 

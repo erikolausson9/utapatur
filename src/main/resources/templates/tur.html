@@ -58,7 +58,11 @@
 
     <div class="row justify-content-start mt-5 mb-5">
         <div class="col-8">
-            <h1>$Namn på turen <i class="fas fa-star"></i></h1>
+            <!-- Todo: Inför turlistan, olika ikoner beroende på om tur finns i turlistan eller ej
+            <span th:if="ifallObjektetInteFinnsITurListan"><i class="far fa-star"></i></span>
+            <span th:unless="ifallObjektetFinnsITurListan"><i class="fas fa-star"></i></span>
+            -->
+            <h1>$Namn på turen <i class="far fa-star"></i></h1>
             <span class="small-desc">Publicerad av $username $2019-12-29 · Turen utfördes $2018-10-15</span>
         </div>
 
