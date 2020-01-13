@@ -81,7 +81,8 @@ public class DbRepository {
         return routes;
     }
 
-    public Route getRoute(int routeID){ //TODO: testa om denna funktion gör vad den ska!
+    //Denna metod funkar!
+    public Route getRoute(int routeID){
 
         Route route = new Route();
         try(Connection conn = dataSource.getConnection();

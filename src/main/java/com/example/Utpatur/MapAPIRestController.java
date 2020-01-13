@@ -2,6 +2,7 @@ package com.example.Utpatur;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
@@ -14,6 +15,18 @@ public class MapAPIRestController {
 
     @Autowired
     ServiceLayer serviceLayer;
+
+    @GetMapping("/testgetallfromdb")
+    public List<Route> getAllFromDb(){
+
+        return serviceLayer.getAllRoutes();
+    }
+
+    @GetMapping("/testgetroutefromdb/{id}")
+    public Route getRouteFromDb(@PathVariable int id){
+
+        return serviceLayer.getRoute(id);
+    }
 
 
 //    @GetMapping("/testgetobject")
