@@ -70,7 +70,7 @@ public class DbRepository {
         try(Connection conn = dataSource.getConnection();
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery("SELECT * FROM Route")){
-            if(rs.next()){
+            while(rs.next()){
                 System.out.println("en rad till");
                 routes.add(rsRoute(rs));
             }
@@ -103,8 +103,9 @@ public class DbRepository {
         try(Connection conn = dataSource.getConnection();
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Position WHERE RouteID=" + routeID)){
-            if(rs.next()){
+            while(rs.next()){
                 positionsToReturn.add(rsPosition(rs));
+                System.out.println("hittade rad");
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -152,7 +153,7 @@ public class DbRepository {
     private Position rsPosition(ResultSet rs) throws SQLException {
         Position position = new Position();
         position.setPositionId(rs.getInt("routeId"));
-        position.setLatitude(rs.getDouble("latitutde"));
+        position.setLatitude(rs.getDouble("latitude"));
         position.setLongitude(rs.getDouble("longitude"));
         position.setAltitude(rs.getInt("altitude"));
         position.setRouteId(rs.getInt("routeID"));

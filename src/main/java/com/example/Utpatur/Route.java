@@ -1,5 +1,7 @@
 package com.example.Utpatur;
 
+import java.util.List;
+
 public class Route {
     private Integer routeId;
     private String routeName;
@@ -14,6 +16,7 @@ public class Route {
     private String routeCreated;
     private String routeLastUpdated;
     private Integer memberId;
+    private List<Position> positions;
 
     public Route(){
         
@@ -137,5 +140,13 @@ public class Route {
 
     public void setMemberId(Integer memberId) {
         this.memberId = memberId;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(List<Position> positions) {
+        this.positions = positions;
     }
 }
