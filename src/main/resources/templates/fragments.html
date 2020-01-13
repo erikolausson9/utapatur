@@ -69,11 +69,30 @@
 
               <!-- Todo: ordnar så att current page blir vit-->
               <a class="nav-item nav-link" href="kartvy">Karta</span></a>
-              <a class="nav-item nav-link" href="login">Min profil</a>
 
-            <form th:action="@{/logout}" method="post">
-              <input type="submit" value="Log out"/>
-            </form>
+
+              <span th:if="${#httpServletRequest.remoteUser} == null">
+                  <a class="nav-item nav-link" href="login">Min profil</a>
+              </span>
+
+              <span th:if="${#httpServletRequest.remoteUser} != null">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="profil" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Min profil
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="profil">Min profil</a>
+                      <form th:action="@{/logout}" method="post">
+                          <input type="submit" value="Log out" class="dropdown-item logout-link"/>
+                      </form>
+
+                  </div>
+              </li>
+              </span>
+
+
+
+
           </div>
 
 
