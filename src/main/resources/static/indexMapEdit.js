@@ -1,6 +1,27 @@
 
+//Code for custom icons
+var mountainTop = L.icon({
+    iconUrl: "/images/mountaintop_pin.png",
+    shadowUrl: "",
 
+    iconSize: [50, 50], // size of the icon
+    shadowSize: [0, 0], // size of the shadow
+    iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
+    shadowAnchor: [0, 0], // the same for the shadow
+    popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
+    className: "typeIcon"
+});
 
+var poi = L.icon({
+    iconUrl: "/images/poi.png",
+    shadowUrl: "",
+
+    iconSize: [50, 50], // size of the icon
+    shadowSize: [0, 0], // size of the shadow
+    iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+    shadowAnchor: [0, 0], // the same for the shadow
+    popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
 
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
@@ -98,6 +119,8 @@ map.pm.addControls({
     editMode: false,
     removalMode: false
 });
+
+map.pm.enableDraw('Marker', { icon: MountainTop });
 
 //let position = [];
 //let userRouteArray = [];
