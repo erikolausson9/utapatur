@@ -1,6 +1,27 @@
 
+//Code for custom icons
+var mountainTop = L.icon({
+    iconUrl: "/images/mountaintop_pin.png",
+    shadowUrl: "",
 
+    iconSize: [50, 50], // size of the icon
+    shadowSize: [0, 0], // size of the shadow
+    iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
+    shadowAnchor: [0, 0], // the same for the shadow
+    popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
+    className: "typeIcon"
+});
 
+var poi = L.icon({
+    iconUrl: "/images/poi.png",
+    shadowUrl: "",
+
+    iconSize: [50, 50], // size of the icon
+    shadowSize: [0, 0], // size of the shadow
+    iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+    shadowAnchor: [0, 0], // the same for the shadow
+    popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
 
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
@@ -99,6 +120,10 @@ map.pm.addControls({
     removalMode: false
 });
 
+//map.pm.enableDraw('Marker', { icon: MountainTop });
+
+
+
 //let position = [];
 //let userRouteArray = [];
 
@@ -138,6 +163,7 @@ map.on('pm:create', e => {
         console.log("creating marker");
         //console.log(e.layer._latlng)
         map.pm.disableDraw("Marker");
+        saveMarkerPostion(e.layer)
     } else if (e.shape === "Line") {
         console.log("creating line");
         //console.log("first point: " + e.layer._latlngs[0])
@@ -155,7 +181,7 @@ map.on('pm:create', e => {
         //}
         console.log("total distance: " + totaldistance)
         updateDistance(calculateDistance(e.layer));
-        savePositions(e.layer);
+        saveRoutePositions(e.layer);
 
 
 
@@ -172,6 +198,7 @@ map.on('pm:create', e => {
         if (!e.target._latlngs) {
             console.log("Editing marker")
             console.log(e.target._latlng)
+            saveMarkerPosition(e.target);
         } else {
             console.log("Editing line")
             //totaldistance = 0;
@@ -182,7 +209,7 @@ map.on('pm:create', e => {
             //    totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
             //}
             updateDistance(calculateDistance(e.target));
-            savePositions(e.target);
+            saveRoutePositions(e.target);
 
         }
 
@@ -247,8 +274,13 @@ function updateDistance(totalDistance) {
     document.getElementById("height").value = 0; //todo: replace with actual height
 }
 
+function saveMarkerPostion(routeObject) {
+    latitudes = routeObject._latlng.lat;
+    longitudes = routeObject._latlng.lng;
 
-function savePositions(routeObject) {
+}
+
+function saveRoutePositions(routeObject) {
     //erase any old positions
     latitudes = "";
     longitudes = "";
@@ -259,8 +291,6 @@ function savePositions(routeObject) {
     }
     latitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lat + ", ";
     longitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lng + ", ";
-
-
 }
 
 function saveRouteToDatabase() {
