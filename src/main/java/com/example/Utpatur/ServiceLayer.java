@@ -101,8 +101,7 @@ public class ServiceLayer {
                     routePositions.add(allPositions.get(j));
                 }
             }
-
-            routes.get(i).setPositions(routePositions);
+                routes.get(i).setPositions(routePositions);
         }
 
         //Ta bort detta när DB-kopplingen helt fungerar fungerar
