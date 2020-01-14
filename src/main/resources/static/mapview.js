@@ -153,6 +153,11 @@ function getAllRoutesFromDatabase() {
           polyline = L.polyline(coords, {
             className: "polyline"
           }).addTo(map);
+          polyline.bindPopup(dbRoutes[i].routeName);
+
+          console.log("Center coord is:");
+          let center = polyline.getCenter();
+          console.log(center);
 
           //Define the first coord of the route to show the pop-up at
           let coord = [];
@@ -162,13 +167,13 @@ function getAllRoutesFromDatabase() {
           //Switch-case for choosing the right icon for the route
           switch (routeType) {
             case "hiking":
-              marker = L.marker(coord, {
+              marker = L.marker(polyline.getCenter(), {
                 icon: hiking
               }).addTo(map);
 
               break;
             case "skiing":
-              marker = L.marker(coord, {
+              marker = L.marker(polyline.getCenter(), {
                 icon: skiing
               }).addTo(map);
               break;
