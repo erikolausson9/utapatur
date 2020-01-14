@@ -89,18 +89,6 @@ public class ServiceLayer {
         return dbRepository.getPositions(routeID);
     }
 
-
-    public Route mergeRouteAndPosition(int id) {
-
-        Route route =  getRoute(id);
-        List<Position> positions = getPositions(id);
-
-        route.setPositions(positions);
-
-        return route;
-
-    }
-
     public List<Route> getAllforMap() {
 
         List<Route> routes = dbRepository.getAllRoutes();
@@ -120,7 +108,7 @@ public class ServiceLayer {
             routes.get(i).setPositions(routePositions);
         }
 
-        //Ta bort detta när DB-kopplingen fungerar
+        //Ta bort detta när DB-kopplingen helt fungerar fungerar
         List<Position> positions2 = new ArrayList<>();
         positions2.add(new Position(67.900468, 18.516387, null, 99));
 
