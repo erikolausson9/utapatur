@@ -12,7 +12,7 @@ public class SecurityUserDetailService implements UserDetailsService {
     @Autowired
     MemberRepository memberRepository;
 
-
+// is used to retrieve the user’s authentication and authorization information.
     @Override
     public UserDetails loadUserByUsername(String username) {
         Member user = memberRepository.getMemberByMemberName(username);
