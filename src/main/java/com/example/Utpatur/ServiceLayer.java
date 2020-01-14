@@ -75,6 +75,29 @@ public class ServiceLayer {
         return route;
 
     }
+
+    public List<Route> getAllforMap() {
+
+        List<Route> routes = dbRepository.getAllRoutes();
+        List<Position> allPositions = dbRepository.getAllPositions();
+
+        for (int i = 0; i < routes.size() ; i++) {
+            int routeId = routes.get(i).getRouteId();
+
+            List<Position> routePositions = new ArrayList<>();
+
+            for (int j = 0; j < allPositions.size(); j++) {
+                if(routeId == allPositions.get(j).getRouteId()){
+                    routePositions.add(allPositions.get(j));
+                }
+            }
+
+            routes.get(i).setPositions(routePositions);
+        }
+
+        return routes;
+
+    }
 }
 
 
