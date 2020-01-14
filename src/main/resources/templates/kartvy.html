@@ -69,13 +69,15 @@
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" />
   </head>
 
-  <body onload="getAllRoutesFromDatabase()">
+  <body onload="getAllRoutesFromDatabase(), generateList()">
     <div th:replace="fragments :: header"></div>
 
     <div class="row">
       <!-- left column with filter/search results-->
       <div class="col-md-2">
-        <h3>Filter/Sökresultat</h3>
+        <h3>Filter</h3>
+        <h3>Resultat</h3>
+        <div id="routeobjects"></div>
       </div>
 
       <!--right column with map-->
@@ -91,6 +93,5 @@
     ></script>
 
     <script type="text/javascript" src="mapview.js"></script>
-
   </body>
 </html>

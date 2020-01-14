@@ -165,3 +165,37 @@ function getAllRoutesFromDatabase() {
       throw err;
     });
 }
+
+function generateList() {
+  //Code for listing route objects
+  fetch("http://localhost:8080/getallfromdb")
+    .then(test => test.json())
+    .then(dbRouteReturn => {
+      let listOfNames = [];
+      let listOfRouteId = [];
+
+      for (let index = 0; index < dbRouteReturn.length; index++) {
+        //Loop through the array with routes
+        let routeName = dbRouteReturn[index].routeName;
+        listOfNames.push(routeName);
+        listOfRouteId.push(dbRouteReturn[index].routeId);
+      }
+
+      // Create an unordered list
+      let listOfRouteNames = document.createElement("ul");
+
+      listOfNames.forEach(function(name) {
+        let x = 1;
+        var li = document.createElement("li");
+        li.innerHTML = "<a href=/tur/ " + x + ">" + name + "</a>";
+        listOfRouteNames.appendChild(li);
+      });
+
+      var app = document.querySelector("#routeobjects");
+      app.appendChild(listOfRouteNames);
+    })
+    //Catch to handle errors of the API-call. Not really used anywhere.
+    .catch(error => {
+      throw error;
+    });
+}
