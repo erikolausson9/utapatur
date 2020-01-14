@@ -3,6 +3,7 @@ package com.example.Utpatur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,22 +20,39 @@ import java.util.List;
 @Controller
 public class MemberController {
 
-    @Autowired
+   /* @Autowired
     MemberRepository memberRepository;
+*/
+   @Autowired
+   PasswordEncoder encoder;
 
    @Autowired
     ServiceLayer serviceLayer;
 
-    @GetMapping("/profil")
-    String profil(Model model) {
+
+   //tillfällig/tas bort när profil/memberId fungerar
+   @GetMapping("/profil")
+   String profilRightNow(HttpSession session, Model model) {
+       System.out.println("Vi har nått profilvyn");
+       Member member = serviceLayer.getMemberByMemberName(serviceLayer.getUser());
+       Member user = (Member) session.getAttribute("user");
+       return "profil";
+   }
+
+    @GetMapping("/profil{memberId}")
+    String profil(Model model, HttpSession session, @PathVariable Integer memberId) {
 
         return "profil";
     }
 
     @GetMapping("/login")
     public String login() {
+
         return "login";
     }
+
+   /* session.setAttribute("user", upr.findByUsername(userService.getUser()));
+    UserProfile user = (UserProfile) httpSession.getAttribute("user");*/
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
@@ -64,6 +82,7 @@ public class MemberController {
             model.addAttribute("memberExists", true);
             return "registrering";
         }
+        member.setPassword(encoder.encode(member.getPassword()));
         model.addAttribute("member", member);
         serviceLayer.addMember(member);
 

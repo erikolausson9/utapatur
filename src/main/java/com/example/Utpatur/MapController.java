@@ -18,8 +18,8 @@ import java.util.List;
 @Controller
 public class MapController {
 
-    @Autowired
-    DbRepository dbRepository;
+/*    @Autowired
+    DbRepository dbRepository;*/
 
     @Autowired
     ServiceLayer serviceLayer;

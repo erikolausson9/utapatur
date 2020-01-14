@@ -13,6 +13,9 @@ class UtpaturApplicationTests {
 	@Autowired
     DbRepository repository;
 
+	@Autowired
+	MemberRepository memberRepository;
+
 	@Test
 	void contextLoads() {
 	}
@@ -35,4 +38,10 @@ class UtpaturApplicationTests {
 		Assertions.assertEquals(testRoute.getDifficulty(), responseRoute.getDifficulty());
 	}
 
+	@Test
+	void testGetMemberByName(){
+		Member member = memberRepository.getMemberByMemberName("Josse");
+		int id = member.getMemberId();
+		Assertions.assertEquals(1, id);
+	}
 }

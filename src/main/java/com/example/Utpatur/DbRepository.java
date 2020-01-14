@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
 @Repository
 public class DbRepository {
 
@@ -19,9 +18,9 @@ public class DbRepository {
 
     private List<Route> routes;
 
-    public DbRepository() {
+    /*public DbRepository() {
         routes = new ArrayList<>();
-    }
+    }*/
 
 
     public void addRoute(CreateNewRoute route){
