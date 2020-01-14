@@ -120,11 +120,9 @@
 
                     <div class="form-group">
                         <label>Beskrivning</label>
-                        <input type="text" class="form-control" id="description"
-                            placeholder="Lägg till en beskrivning av turen" th:field="*{description}">
+                        <textarea class="form-control" name="description" id="description"
+                            placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
                     </div>
-
-
 
 
                     <div class="form-group">
@@ -188,7 +186,7 @@
         crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="indexMapEdit.js"></script>
-    <script type="module" src="dropdown-clickable.js"></script>
+
 
 </body>
 

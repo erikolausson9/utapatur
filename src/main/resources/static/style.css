@@ -158,7 +158,7 @@ span.small-desc {
 }
 
 logout-link {
-    background-color: transparent;
+    background-color: #2d874c;
     text-decoration: none;
 }
 
@@ -185,7 +185,7 @@ i.fa-star {
 }
 
 i.fa-user {
-    color: white;
+    color: rgba(255,255,255,.5)
 }
 
 /* Gäller endast på startsida*/
@@ -277,6 +277,7 @@ i.fa-user {
 #map-new-route {
   height: 100%;
   width: 100%;
+  min-height: 80vh;
 }
 
 #mapview {
@@ -334,14 +335,21 @@ td {
   padding: 10px;
 }
 
-/* FOOTER */
-section#footer {
-  background-color: #918a78;
-  padding-top: 1px;
+/*SKAPA NY TUR*/
+#description {
+    padding: 16px 18px 14px 18px;
 }
-#footer h4 {
-  /*padding-bottom: 6px;
-    margin-bottom: 10px;*/
+
+/* FOOTER */
+footer {
+       float: left;
+       width: 100%;
+       background-color: #918a78;
+       padding: 10px 0 18px;
+       font-color: fff;
+}
+
+h4.dark-bg {
   color: #ffffff;
 }
 ul.footer-lists {
@@ -368,12 +376,7 @@ p#footer-copyright {
   text-decoration: none !important;
 }
 
-footer {
-       float: left;
-       width: 100%;
-       background-color: #918a78;
-       padding: 10px 0 18px;
-}
+
 
 /* formulär på skapa-ny-rutt */
 .ny-tur-form-container {
