@@ -184,6 +184,10 @@ i.fa-star {
     color: #2d874c;
 }
 
+i.fa-user {
+    color: white;
+}
+
 /* Gäller endast på startsida*/
 .sec-bg {
   background-color: #f7f6eb;

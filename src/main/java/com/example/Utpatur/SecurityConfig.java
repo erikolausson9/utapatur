@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/kartvy", "/testgetallroutes", "/testgetallfromdb", "/testgetroutefromdb/**", "/testgetpositionfromdb/**", "/testgetrouteandpositionfromdb/**", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
+                .antMatchers("/", "/kartvy", "/getallfromdb", "/testgetallroutes", "/testgetallfromdb", "/testgetroutefromdb/**", "/testgetpositionfromdb/**", "/testgetrouteandpositionfromdb/**", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/dropdown-clickable.js", "/images/**").permitAll()
                 .antMatchers( "/profil", "/skapa-ny-tur", "indexMapEdit.js").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()

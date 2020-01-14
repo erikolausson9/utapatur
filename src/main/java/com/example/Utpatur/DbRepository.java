@@ -207,4 +207,22 @@ public class DbRepository {
         System.out.println("Borde vara sparat i databasen?");
 
     }
+
+    public List<Position> getAllPositions() {
+
+        List<Position> positions = new ArrayList();
+        try(Connection conn = dataSource.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Position")){
+            while(rs.next()){
+                System.out.println("en rad till");
+                positions.add(rsPosition(rs));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return positions;
+
+    }
 }

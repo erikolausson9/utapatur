@@ -1,6 +1,5 @@
 package com.example.Utpatur;
 
-import com.example.Utpatur.DbRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +73,29 @@ public class ServiceLayer {
         route.setPositions(positions);
 
         return route;
+
+    }
+
+    public List<Route> getAllforMap() {
+
+        List<Route> routes = dbRepository.getAllRoutes();
+        List<Position> allPositions = dbRepository.getAllPositions();
+
+        for (int i = 0; i < routes.size() ; i++) {
+            int routeId = routes.get(i).getRouteId();
+
+            List<Position> routePositions = new ArrayList<>();
+
+            for (int j = 0; j < allPositions.size(); j++) {
+                if(routeId == allPositions.get(j).getRouteId()){
+                    routePositions.add(allPositions.get(j));
+                }
+            }
+
+            routes.get(i).setPositions(routePositions);
+        }
+
+        return routes;
 
     }
 }

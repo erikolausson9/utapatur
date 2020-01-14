@@ -92,15 +92,23 @@ marker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
 marker.bindTooltip("my tooltip text");
 
 //hard-coded routes to start with
-let route = [
-  [67.918486, 18.601353],
-  [67.903964, 18.621239],
-  [67.893922, 18.646379],
-  [67.870871, 18.648868],
-  [67.868984, 18.617324]
+let route3 = [
+  67.918486,
+  18.601353,
+  67.903964,
+  18.621239,
+  67.893922,
+  18.646379,
+  67.870871,
+  18.648868,
+  67.868984,
+  18.617324
 ];
+console.log("testroute 3");
+console.log(route3);
 
-let polyline = L.polyline(route, { className: "polyline" }).addTo(map);
+let polyline3 = L.polyline(route3, { className: "polyline" }).addTo(map);
+/*
 
 let polylineMarker = L.marker([67.893922, 18.646379], { icon: hiking }).addTo(
   map
@@ -123,7 +131,7 @@ function onMapClick(e) {
 
 //map.on("click", onMapClick);
 
-//Get specific route from back end database
+//Get specific route from backend database
 function getRouteById() {
   console.log("Inne i metoden hämta routeID16");
 
@@ -218,7 +226,7 @@ function getRouteById() {
     });
 }
 
-//Test of getting all routes to map from back end
+//Test of getting all routes to map from backend
 
 function testGetAllRoutes() {
   console.log("Inne i metoden testGetAllRoutes");
@@ -229,13 +237,15 @@ function testGetAllRoutes() {
       console.log("Checkout this JSON! ", dbRoutes);
 
       for (let i = 0; i < dbRoutes.length; i++) {
-        let routeType = dbRoutes[i].type;
+        let routeType = dbRoutes[i].routeType;
         console.log(routeType);
 
         let coords = [];
         for (let index = 0; index < dbRoutes[i].positions.length; index++) {
-          coords.push(dbRoutes[i].positions[index].lat);
-          coords.push(dbRoutes[i].positions[index].lng);
+          let coord = [];
+          coord.push(dbRoutes[i].positions[i].latitude);
+          coord.push(dbRoutes[i].positions[i].longitude);
+          coords.push(coord);
         }
         console.log("Koordinaterna borde vara:");
         console.log(coords);
@@ -251,15 +261,16 @@ function testGetAllRoutes() {
 
           switch (routeType) {
             case "hiking":
-              polyline = L.polyline(dbRoutes[i].positions, {
+              console.log("inne i rutt-hiking");
+              polyline = L.polyline(coords, {
                 className: "polyline"
               }).addTo(map);
-              polylineMarker = L.marker(
+              /*polylineMarker = L.marker(
                 [dbRoutes[i].positions[0].lat, dbRoutes[i].positions[1].lng],
                 { icon: hiking }
-              ).addTo(map);
+              ).addTo(map);*/
               polyline.bindPopup(dbRoutes[i].name);
-              polylineMarker.bindPopup(dbRoutes[i].name);
+              //polylineMarker.bindPopup(dbRoutes[i].name);
 
               break;
 
@@ -288,19 +299,20 @@ function testGetAllRoutes() {
 
           switch (routeType) {
             case "mountaintop":
-              marker = L.marker(coords, {
+              console.log("Inne i mountaintop");
+              marker = L.marker(coord, {
                 icon: mountainTop
               }).addTo(map);
-              marker.bindPopup(dbRoutes[i].name);
+              marker.bindPopup(dbRoutes[i].routeName);
               break;
 
             case "poi":
               console.log("Korrekt inne i POI");
 
-              marker = L.marker(coords, {
+              marker = L.marker([coords], {
                 icon: poi
               }).addTo(map);
-              marker.bindPopup(dbRoutes[i].name);
+              marker.bindPopup(dbRoutes[i].routeName);
               break;
 
             default:
