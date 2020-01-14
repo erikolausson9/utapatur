@@ -1,6 +1,8 @@
 package com.example.Utpatur;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +27,27 @@ public class ServiceLayer {
         return memberRepository.getMemberByEmail(email);
     }
 
-    //Get memberByMemberId
+    //Get getMemberByMemberId
+    public Member getMember (int memberId) {
+        return memberRepository.getMemberById(memberId);
+    }
+
+    public Member getMemberByMemberName(String memberName) {
+        return memberRepository.getMemberByMemberName(memberName);
+    }
+
+    //hämtar member från Spring Security för att kunna lägga i session
+    public String getUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
+
 
     //instance methods for map/route operations
     public void addRoute(CreateNewRoute routeToAdd){
@@ -94,6 +116,24 @@ public class ServiceLayer {
 
             routes.get(i).setPositions(routePositions);
         }
+
+        //Ta bort detta när DB-kopplingen fungerar
+        List<Position> positions2 = new ArrayList<>();
+        positions2.add(new Position(67.900468, 18.516387, null, 99));
+
+        Route route2 = new Route(99, "Kebnekaises sydtopp", "mountaintop", 2034, "Svår", 8000, 0, 12.0, "Fantastisk utsikt från Sveriges högsta berg!", "2020-01-09", null, null, 99);
+        route2.setPositions(positions2);
+
+        List<Position> positions3 = new ArrayList<>();
+        positions3.add(new Position(67.983154, 18.462754, null, 100));
+
+        Route route3 = new Route(100, "Unna Räitasstugan", "poi", 2034, "lätt", 8000, 0, 12.0, "En fin stuga", "2020-01-09", null, null, 99);
+        route3.setPositions(positions3);
+
+        routes.add(route2);
+        routes.add(route3);
+
+        //Slut på ta bort!
 
         return routes;
 

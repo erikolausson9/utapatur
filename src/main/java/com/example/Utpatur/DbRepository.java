@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
 @Repository
 public class DbRepository {
 
@@ -19,9 +18,9 @@ public class DbRepository {
 
     private List<Route> routes;
 
-    public DbRepository() {
+    /*public DbRepository() {
         routes = new ArrayList<>();
-    }
+    }*/
 
 
     public void addRoute(CreateNewRoute route){
@@ -51,9 +50,9 @@ public class DbRepository {
     public void addPosition(Position position){
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement("INSERT INTO Position(Longitude, Latitude, Altitude, RouteID) VALUES(?,?,?,?)")) {
-            ps.setFloat(1, (float)position.getLongitude());
-            ps.setFloat(2, (float)position.getLatitude());
+             PreparedStatement ps = conn.prepareStatement("INSERT INTO Position(Latitude, Longitude, Altitude, RouteID) VALUES(?,?,?,?)")) {
+            ps.setFloat(1, (float)position.getLatitude());
+            ps.setFloat(2, (float)position.getLongitude());
             ps.setInt(3, position.getAltitude());
             ps.setInt(4, position.getRouteId());
 

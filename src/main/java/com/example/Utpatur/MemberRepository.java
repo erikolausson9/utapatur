@@ -1,6 +1,7 @@
 package com.example.Utpatur;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -10,18 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
+
 @Repository
 public class MemberRepository {
     @Autowired
      DataSource dataSource;
+/*
+    @Autowired
+    PasswordEncoder encoder;*/
 
     //instance variables
     private List<Member> members;
 
     public MemberRepository() {
-        members = new ArrayList<>();
     }
+
 
     //helper function to map field names to variable memberName
     public Member rsMember(ResultSet rs) throws SQLException {
@@ -85,4 +89,33 @@ public class MemberRepository {
         return member;
     }
 
+    //Get memberId
+    public Member getMemberById(int memberId){ //TODO: testa om denna funktion gör vad den ska!
+
+        Member member = new Member();
+        try(Connection conn = dataSource.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberID=" + memberId)){
+            if(rs.next()){
+                member = rsMember(rs);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return member;
+    }
+
+    public Member getMemberByMemberName(String memberName) {
+        Member member = new Member();
+        try(Connection conn = dataSource.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberName='" + memberName + "'")){
+            if(rs.next()){
+                member = rsMember(rs);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return member;
+    }
 }
