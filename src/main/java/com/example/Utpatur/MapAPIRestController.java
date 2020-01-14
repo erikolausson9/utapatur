@@ -17,8 +17,16 @@ public class MapAPIRestController {
     @Autowired
     ServiceLayer serviceLayer;
 
-    @GetMapping("/testgetallfromdb")
+    @GetMapping("/getallfromdb")
     public List<Route> getAllFromDb(){
+
+        List<Route> routes = serviceLayer.getAllforMap();
+
+        return routes;
+    }
+
+    @GetMapping("/testgetallfromdb")
+    public List<Route> testgetAllFromDb(){
 
         return serviceLayer.getAllRoutes();
     }
