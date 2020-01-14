@@ -69,37 +69,13 @@
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" />
   </head>
 
-  <body>
+  <body onload="getAllRoutesFromDatabase()">
     <div th:replace="fragments :: header"></div>
 
     <div class="row">
       <!-- left column with filter/search results-->
       <div class="col-md-2">
         <h3>Filter/Sökresultat</h3>
-        <button
-          type="button"
-          class="primary-button"
-          id="testGetRoute"
-          onclick="testGetRoute()"
-        >
-          Test GetRoute
-        </button>
-        <button
-          type="button"
-          class="primary-button"
-          id="testGetRoute"
-          onclick="testGetAllRoutes()"
-        >
-          Test Get All Routes
-        </button>
-        <button
-          type="button"
-          class="primary-button"
-          id="testGetRoute"
-          onclick="getRouteById()"
-        >
-          Test specific route from DB
-        </button>
       </div>
 
       <!--right column with map-->

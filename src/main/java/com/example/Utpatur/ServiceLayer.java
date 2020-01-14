@@ -95,6 +95,16 @@ public class ServiceLayer {
             routes.get(i).setPositions(routePositions);
         }
 
+        //Ta bort detta när DB-kopplingen fungerar
+        List<Position> positions2 = new ArrayList<>();
+        positions2.add(new Position(67.900468, 18.516387, null, 99));
+
+        Route route2 = new Route(99, "Kebnekaises sydtopp", "mountaintop", 2034, "Svår", 8000, 0, 12.0, "Fantastisk utsikt från Sveriges högsta berg!", "2020-01-09", null, null, 99);
+        route2.setPositions(positions2);
+
+        routes.add(route2);
+        //Slut på ta bort!
+
         return routes;
 
     }
