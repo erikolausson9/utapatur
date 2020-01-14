@@ -56,8 +56,10 @@
                         </td>
                         <td>
                             <h1 class="white-heading">Min profil</h1>
-                            <h3 th:text="${#httpServletRequest.remoteUser}" class="white-heading">$MemberName</h3>
-                      <!--      <div th:each = "member : ${memberKey}"><span th:text="${member.email}">Här kommer din email</span></div> -->
+                            <!--<h3 th:text="${#httpServletRequest.remoteUser}" class="white-heading">$MemberName</h3>-->
+                            <!--<h3 th:text="${session.memberName}" class="white-heading">Bla di bla</h3>-->
+                            <div th:each = "member : ${memberKey}"><h3 class="white-heading" th:text="${member.memberName}">Här kommer ditt namn</h3></div>
+
                         </td>
                     </tr>
                 </table>
@@ -74,8 +76,9 @@
                 </div>
                 <div class="col-4 mt-5 mb-5">
                     <h2>Mina bidrag</h2>
-                    <span>$Inga bidrag</span>
-                    <a class="mini-primary-button" href="skapa-ny-tur">Lägg till tur</a>
+                    <div th:each = "memberRoute : ${routesKey}"><span th:text="${memberRoute.RouteName}">Här kommer ditt namn</span>
+                    </div>
+                    <a class="mini-primary-button" href="/skapa-ny-tur">Lägg till tur</a>
 
                 </div>
                 <div class="col-4 mt-5 mb-5">

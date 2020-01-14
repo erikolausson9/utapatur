@@ -20,9 +20,9 @@ import java.util.List;
 @Controller
 public class MemberController {
 
-   /* @Autowired
+   @Autowired
     MemberRepository memberRepository;
-*/
+
    @Autowired
    PasswordEncoder encoder;
 
@@ -31,19 +31,19 @@ public class MemberController {
 
 
    //tillfällig/tas bort när profil/memberId fungerar
-   @GetMapping("/profil")
-   String profilRightNow(HttpSession session, Model model) {
+   @GetMapping("/profil/{memberId}")
+   String profilRightNow(HttpSession session, Model model, @PathVariable int memberId) {
        System.out.println("Vi har nått profilvyn");
-       Member member = serviceLayer.getMemberByMemberName(serviceLayer.getUser());
-       Member user = (Member) session.getAttribute("user");
+       //Member member = serviceLayer.getMemberByMemberName(serviceLayer.getUser());
+       //Member user = (Member) session.getAttribute("user");
+       session.setAttribute("memberKey", serviceLayer.getMember(memberId));
+       model.addAttribute("memberKey", serviceLayer.getMember(memberId));
+
+       session.setAttribute("routesKey", memberRepository.getRoutesByMemberId(memberId));
+       model.addAttribute("routesKey", memberRepository.getRoutesByMemberId(memberId));
+
        return "profil";
    }
-
-    @GetMapping("/profil{memberId}")
-    String profil(Model model, HttpSession session, @PathVariable Integer memberId) {
-
-        return "profil";
-    }
 
     @GetMapping("/login")
     public String login() {
