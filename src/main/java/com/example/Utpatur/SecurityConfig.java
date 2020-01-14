@@ -52,8 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
- /*   @Bean
+ /* Fake User
+    @Bean
     public UserDetailsService userDetailsService () {
         //creating a new user in memory and therefore overriding the userDetailsService
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();

@@ -6,11 +6,11 @@ public class CreateNewRoute {
     private Integer routeId;
     private String routeName;
     private String routeType;
-    private Integer height;
+    private Integer height = 0;
     private String difficulty;
-    private Integer length;
-    private Integer days;
-    private Double hours;
+    private Integer length = 0;
+    private Integer days = 0;
+    private Double hours = 1.0;
     private String description;
     private String dateOfCompletion;
     private String routeCreated;

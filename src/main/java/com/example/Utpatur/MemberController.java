@@ -20,9 +20,6 @@ import java.util.List;
 @Controller
 public class MemberController {
 
-   /* @Autowired
-    MemberRepository memberRepository;
-*/
    @Autowired
    PasswordEncoder encoder;
 
@@ -30,7 +27,6 @@ public class MemberController {
     ServiceLayer serviceLayer;
 
 
-   //tillfällig/tas bort när profil/memberId fungerar
    @GetMapping("/profil")
    String profilRightNow(HttpSession session, Model model) {
        System.out.println("Vi har nått profilvyn");
@@ -50,9 +46,6 @@ public class MemberController {
 
         return "login";
     }
-
-   /* session.setAttribute("user", upr.findByUsername(userService.getUser()));
-    UserProfile user = (UserProfile) httpSession.getAttribute("user");*/
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
