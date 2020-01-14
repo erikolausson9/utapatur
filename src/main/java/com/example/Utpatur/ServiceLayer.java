@@ -54,18 +54,21 @@ public class ServiceLayer {
 
         dbRepository.addRoute(routeToAdd); //this will add the route to the database, ignoring the strings storing lat and lng
 
-        System.out.println("last routeID: " + dbRepository.getLastRouteID());
+        //System.out.println("last routeID: " + dbRepository.getLastRouteID());
         Integer routeId = dbRepository.getLastRouteID(); //TODO: test if this works, that is if all the positions added get the correct routeID as foreign key
 
-        String[] tempLatitudes;
-        String[] tempLongitudes;
+        String[] tempLatitudes = {};
+        String[] tempLongitudes = {};
         tempLatitudes = routeToAdd.getLatitudes().split(", ");
         tempLongitudes = routeToAdd.getLongitudes().split(", ");
+        
 
         if(tempLatitudes.length != tempLongitudes.length){
             System.out.println("Error! Latitude array and longitude array differs in length.");
         }else{
             for(int ii=0; ii<tempLatitudes.length; ii++){
+                System.out.println("tempLatitudes[" + ii  + "]: " + tempLatitudes[ii]);
+                System.out.println("tempLongitudes[" + ii  + "]: " + tempLongitudes[ii]);
                 //add positions to the database. For now, set altitude to 0 in all cases
                 Position newPosition = new Position(Double.parseDouble(tempLatitudes[ii]), Double.parseDouble(tempLongitudes[ii]), 0, routeId);
                 dbRepository.addPosition(newPosition);
