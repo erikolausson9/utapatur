@@ -1,6 +1,8 @@
 package com.example.Utpatur;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +27,27 @@ public class ServiceLayer {
         return memberRepository.getMemberByEmail(email);
     }
 
-    //Get memberByMemberId
+    //Get getMemberByMemberId
+    public Member getMember (int memberId) {
+        return memberRepository.getMemberById(memberId);
+    }
+
+    public Member getMemberByMemberName(String memberName) {
+        return memberRepository.getMemberByMemberName(memberName);
+    }
+
+    //hämtar member från Spring Security för att kunna lägga i session
+    public String getUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
+    }
+
 
     //instance methods for map/route operations
     public void addRoute(CreateNewRoute routeToAdd){
