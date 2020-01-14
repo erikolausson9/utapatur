@@ -1,11 +1,6 @@
-//import L from "leaflet";
-//import { CRS } from "proj4leaflet";
-//
-//import '@geoman-io/leaflet-geoman-free';
-//import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+//JS-script to show route objects on map
 
-console.log("mapview.js loaded");
-
+//Initialization of map
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
@@ -35,6 +30,7 @@ new L.TileLayer(
 ).addTo(map);
 
 map.setView([67.893153, 18.75682], 7);
+//END of initialization of map
 
 //Code for custom icons
 var mountainTop = L.icon({
@@ -82,92 +78,43 @@ var poi = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-//hard-coded top to start out with
-let post = [67.904363, 18.527085];
-console.log(post);
-
-//let marker = L.marker(post, { icon: mountainTop }).addTo(map);
-/*
-marker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
-marker.bindTooltip("my tooltip text");
-
-//hard-coded routes to start with
-let route = [
-  [67.918486, 18.601353],
-  [67.903964, 18.621239],
-  [67.893922, 18.646379],
-  [67.870871, 18.648868],
-  [67.868984, 18.617324]
-];
-
-let polyline = L.polyline(route, { className: "polyline" }).addTo(map);
-
-let polylineMarker = L.marker([67.893922, 18.646379], { icon: hiking }).addTo(
-  map
-);
-
-polylineMarker.bindPopup("<b>Hello marker!</b><br>I am a popup.");
-
-polyline.bindPopup("<b>Hello line!</b><br>I am a popup.");
-
-// skapar en pop-up med koordinater, long/lat
-let popUp = L.popup();
-*/
-
-function onMapClick(e) {
-  popUp
-    .setLatLng(e.latlng)
-    .setContent("Koordinater: " + e.latlng.toString())
-    .openOn(map);
-}
-
-//map.on("click", onMapClick);
-
-//Function to get all routes from backend database
+//Function to get all routes from backend database and display them on the map
 function getAllRoutesFromDatabase() {
-  console.log("Inne i metoden getAllRoutesFromDatabase");
-
+  //REST-API call to backend. Return JSON-object with all routes from database
   fetch("http://localhost:8080/getallfromdb")
     .then(test => test.json())
     .then(dbRoutes => {
-      console.log("Checkout this JSON! ", dbRoutes);
+      //dbRoutes is the JSON-object with all routes
 
       for (let i = 0; i < dbRoutes.length; i++) {
-        let routeType = dbRoutes[i].routeType;
-        console.log(routeType);
+        //Loop through the array with routes
+        let routeType = dbRoutes[i].routeType; //Define what type of route
 
         if (routeType === "hiking" || routeType === "skiing") {
-          console.log("Inne i hiking/skiing if-satsen");
-
+          //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
           let coords = [];
           for (let index = 0; index < dbRoutes[i].positions.length; index++) {
             let coord = [];
 
+            //Add the latitude and longitude to one array, pushing it in the main positions array "coords"
             coord.push(dbRoutes[i].positions[index].latitude);
             coord.push(dbRoutes[i].positions[index].longitude);
-
             coords.push(coord);
           }
-          console.log(coords);
 
+          //Draw the line on the map
           polyline = L.polyline(coords, {
             className: "polyline"
           }).addTo(map);
+
+          //Binds a popup to the line, showing information
           polyline.bindPopup(dbRoutes[i].routeName);
-
-          console.log("Center coord is:");
-          let center = polyline.getCenter();
-          console.log(center);
-
-          //Define the first coord of the route to show the pop-up at
-          let coord = [];
-          coord.push(dbRoutes[i].positions[0].latitude);
-          coord.push(dbRoutes[i].positions[0].longitude);
 
           //Switch-case for choosing the right icon for the route
           switch (routeType) {
             case "hiking":
               marker = L.marker(polyline.getCenter(), {
+                //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
                 icon: hiking
               }).addTo(map);
 
@@ -181,15 +128,15 @@ function getAllRoutesFromDatabase() {
             default:
               break;
           }
-          marker.bindPopup(dbRoutes[i].routeName);
-        } else if (routeType === "mountaintop" || routeType === "poi") {
-          console.log("Inne i mountaintop/poi if-satsen");
 
+          //Finally adds the marker to the route.
+          marker.bindPopup(dbRoutes[i].routeName);
+
+          //Code to run if route is only a point, similar as above.
+        } else if (routeType === "mountaintop" || routeType === "poi") {
           let coord = [];
           coord.push(dbRoutes[i].positions[0].latitude);
           coord.push(dbRoutes[i].positions[0].longitude);
-
-          console.log(coord);
 
           switch (routeType) {
             case "mountaintop":
@@ -209,230 +156,12 @@ function getAllRoutesFromDatabase() {
           }
           marker.bindPopup(dbRoutes[i].routeName);
         } else {
-          console.log("I else-satsen");
+          console.log("ERROR: Ingen passande routeType hittades");
         }
       }
     })
+    //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(err => {
       throw err;
     });
 }
-
-//Test of getting all routes to map from back end
-
-function testGetAllRoutes() {
-  console.log("Inne i metoden testGetAllRoutes");
-
-  fetch("http://localhost:8080/testgetallroutes")
-    .then(test => test.json())
-    .then(dbRoutes => {
-      console.log("Checkout this JSON! ", dbRoutes);
-
-      for (let i = 0; i < dbRoutes.length; i++) {
-        let routeType = dbRoutes[i].type;
-        console.log(routeType);
-
-        let coords = [];
-        for (let index = 0; index < dbRoutes[i].positions.length; index++) {
-          coords.push(dbRoutes[i].positions[index].lat);
-          coords.push(dbRoutes[i].positions[index].lng);
-        }
-        console.log("Koordinaterna borde vara:");
-        console.log(coords);
-
-        let marker;
-        let polyline;
-        let polylineMarker;
-        let polylinePopUp;
-
-        //If route object is route (containing more than 1 position object)
-        if (dbRoutes[i].positions.length > 1) {
-          console.log("Inne i rutt-if-satsen");
-
-          switch (routeType) {
-            case "hiking":
-              polyline = L.polyline(dbRoutes[i].positions, {
-                className: "polyline"
-              }).addTo(map);
-              polylineMarker = L.marker(
-                [dbRoutes[i].positions[0].lat, dbRoutes[i].positions[1].lng],
-                { icon: hiking }
-              ).addTo(map);
-              polyline.bindPopup(dbRoutes[i].name);
-              polylineMarker.bindPopup(dbRoutes[i].name);
-
-              break;
-
-            case "skiing":
-              polyline = L.polyline(dbRoutes[i].positions, {
-                className: "polyline"
-              }).addTo(map);
-              polylineMarker = L.marker(
-                [dbRoutes[i].positions[0].lat, dbRoutes[i].positions[1].lng],
-                { icon: skiing }
-              ).addTo(map);
-              polyline.bindPopup(dbRoutes[i].name);
-              polylineMarker.bindPopup(dbRoutes[i].name);
-
-              break;
-
-            default:
-              break;
-          }
-        }
-
-        //If route object contains only one position object
-        else {
-          console.log("Inne i punkt-else-satsen");
-          console.log(coords);
-
-          switch (routeType) {
-            case "mountaintop":
-              marker = L.marker(coords, {
-                icon: mountainTop
-              }).addTo(map);
-              marker.bindPopup(dbRoutes[i].name);
-              break;
-
-            case "poi":
-              console.log("Korrekt inne i POI");
-
-              marker = L.marker(coords, {
-                icon: poi
-              }).addTo(map);
-              marker.bindPopup(dbRoutes[i].name);
-              break;
-
-            default:
-              break;
-          }
-        }
-      }
-    })
-    .catch(err => {
-      throw err;
-    });
-}
-
-//Test of API-call to back end
-function testGetRoute() {
-  console.log("Inne i metoden testGetRoute");
-
-  fetch("http://localhost:8080/testgetobject")
-    .then(test => test.json())
-    .then(dbRoutes => {
-      console.log("Checkout this JSON! ", dbRoutes);
-
-      let routeType = dbRoutes.type;
-      let newMarker;
-
-      switch (routeType) {
-        case "hiking":
-          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
-            icon: hiking
-          }).addTo(map);
-          break;
-
-        case "skiing":
-          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
-            icon: skiing
-          }).addTo(map);
-          break;
-
-        case "mountaintop":
-          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
-            icon: mountainTop
-          }).addTo(map);
-
-          break;
-
-        case "poi":
-          newMarker = L.marker([dbRoutes.positions[0], dbRoutes.positions[1]], {
-            icon: poi
-          }).addTo(map);
-
-          break;
-
-        default:
-          break;
-      }
-      newMarker.bindPopup(dbRoutes.name);
-    })
-    .catch(err => {
-      throw err;
-    });
-}
-
-// adding leaflet-geoman controls/toolbar with some options to the map
-/*
-map.pm.addControls({
-  position: 'topleft',
-  drawCircle: false,
-  dragMode: false,
-  drawPolygon: false,
-  drawPolyline: true,
-  drawMarker: true,
-  drawRectangle: false,
-  drawCircleMarker: false,
-  cutPolygon: false,
-  editMode: false,
-  removalMode: false
-});
-*/
-
-//let position = [];
-//let userRouteArray = [];
-
-// listen to vertexes being added to currently drawn layer (called workingLayer)
-//map.on('pm:drawstart', ({ workingLayer }) => {
-//  workingLayer.on('pm:vertexadded', e => {
-//
-//    userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
-//console.log(userRouteArray.toString());
-//
-//  });
-//});
-
-map.on("pm:create", e => {
-  console.log("draw end");
-  map.pm.addControls({
-    position: "topleft",
-    drawCircle: false,
-    dragMode: false,
-    drawPolygon: false,
-    drawMarker: false,
-    drawPolyline: false,
-    drawRectangle: false,
-    drawCircleMarker: false,
-    cutPolygon: false,
-    editMode: true
-  });
-
-  if (e.shape === "Marker") {
-    console.log("creating marker");
-    console.log(e.layer._latlng);
-    map.pm.disableDraw("Marker");
-  } else if (e.shape === "Line") {
-    console.log("creating line");
-    console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng);
-    for (const position of e.layer._latlngs) {
-      console.log(position);
-    }
-  } else {
-    console.log("Error, no marker or line");
-  }
-
-  e.layer.on("pm:edit", e => {
-    console.log("new position(s): ");
-    console.log(e.target._latlngs);
-    if (!e.target._latlngs) {
-      console.log("editing marker");
-      console.log(e.target._latlng);
-    } else {
-      console.log("editing line");
-      for (const position of e.target._latlngs) {
-        console.log(position);
-      }
-    }
-  });
-});
