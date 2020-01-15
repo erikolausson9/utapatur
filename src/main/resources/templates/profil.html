@@ -82,8 +82,7 @@
 
                 <div th:if="${session.routeList != null}">
                     <div th:each="memberRoute : ${routeList}">
-                        <span th:text="${memberRoute.RouteName}">Här är dina bidrag
-                        </span>
+                        <a th:href="'/tur/' + ${memberRoute.RouteId}"><span th:text="${memberRoute.RouteName}">Här är en rutt </span></a>
                     </div>
                 </div>
             </div>
