@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
 
                 .authorizeRequests()
-                .antMatchers("/", "/kartvy", "/registrering", "/tur", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
+                .antMatchers("/", "/kartvy", "/registrering", "/tur", "/tur/**", "/style.css", "/index.js", "/map-route.js", "/mapview.js", "/images/**").permitAll()
                 .antMatchers("/profil/**", "/skapa-ny-tur", "indexMapEdit.js", "/login")
                 .authenticated()
                 .and()

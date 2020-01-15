@@ -47,6 +47,22 @@ public class DbRepository {
 
     }
 
+    private static final String SQL_DELETE = "DELETE FROM Route WHERE RouteID=?";
+
+    public void deleteRoute(int routeID) {
+
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement(SQL_DELETE)) {
+
+            ps.setInt(1, routeID);
+
+            int row = ps.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     public void addPosition(Position position){
 
         try (Connection conn = dataSource.getConnection();

@@ -56,7 +56,7 @@ public class MapController {
 
         serviceLayer.addRoute(createNewRoute);
 
-        return "index";
+        return "redirect:/profil";
     }
 
 
