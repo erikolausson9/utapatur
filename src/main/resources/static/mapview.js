@@ -86,6 +86,7 @@ var plats = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
+
 function getAllRoutesFromDatabase() {
   fetch("http://localhost:8080/getallfromdb")
     .then(test => test.json())
@@ -111,6 +112,9 @@ function drawRoutesOnMap() {
     //Loop through the array with routes
     let routeType = dbRoutes[i].routeType; //Define what type of route
 
+    let popup = L.popup().setContent("<p><a href='/tur/" + dbRoutes[i].routeId + "'>"+ dbRoutes[i].routeName + "</a></p>")
+    console.log(dbRoutes[i].routeId)
+
     if (routeType === "Vandringstur" || routeType === "Skidtur") {
       //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
       let coords = [];
@@ -133,7 +137,7 @@ function drawRoutesOnMap() {
             });
 
             //Draw the line on the map
-            polyline.bindPopup(dbRoutes[i].routeName);
+            polyline.bindPopup(popup);
             layerGroup.addLayer(polyline);
             polyline.addTo(map);
 
@@ -143,7 +147,7 @@ function drawRoutesOnMap() {
               icon: vandringstur
             });
 
-            marker.bindPopup(dbRoutes[i].routeName);
+            marker.bindPopup(popup);
             layerGroup.addLayer(marker);
           }
 
@@ -154,14 +158,14 @@ function drawRoutesOnMap() {
               className: "polyline"
             });
 
-            polyline.bindPopup(dbRoutes[i].routeName);
+            polyline.bindPopup(popup);
             layerGroup.addLayer(polyline);
             polyline.addTo(map);
 
             marker = L.marker(polyline.getCenter(), {
               icon: skidtur
             });
-            marker.bindPopup(dbRoutes[i].routeName);
+            marker.bindPopup(popup);
 
             layerGroup.addLayer(marker);
           }
@@ -190,7 +194,7 @@ function drawRoutesOnMap() {
             marker = L.marker(coord, {
               icon: topp
             });
-            marker.bindPopup(dbRoutes[i].routeName);
+            marker.bindPopup(popup);
 
             layerGroup.addLayer(marker);
           }
@@ -201,7 +205,7 @@ function drawRoutesOnMap() {
             marker = L.marker(coord, {
               icon: plats
             });
-            marker.bindPopup(dbRoutes[i].routeName);
+            marker.bindPopup(popup);
 
             layerGroup.addLayer(marker);
           }
