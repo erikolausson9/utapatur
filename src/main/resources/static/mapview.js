@@ -6,6 +6,7 @@ let showSkiing = true;
 let showMountainTop = true;
 let showPoi = true;
 let dbRoutes;
+let layerGroup = L.layerGroup([]);
 
 //Initialization of map
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
@@ -40,7 +41,7 @@ map.setView([67.893153, 18.75682], 7);
 //END of initialization of map
 
 //Code for custom icons
-var mountainTop = L.icon({
+var topp = L.icon({
   iconUrl: "/images/mountaintop_pin.png",
   shadowUrl: "",
 
@@ -52,7 +53,7 @@ var mountainTop = L.icon({
   className: "typeIcon"
 });
 
-var hiking = L.icon({
+var vandringstur = L.icon({
   iconUrl: "/images/hiking.png",
   shadowUrl: "",
 
@@ -63,7 +64,7 @@ var hiking = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-var skiing = L.icon({
+var skidtur = L.icon({
   iconUrl: "/images/skiing.png",
   shadowUrl: "",
 
@@ -74,7 +75,7 @@ var skiing = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-var poi = L.icon({
+var plats = L.icon({
   iconUrl: "/images/poi.png",
   shadowUrl: "",
 
@@ -104,11 +105,13 @@ function getAllRoutesFromDatabase() {
 
 //Function to display routes on map
 function drawRoutesOnMap() {
+  layerGroup = L.layerGroup([]);
+
   for (let i = 0; i < dbRoutes.length; i++) {
     //Loop through the array with routes
     let routeType = dbRoutes[i].routeType; //Define what type of route
 
-    if (routeType === "hiking" || routeType === "skiing") {
+    if (routeType === "Vandringstur" || routeType === "Skidtur") {
       //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
       let coords = [];
       for (let index = 0; index < dbRoutes[i].positions.length; index++) {
@@ -122,38 +125,45 @@ function drawRoutesOnMap() {
 
       //Switch-case for choosing the right icon for the route
       switch (routeType) {
-        case "hiking":
+        case "Vandringstur":
           //IF-statement for filtering
           if (showHiking) {
             polyline = L.polyline(coords, {
               className: "polyline"
-            }).addTo(map);
+            });
 
             //Draw the line on the map
             polyline.bindPopup(dbRoutes[i].routeName);
+            layerGroup.addLayer(polyline);
+            polyline.addTo(map);
 
             //Binds a popup to the line, showing information
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
-              icon: hiking
-            }).addTo(map);
+              icon: vandringstur
+            });
 
             marker.bindPopup(dbRoutes[i].routeName);
+            layerGroup.addLayer(marker);
           }
 
           break;
-        case "skiing":
+        case "Skidtur":
           if (showSkiing) {
             polyline = L.polyline(coords, {
               className: "polyline"
-            }).addTo(map);
+            });
 
             polyline.bindPopup(dbRoutes[i].routeName);
+            layerGroup.addLayer(polyline);
+            polyline.addTo(map);
 
             marker = L.marker(polyline.getCenter(), {
-              icon: skiing
-            }).addTo(map);
+              icon: skidtur
+            });
             marker.bindPopup(dbRoutes[i].routeName);
+
+            layerGroup.addLayer(marker);
           }
 
           break;
@@ -169,27 +179,31 @@ function drawRoutesOnMap() {
       //Finally adds the marker to the route.
 
       //Code to run if route is only a point, similar as above.
-    } else if (routeType === "mountainTop" || routeType === "poi") {
+    } else if (routeType === "Topp" || routeType === "Plats") {
       let coord = [];
       coord.push(dbRoutes[i].positions[0].latitude);
       coord.push(dbRoutes[i].positions[0].longitude);
 
       switch (routeType) {
-        case "mountainTop":
+        case "Topp":
           if (showMountainTop) {
             marker = L.marker(coord, {
-              icon: mountainTop
-            }).addTo(map);
+              icon: topp
+            });
             marker.bindPopup(dbRoutes[i].routeName);
+
+            layerGroup.addLayer(marker);
           }
 
           break;
-        case "poi":
+        case "Plats":
           if (showPoi) {
             marker = L.marker(coord, {
-              icon: poi
-            }).addTo(map);
+              icon: plats
+            });
             marker.bindPopup(dbRoutes[i].routeName);
+
+            layerGroup.addLayer(marker);
           }
 
           break;
@@ -205,15 +219,14 @@ function drawRoutesOnMap() {
       console.log(dbRoutes[i].routeId);
     }
   }
+
+  layerGroup.addTo(map);
 }
 
+//Code for listing route objects
 function generateList() {
-  //Code for listing route objects
-
   let listOfNames = [];
   let listOfRouteId = [];
-
-  console.log(dbRoutes.length);
 
   for (let index = 0; index < dbRoutes.length; index++) {
     //Loop through the array with routes
@@ -271,5 +284,8 @@ function testCallTodbRoutes() {
 }
 
 function clearMap() {
-  clearMap();
+  console.log("clear");
+
+  map.removeLayer(layerGroup);
+  drawRoutesOnMap();
 }

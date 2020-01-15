@@ -318,7 +318,8 @@ function calculateDistance(routeObject) {
 
 function updateDistance(totalDistance) {
 
-    document.getElementById("lengthToShow").innerText = "Längd på markerad tur: " + (totalDistance / 1000).toFixed(1) + " km"
+    let labels = document.getElementsByClassName("lengthToShow")
+    labels[0].innerHTML = "Längd på markerad tur: <strong>" + (totalDistance / 1000).toFixed(1) + " km</strong>"
     document.getElementById("length").value = Math.round(totalDistance) //distance will be saved in meters
     document.getElementById("height").value = 0; //todo: replace with actual height
 }
