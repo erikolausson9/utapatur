@@ -1,12 +1,10 @@
 //JS-script to show route objects on map
 
 //Defining "global?" variables
-
 let showHiking = true;
 let showSkiing = true;
 let showMountainTop = true;
 let showPoi = true;
-
 let dbRoutes;
 
 //Initialization of map
@@ -87,172 +85,161 @@ var poi = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-function testGetAllRoutesFromDatabase() {
+function getAllRoutesFromDatabase() {
   fetch("http://localhost:8080/getallfromdb")
     .then(test => test.json())
-    .then(dbRoutes => {
+    .then(tempDbRoutes => {
       //dbRoutes is the JSON-object with all routes
+
+      dbRoutes = tempDbRoutes;
+      drawRoutesOnMap();
+      generateList();
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(err => {
+      console.log("Fel vid hämtning från databasen");
       throw err;
     });
 }
 
-//Function to get all routes from backend database and display them on the map
-function getAllRoutesFromDatabase() {
-  //REST-API call to backend. Return JSON-object with all routes from database
-  fetch("http://localhost:8080/getallfromdb")
-    .then(test => test.json())
-    .then(dbRoutes => {
-      //dbRoutes is the JSON-object with all routes
+//Function to display routes on map
+function drawRoutesOnMap() {
+  for (let i = 0; i < dbRoutes.length; i++) {
+    //Loop through the array with routes
+    let routeType = dbRoutes[i].routeType; //Define what type of route
 
-      for (let i = 0; i < dbRoutes.length; i++) {
-        //Loop through the array with routes
-        let routeType = dbRoutes[i].routeType; //Define what type of route
+    if (routeType === "hiking" || routeType === "skiing") {
+      //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
+      let coords = [];
+      for (let index = 0; index < dbRoutes[i].positions.length; index++) {
+        let coord = [];
 
-        if (routeType === "hiking" || routeType === "skiing") {
-          //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
-          let coords = [];
-          for (let index = 0; index < dbRoutes[i].positions.length; index++) {
-            let coord = [];
-
-            //Add the latitude and longitude to one array, pushing it in the main positions array "coords"
-            coord.push(dbRoutes[i].positions[index].latitude);
-            coord.push(dbRoutes[i].positions[index].longitude);
-            coords.push(coord);
-          }
-
-          //Switch-case for choosing the right icon for the route
-          switch (routeType) {
-            case "hiking":
-              //IF-statement for filtering
-              if (showHiking) {
-                polyline = L.polyline(coords, {
-                  className: "polyline"
-                }).addTo(map);
-
-                //Draw the line on the map
-                polyline.bindPopup(dbRoutes[i].routeName);
-
-                //Binds a popup to the line, showing information
-                marker = L.marker(polyline.getCenter(), {
-                  //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
-                  icon: hiking
-                }).addTo(map);
-
-                marker.bindPopup(dbRoutes[i].routeName);
-              }
-
-              break;
-            case "skiing":
-              if (showSkiing) {
-                polyline = L.polyline(coords, {
-                  className: "polyline"
-                }).addTo(map);
-
-                polyline.bindPopup(dbRoutes[i].routeName);
-
-                marker = L.marker(polyline.getCenter(), {
-                  icon: skiing
-                }).addTo(map);
-                marker.bindPopup(dbRoutes[i].routeName);
-              }
-
-              break;
-
-            default:
-              console.log(
-                "No routeType in Switch-case found for " + dbRoutes[i].routeId
-              );
-
-              break;
-          }
-
-          //Finally adds the marker to the route.
-
-          //Code to run if route is only a point, similar as above.
-        } else if (routeType === "mountainTop" || routeType === "poi") {
-          let coord = [];
-          coord.push(dbRoutes[i].positions[0].latitude);
-          coord.push(dbRoutes[i].positions[0].longitude);
-
-          switch (routeType) {
-            case "mountainTop":
-              if (showMountainTop) {
-                marker = L.marker(coord, {
-                  icon: mountainTop
-                }).addTo(map);
-                marker.bindPopup(dbRoutes[i].routeName);
-              }
-
-              break;
-            case "poi":
-              if (showPoi) {
-                marker = L.marker(coord, {
-                  icon: poi
-                }).addTo(map);
-                marker.bindPopup(dbRoutes[i].routeName);
-              }
-
-              break;
-
-            default:
-              console.log(
-                "No routeType in Switch-case found for " + dbRoutes[i].routeId
-              );
-              break;
-          }
-        } else {
-          console.log("ERROR: Ingen passande routeType hittades");
-          console.log(dbRoutes[i].routeId);
-        }
+        //Add the latitude and longitude to one array, pushing it in the main positions array "coords"
+        coord.push(dbRoutes[i].positions[index].latitude);
+        coord.push(dbRoutes[i].positions[index].longitude);
+        coords.push(coord);
       }
-    })
-    //Catch to handle errors of the API-call. Not really used anywhere.
-    .catch(err => {
-      throw err;
-    });
+
+      //Switch-case for choosing the right icon for the route
+      switch (routeType) {
+        case "hiking":
+          //IF-statement for filtering
+          if (showHiking) {
+            polyline = L.polyline(coords, {
+              className: "polyline"
+            }).addTo(map);
+
+            //Draw the line on the map
+            polyline.bindPopup(dbRoutes[i].routeName);
+
+            //Binds a popup to the line, showing information
+            marker = L.marker(polyline.getCenter(), {
+              //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
+              icon: hiking
+            }).addTo(map);
+
+            marker.bindPopup(dbRoutes[i].routeName);
+          }
+
+          break;
+        case "skiing":
+          if (showSkiing) {
+            polyline = L.polyline(coords, {
+              className: "polyline"
+            }).addTo(map);
+
+            polyline.bindPopup(dbRoutes[i].routeName);
+
+            marker = L.marker(polyline.getCenter(), {
+              icon: skiing
+            }).addTo(map);
+            marker.bindPopup(dbRoutes[i].routeName);
+          }
+
+          break;
+
+        default:
+          console.log(
+            "No routeType in Switch-case found for " + dbRoutes[i].routeId
+          );
+
+          break;
+      }
+
+      //Finally adds the marker to the route.
+
+      //Code to run if route is only a point, similar as above.
+    } else if (routeType === "mountainTop" || routeType === "poi") {
+      let coord = [];
+      coord.push(dbRoutes[i].positions[0].latitude);
+      coord.push(dbRoutes[i].positions[0].longitude);
+
+      switch (routeType) {
+        case "mountainTop":
+          if (showMountainTop) {
+            marker = L.marker(coord, {
+              icon: mountainTop
+            }).addTo(map);
+            marker.bindPopup(dbRoutes[i].routeName);
+          }
+
+          break;
+        case "poi":
+          if (showPoi) {
+            marker = L.marker(coord, {
+              icon: poi
+            }).addTo(map);
+            marker.bindPopup(dbRoutes[i].routeName);
+          }
+
+          break;
+
+        default:
+          console.log(
+            "No routeType in Switch-case found for " + dbRoutes[i].routeId
+          );
+          break;
+      }
+    } else {
+      console.log("ERROR: Ingen passande routeType hittades");
+      console.log(dbRoutes[i].routeId);
+    }
+  }
 }
 
 function generateList() {
   //Code for listing route objects
-  fetch("http://localhost:8080/getallfromdb")
-    .then(test => test.json())
-    .then(dbRouteReturn => {
-      let listOfNames = [];
-      let listOfRouteId = [];
 
-      for (let index = 0; index < dbRouteReturn.length; index++) {
-        //Loop through the array with routes
-        let routeName = dbRouteReturn[index].routeName;
-        listOfNames.push(routeName);
-        listOfRouteId.push(dbRouteReturn[index].routeId);
-      }
+  let listOfNames = [];
+  let listOfRouteId = [];
 
-      // Create an unordered list
-      let listOfRouteNames = document.createElement("ul");
+  console.log(dbRoutes.length);
 
-      for (let index = 0; index < dbRouteReturn.length; index++) {
-        let htmlString =
-          "<a href=/tur/" +
-          listOfRouteId[index] +
-          ">" +
-          listOfNames[index] +
-          "</a>";
+  for (let index = 0; index < dbRoutes.length; index++) {
+    //Loop through the array with routes
+    let routeName = dbRoutes[index].routeName;
+    listOfNames.push(routeName);
+    listOfRouteId.push(dbRoutes[index].routeId);
+  }
 
-        let li = document.createElement("li");
-        li.innerHTML = htmlString;
-        listOfRouteNames.appendChild(li);
-      }
+  // Create an unordered list
+  let listOfRouteNames = document.createElement("ul");
 
-      var app = document.querySelector("#routeobjects");
-      app.appendChild(listOfRouteNames);
-    })
-    //Catch to handle errors of the API-call. Not really used anywhere.
-    .catch(error => {
-      throw error;
-    });
+  for (let index = 0; index < listOfNames.length; index++) {
+    let htmlString =
+      "<a href=/tur/" +
+      listOfRouteId[index] +
+      ">" +
+      listOfNames[index] +
+      "</a>";
+
+    let li = document.createElement("li");
+    li.innerHTML = htmlString;
+    listOfRouteNames.appendChild(li);
+  }
+
+  var app = document.querySelector("#routeobjects");
+  app.appendChild(listOfRouteNames);
 }
 
 function toggleShowHiking() {
@@ -277,4 +264,12 @@ function toggleShowPoi() {
   console.log("Toggle POI");
   showPoi = !showPoi;
   console.log(showPoi);
+}
+
+function testCallTodbRoutes() {
+  console.log(dbRoutes);
+}
+
+function clearMap() {
+  clearMap();
 }

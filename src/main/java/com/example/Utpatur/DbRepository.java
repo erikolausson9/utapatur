@@ -129,7 +129,7 @@ public class DbRepository {
     }
     //private helper methods used by other methods in this class
     //TODO: make sure these methods can be private without any problems
-    private Route rsRoute(ResultSet rs) throws SQLException {
+    public Route rsRoute(ResultSet rs) throws SQLException {
         Route route = new Route();
         route.setRouteId(rs.getInt("routeId"));
         route.setRouteName(rs.getString("routeName"));
