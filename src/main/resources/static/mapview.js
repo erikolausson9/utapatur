@@ -220,8 +220,6 @@ function drawRoutesOnMap() {
     }
   }
 
-  console.log(layerGroup);
-
   layerGroup.addTo(map);
 }
 
@@ -229,8 +227,6 @@ function drawRoutesOnMap() {
 function generateList() {
   let listOfNames = [];
   let listOfRouteId = [];
-
-  console.log(dbRoutes.length);
 
   for (let index = 0; index < dbRoutes.length; index++) {
     //Loop through the array with routes
@@ -290,7 +286,6 @@ function testCallTodbRoutes() {
 function clearMap() {
   console.log("clear");
 
-  console.log(layerGroup);
   map.removeLayer(layerGroup);
   drawRoutesOnMap();
 }
