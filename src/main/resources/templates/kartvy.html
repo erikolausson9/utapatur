@@ -76,6 +76,27 @@
       <!-- left column with filter/search results-->
       <div class="col-md-2">
         <h3>Filter</h3>
+        Dölj vandringsturer
+        <label class="switch">
+          <input type="checkbox" onclick="toggleShowHiking()" />
+          <span class="slider round"></span> </label
+        ><br />
+        Dölj skidturer
+        <label class="switch">
+          <input type="checkbox" onclick="toggleShowSkiing()" />
+          <span class="slider round"></span> </label
+        ><br />
+        Dölj bergstoppar
+        <label class="switch">
+          <input type="checkbox" onclick="toggleShowMountainTop()" />
+          <span class="slider round"></span> </label
+        ><br />
+        Dölj intressanta platser
+        <label class="switch">
+          <input type="checkbox" onclick="toggleShowPoi()" />
+          <span class="slider round"></span> </label
+        ><br />
+        <br />
         <h3>Resultat</h3>
         <div id="routeobjects"></div>
       </div>

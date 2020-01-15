@@ -143,6 +143,7 @@ public class DbRepository {
         route.setDateOfCompletion(rs.getString("dateOfCompletion"));
         route.setRouteCreated(rs.getString("routeCreated"));
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
+        route.setMemberId(rs.getInt("MemberID"));
         return route;
     }
 

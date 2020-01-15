@@ -1,5 +1,14 @@
 //JS-script to show route objects on map
 
+//Defining "global?" variables
+
+let showHiking = true;
+let showSkiing = true;
+let showMountainTop = true;
+let showPoi = true;
+
+let dbRoutes;
+
 //Initialization of map
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
@@ -78,6 +87,18 @@ var poi = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
+function testGetAllRoutesFromDatabase() {
+  fetch("http://localhost:8080/getallfromdb")
+    .then(test => test.json())
+    .then(dbRoutes => {
+      //dbRoutes is the JSON-object with all routes
+    })
+    //Catch to handle errors of the API-call. Not really used anywhere.
+    .catch(err => {
+      throw err;
+    });
+}
+
 //Function to get all routes from backend database and display them on the map
 function getAllRoutesFromDatabase() {
   //REST-API call to backend. Return JSON-object with all routes from database
@@ -102,27 +123,42 @@ function getAllRoutesFromDatabase() {
             coords.push(coord);
           }
 
-          //Draw the line on the map
-          polyline = L.polyline(coords, {
-            className: "polyline"
-          }).addTo(map);
-
-          //Binds a popup to the line, showing information
-          polyline.bindPopup(dbRoutes[i].routeName);
-
           //Switch-case for choosing the right icon for the route
           switch (routeType) {
             case "hiking":
-              marker = L.marker(polyline.getCenter(), {
-                //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
-                icon: hiking
-              }).addTo(map);
+              //IF-statement for filtering
+              if (showHiking) {
+                polyline = L.polyline(coords, {
+                  className: "polyline"
+                }).addTo(map);
+
+                //Draw the line on the map
+                polyline.bindPopup(dbRoutes[i].routeName);
+
+                //Binds a popup to the line, showing information
+                marker = L.marker(polyline.getCenter(), {
+                  //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
+                  icon: hiking
+                }).addTo(map);
+
+                marker.bindPopup(dbRoutes[i].routeName);
+              }
 
               break;
             case "skiing":
-              marker = L.marker(polyline.getCenter(), {
-                icon: skiing
-              }).addTo(map);
+              if (showSkiing) {
+                polyline = L.polyline(coords, {
+                  className: "polyline"
+                }).addTo(map);
+
+                polyline.bindPopup(dbRoutes[i].routeName);
+
+                marker = L.marker(polyline.getCenter(), {
+                  icon: skiing
+                }).addTo(map);
+                marker.bindPopup(dbRoutes[i].routeName);
+              }
+
               break;
 
             default:
@@ -134,7 +170,6 @@ function getAllRoutesFromDatabase() {
           }
 
           //Finally adds the marker to the route.
-          marker.bindPopup(dbRoutes[i].routeName);
 
           //Code to run if route is only a point, similar as above.
         } else if (routeType === "mountainTop" || routeType === "poi") {
@@ -144,15 +179,22 @@ function getAllRoutesFromDatabase() {
 
           switch (routeType) {
             case "mountainTop":
-              marker = L.marker(coord, {
-                icon: mountainTop
-              }).addTo(map);
+              if (showMountainTop) {
+                marker = L.marker(coord, {
+                  icon: mountainTop
+                }).addTo(map);
+                marker.bindPopup(dbRoutes[i].routeName);
+              }
 
               break;
             case "poi":
-              marker = L.marker(coord, {
-                icon: poi
-              }).addTo(map);
+              if (showPoi) {
+                marker = L.marker(coord, {
+                  icon: poi
+                }).addTo(map);
+                marker.bindPopup(dbRoutes[i].routeName);
+              }
+
               break;
 
             default:
@@ -161,7 +203,6 @@ function getAllRoutesFromDatabase() {
               );
               break;
           }
-          marker.bindPopup(dbRoutes[i].routeName);
         } else {
           console.log("ERROR: Ingen passande routeType hittades");
           console.log(dbRoutes[i].routeId);
@@ -199,7 +240,6 @@ function generateList() {
           ">" +
           listOfNames[index] +
           "</a>";
-        console.log(htmlString);
 
         let li = document.createElement("li");
         li.innerHTML = htmlString;
@@ -208,19 +248,33 @@ function generateList() {
 
       var app = document.querySelector("#routeobjects");
       app.appendChild(listOfRouteNames);
-
-      /*listOfNames.forEach(function(name) {
-        let x = 1;
-        var li = document.createElement("li");
-        li.innerHTML = "<a href=/tur/ " + x + ">" + name + "</a>";
-        listOfRouteNames.appendChild(li);
-      });
-
-      var app = document.querySelector("#routeobjects");
-      app.appendChild(listOfRouteNames); */
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(error => {
       throw error;
     });
+}
+
+function toggleShowHiking() {
+  console.log("Toggle Hiking");
+  showHiking = !showHiking;
+  console.log(showHiking);
+}
+
+function toggleShowSkiing() {
+  console.log("Toggle Skiing");
+  showSkiing = !showSkiing;
+  console.log(showSkiing);
+}
+
+function toggleShowMountainTop() {
+  console.log("Toggle Mountaintop");
+  showMountainTop = !showMountainTop;
+  console.log(showMountainTop);
+}
+
+function toggleShowPoi() {
+  console.log("Toggle POI");
+  showPoi = !showPoi;
+  console.log(showPoi);
 }
