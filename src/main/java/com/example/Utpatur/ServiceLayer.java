@@ -16,6 +16,12 @@ public class ServiceLayer {
     @Autowired
     MemberRepository memberRepository;
 
+    //instance variable used for storing the route we want to see in detail view
+    private Route routeToShow;
+
+    public Route getRouteToShow(){
+        System.out.println("in getRouteToShow i servicelagret. routeToShow: " + routeToShow);
+        return routeToShow;}
 
 
     //instance methods for member operations
@@ -87,6 +93,17 @@ public class ServiceLayer {
     public List<Position> getPositions(int routeID){
         //return a list of positions for a given route
         return dbRepository.getPositions(routeID);
+    }
+
+
+
+    public void setRouteToShow(int routeID){
+        Route route = dbRepository.getRoute(routeID);
+        List <Position> positions = dbRepository.getPositions(routeID);
+
+        route.setPositions(positions);
+        //System.out.println("setRouteToShow: " + route.getRouteId());
+        routeToShow = route;
     }
 
     public List<Route> getAllforMap() {
