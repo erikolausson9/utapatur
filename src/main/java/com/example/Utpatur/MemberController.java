@@ -25,6 +25,9 @@ public class MemberController {
     MemberRepository memberRepository;
 
    @Autowired
+   DbRepository dbRepository;
+
+   @Autowired
    PasswordEncoder encoder;
 
    @Autowired
@@ -50,6 +53,16 @@ public class MemberController {
        model.addAttribute("routeList", memberRepository.getRoutesByMemberId(member.getMemberId()));
 
        return "profil";
+   }
+
+   @PostMapping("/taBortRutt")
+   String taBortRutt (@ModelAttribute Route route, Model model) {
+
+       model.addAttribute("route", route);
+
+       dbRepository.deleteRoute(route.getRouteId());
+
+       return"redirect:/profil";
    }
 
     @GetMapping("/login")

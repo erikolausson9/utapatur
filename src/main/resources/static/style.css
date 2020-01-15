@@ -157,6 +157,12 @@ span.small-desc {
   text-decoration: none;
 }
 
+.remove-route-btn {
+    border: 0px;
+    background-color: transparent;
+
+}
+
 logout-link {
     background-color: #2d874c;
     text-decoration: none;
