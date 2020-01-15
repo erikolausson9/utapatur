@@ -140,6 +140,13 @@ map.pm.addControls({
 let latitudes = "";
 let longitudes = "";
 
+map.on('pm:drawstart', ({ workingLayer }) => {
+    workingLayer.on('pm:vertexadded', e => {
+        console.log("vertex added");
+        updateDistance(calculateDistance(workingLayer));
+
+    });
+});
 
 map.on('pm:create', e => {
 

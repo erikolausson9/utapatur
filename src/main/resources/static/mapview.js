@@ -293,3 +293,14 @@ function clearMap() {
   map.removeLayer(layerGroup);
   drawRoutesOnMap();
 }
+
+map.on("dragend", function onDragEnd() {
+  var north = map.getBounds().getNorth();
+  var east = map.getBounds().getEast();
+  var west = map.getBounds().getWest();
+  var south = map.getBounds().getSouth();
+  console.log("North: " + north);
+  console.log("South: " + south);
+  console.log("East: " + east);
+  console.log("West: " + west);
+});
