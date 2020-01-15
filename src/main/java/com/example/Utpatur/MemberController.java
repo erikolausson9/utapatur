@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +32,22 @@ public class MemberController {
 
 
    //tillfällig/tas bort när profil/memberId fungerar
-   @GetMapping("/profil/{memberId}")
-   String profilRightNow(HttpSession session, Model model, @PathVariable int memberId) {
+   @GetMapping("/profil")
+   String profilRightNow(HttpSession session, Model model, Principal principal) {
+       Member member = memberRepository.getMemberByMemberName(principal.getName());
+
        System.out.println("Vi har nått profilvyn");
        //Member member = serviceLayer.getMemberByMemberName(serviceLayer.getUser());
        //Member user = (Member) session.getAttribute("user");
-       session.setAttribute("memberKey", serviceLayer.getMember(memberId));
-       model.addAttribute("memberKey", serviceLayer.getMember(memberId));
+       session.setAttribute("memberKey", member);
+       model.addAttribute("memberKey", member);
 
-       session.setAttribute("routesKey", memberRepository.getRoutesByMemberId(memberId));
-       model.addAttribute("routesKey", memberRepository.getRoutesByMemberId(memberId));
+       session.setAttribute("routeList", memberRepository.getRoutesByMemberId(member.getMemberId()));
+
+       int listSize = memberRepository.getRoutesByMemberId(member.getMemberId()).size();
+       session.setAttribute("routeListSize", listSize);
+
+       model.addAttribute("routeList", memberRepository.getRoutesByMemberId(member.getMemberId()));
 
        return "profil";
    }

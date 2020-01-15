@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class MapController {
 
-/*    @Autowired
-    DbRepository dbRepository;*/
+   @Autowired
+    MemberRepository memberRepository;
 
     @Autowired
     ServiceLayer serviceLayer;
@@ -38,8 +39,8 @@ public class MapController {
     }
 
     @PostMapping("/skapa-ny-tur")
-    String skapaNyTurForm(@ModelAttribute CreateNewRoute createNewRoute, Model model){
-
+    String skapaNyTurForm(@ModelAttribute CreateNewRoute createNewRoute, Model model, Principal principal){
+        Member member = memberRepository.getMemberByMemberName(principal.getName());
         //System.out.println("vi är på rad 43");
         model.addAttribute("createNewRoute", createNewRoute);
         /*
@@ -54,7 +55,7 @@ public class MapController {
         System.out.println("latitudes: " + createNewRoute.getLongitudes());
         System.out.println("longitudes: " + createNewRoute.getLatitudes());
         */
-        createNewRoute.setMemberId(1);
+        createNewRoute.setMemberId(member.getMemberId());
 
         serviceLayer.addRoute(createNewRoute);
 

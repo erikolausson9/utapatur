@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 class UtpaturApplicationTests {
@@ -43,5 +45,11 @@ class UtpaturApplicationTests {
 		Member member = memberRepository.getMemberByMemberName("Josse");
 		int id = member.getMemberId();
 		Assertions.assertEquals(1, id);
+	}
+
+	@Test
+	void testGetRoutesByMemberId() {
+		List<Route> routes = memberRepository.getRoutesByMemberId(35);
+		Assertions.assertEquals(0, routes.size());
 	}
 }

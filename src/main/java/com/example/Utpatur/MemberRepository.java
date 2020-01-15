@@ -123,9 +123,9 @@ public class MemberRepository {
 
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT RouteName FROM Route r INNER JOIN  Member m ON r.MemberID = m.MemberID WHERE m.MemberID=" + memberId)) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Route WHERE MemberID=" + memberId)) {
             while (rs.next()) {
-                memberRouteLists.add(dbRepository.getRoute(memberId));
+                memberRouteLists.add(dbRepository.rsRoute(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
