@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -33,7 +30,7 @@ public class MapController {
     String skapanytur(Model model) {
         model.addAttribute("createNewRoute", new CreateNewRoute());
         //dbRepository.testCreateNewRouteObject();
-        System.out.println("Vi är på rad 36");
+        //System.out.println("Vi är på rad 36");
         return "skapa-ny-tur";
     }
 
@@ -76,6 +73,16 @@ public class MapController {
     @GetMapping("tur")
     String tur() {
         return "tur";
+    }
+
+    @GetMapping("/tur/{routeID}")
+    String turMedRouteID(@PathVariable int routeID){
+        //model.addAttribute("routeID", routeID);
+
+        serviceLayer.setRouteToShow(routeID); //this will get the route and positions from db, then store it in the service layer for the restAPI-call
+        //System.out.println("in turMedRouteID");
+        return "tur";
+
     }
 
 

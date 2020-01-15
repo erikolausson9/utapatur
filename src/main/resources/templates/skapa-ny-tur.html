@@ -102,7 +102,7 @@
                 Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
                 <form action="/skapa-ny-tur" method="POST" th:object="${createNewRoute}">
 
-                   <!-- avkommenterar tillfälligt
+                    <!-- avkommenterar tillfälligt
                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
                     <input type="hidden" id="typeOfRoute" th:field="*{routeType}"></input>
                     <input type="hidden" id="length" th:field="*{length}"></input>
@@ -185,7 +185,7 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="indexMapEdit.js"></script>
+    <script type="text/javascript" src="/indexMapEdit.js"></script>
 
 
 </body>

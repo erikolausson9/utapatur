@@ -214,7 +214,7 @@ public class DbRepository {
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Position")){
             while(rs.next()){
-                System.out.println("en rad till");
+                //System.out.println("en rad till");
                 positions.add(rsPosition(rs));
             }
         }catch(SQLException e){
