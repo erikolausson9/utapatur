@@ -126,6 +126,10 @@ function getAllRoutesFromDatabase() {
               break;
 
             default:
+              console.log(
+                "No routeType in Switch-case found for " + dbRoutes[i].routeId
+              );
+
               break;
           }
 
@@ -133,13 +137,13 @@ function getAllRoutesFromDatabase() {
           marker.bindPopup(dbRoutes[i].routeName);
 
           //Code to run if route is only a point, similar as above.
-        } else if (routeType === "mountaintop" || routeType === "poi") {
+        } else if (routeType === "mountainTop" || routeType === "poi") {
           let coord = [];
           coord.push(dbRoutes[i].positions[0].latitude);
           coord.push(dbRoutes[i].positions[0].longitude);
 
           switch (routeType) {
-            case "mountaintop":
+            case "mountainTop":
               marker = L.marker(coord, {
                 icon: mountainTop
               }).addTo(map);
@@ -152,11 +156,15 @@ function getAllRoutesFromDatabase() {
               break;
 
             default:
+              console.log(
+                "No routeType in Switch-case found for " + dbRoutes[i].routeId
+              );
               break;
           }
           marker.bindPopup(dbRoutes[i].routeName);
         } else {
           console.log("ERROR: Ingen passande routeType hittades");
+          console.log(dbRoutes[i].routeId);
         }
       }
     })
