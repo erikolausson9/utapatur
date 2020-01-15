@@ -25,5 +25,9 @@ public class MapAPIRestController {
         return routes;
     }
 
+    @GetMapping("/show-specific-route")
+    public Route getRouteToShow(){
+        return serviceLayer.getRouteToShow();
+    }
 
 }

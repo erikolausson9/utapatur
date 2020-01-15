@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 
-    <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
-    <script
-            src="https://kit.fontawesome.com/9fea19c3fb.js"
-            crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
 
     <link
-            href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
-            rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
+        rel="stylesheet" />
 
     <!--<link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">-->
 
@@ -43,36 +29,26 @@
 </head>
 
 <body>
-<div th:fragment="header">
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #2d874c">
-        ​
-        <button
-                class="navbar-toggler"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div th:fragment="header">
+        <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #2d874c">
+            ​
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <a class="navbar-brand" href="/">
-            <img
-                    src="images/logotyp.png"
-                    width="40"
-                    height="40"
-                    class="d-inline-block align-top"
-                    alt=""
-            />
-            <span id="brandName"> Ut på tur</span>
-        </a>
+            <a class="navbar-brand" href="/">
+                <img src="/images/logotyp.png" width="40" height="40" class="d-inline-block align-top" alt="" />
+                <span id="brandName"> Ut på tur</span>
+            </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav ml-auto nav-flex-icons">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ml-auto nav-flex-icons">
 
-                <!-- Todo: ordnar så att current page blir vit-->
-                <a class="nav-item nav-link" href="kartvy">Karta</a>
+                    <!-- Todo: ordnar så att current page blir vit-->
+                    <a class="nav-item nav-link" href="kartvy">Karta</a>
 
 
-                <span th:if="${#httpServletRequest.remoteUser} == null">
+                    <span th:if="${#httpServletRequest.remoteUser} == null">
                     <a class="nav-item nav-link" href="login"><i class="fas fa-user"></i></a>
                 </span>
 

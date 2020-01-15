@@ -32,7 +32,7 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-map.setView([65.104326, 16.875124], 1.5);
+
 
 //map.pm.setPathOptions({
 //  color: 'orange',
@@ -40,148 +40,172 @@ map.setView([65.104326, 16.875124], 1.5);
 //});
 
 //hard-coded routes to start with
-let route = [
-  [63.43336264092851, 13.100512530890732],
-  [63.42612654639262, 13.162583161441411],
-  [63.395953086104676, 13.231165979318754],
-  [63.38021322970091, 13.168080742484434],
-  [63.379097388031624, 13.170713930555567]
-];
 
-let route2 = [
-  [67.4777659389, 19.88225463636],
-  [67.4975352569, 19.76008683650],
-  [67.4838912798, 19.59515819672],
-  [67.4295552309, 19.72250342069]
-];
 
-let route3 = [
-  [63.16248165247, 12.36796303705],
-  [63.08423965644, 12.42831493833],
-  [63.003404162007, 12.22797964426],
-  [62.919686257953, 12.42257997620],
-  [63.069424547189, 12.58503363623],
-  [63.155588700623, 12.38705480770]
-];
 
-let polyline = L.polyline(route, { color: "blue" }).addTo(map);
-let polyline2 = L.polyline(route2, { color: "blue" }).addTo(map);
-let polyline3 = L.polyline(route3, { color: "blue" }).addTo(map);
-
-// skapar en pop-up med koordinater, long/lat
-let popUp = L.popup();
-
+/*
 function onMapClick(e) {
   popUp
     .setLatLng(e.latlng)
     .setContent("Koordinater: " + e.latlng.toString())
     .openOn(map);
 }
-
-//map.on("click", onMapClick);
-
-//hard-coded markers to start out with
-let marker = L.marker([67.71837131142199, 17.794997304476783]).addTo(map);
-
-
-
-// adding leaflet-geoman controls/toolbar with some options to the map
-/*
-map.pm.addControls({
-  position: 'topleft',
-  drawCircle: false,
-  dragMode: false,
-  drawPolygon: false,
-  drawPolyline: true,
-  drawMarker: true,
-  drawRectangle: false,
-  drawCircleMarker: false,
-  cutPolygon: false,
-  editMode: false,
-  removalMode: false
-});
 */
 
-//let position = [];
-//let userRouteArray = [];
+//Code for custom icons
+var mountainTop = L.icon({
+  iconUrl: "/images/mountaintop_pin.png",
+  shadowUrl: "",
 
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
+});
 
-// listen to vertexes being added to currently drawn layer (called workingLayer)
-//map.on('pm:drawstart', ({ workingLayer }) => {
-//  workingLayer.on('pm:vertexadded', e => {
-//
-//    userRouteArray.push(e.latlng.lat + ",  " + e.latlng.lng);
-//console.log(userRouteArray.toString());
-//
-//  });
-//});
+var hiking = L.icon({
+  iconUrl: "/images/hiking.png",
+  shadowUrl: "",
 
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
 
+var skiing = L.icon({
+  iconUrl: "/images/skiing.png",
+  shadowUrl: "",
 
-map.on('pm:create', e => {
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
 
+var poi = L.icon({
+  iconUrl: "/images/poi.png",
+  shadowUrl: "",
 
-  console.log("draw end")
-  map.pm.addControls({
-    position: 'topleft',
-    drawCircle: false,
-    dragMode: false,
-    drawPolygon: false,
-    drawMarker: false,
-    drawPolyline: false,
-    drawRectangle: false,
-    drawCircleMarker: false,
-    cutPolygon: false,
-    editMode: true
-
-  });
-
-  if (e.shape === "Marker") {
-    console.log("creating marker")
-    console.log(e.layer._latlng)
-    map.pm.disableDraw('Marker')
-  }
-
-
-  else if (e.shape === "Line") {
-    console.log("creating line")
-    console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
-    for (const position of e.layer._latlngs) {
-      console.log(position)
-    }
-
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+});
 
 
 
 
-  }
-  else {
-    console.log("Error, no marker or line")
-  }
+function getRouteFromDatabase() {
+  console.log("in getRouteFromDatabase")
 
 
-  e.layer.on('pm:edit', e => {
-    console.log("new position(s): ")
-    console.log(e.target._latlngs)
-    if (!e.target._latlngs) {
-      console.log("editing marker")
-      console.log(e.target._latlng)
-    } else {
-      console.log("editing line")
-      for (const position of e.target._latlngs) {
-        console.log(position)
+  fetch("http://localhost:8080/show-specific-route")
+    .then(test => test.json())
+    .then(dbRoute => {
+      //dbRoute is the JSON-object with the chosen route
+
+
+
+      let routeType = dbRoute.routeType;
+
+
+      //change content of page to show route info of requested route
+      document.getElementById("nameOfRoute").innerText = dbRoute.routeName;
+      document.getElementById("createdBy").innerText = dbRoute.memberId;
+      document.getElementById("routeCreated").innerText = dbRoute.routeCreated;
+      document.getElementById("dateOfCompletion").innerText = dbRoute.dateOfCompletion;
+      document.getElementById("routeType").innerText = dbRoute.routeType;
+      document.getElementById("length").innerText = (dbRoute.length / 1000).toFixed(1) + " km";
+      document.getElementById("height").innerText = dbRoute.height;
+      document.getElementById("difficulty").innerText = dbRoute.difficulty;
+      document.getElementById("duration").innerText = dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
+      document.getElementById("description").innerText = dbRoute.description;
+
+
+      if (routeType === "hiking" || routeType === "skiing") {
+        //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
+        let coords = [];
+        for (let index = 0; index < dbRoute.positions.length; index++) {
+          let coord = [];
+
+          //Add the latitude and longitude to one array, pushing it in the main positions array "coords"
+          coord.push(dbRoute.positions[index].latitude);
+          coord.push(dbRoute.positions[index].longitude);
+          coords.push(coord);
+        }
+
+        //Draw the line on the map
+        polyline = L.polyline(coords, {
+          className: "polyline"
+        }).addTo(map);
+
+        map.setView(coords[0], 4); //TODO: this should ideally be set to the center of the line, not the first point
+
+        //Switch-case for choosing the right icon for the route
+        switch (routeType) {
+          case "hiking":
+            marker = L.marker(polyline.getCenter(), {
+              //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
+              icon: hiking
+            }).addTo(map);
+
+            break;
+          case "skiing":
+            marker = L.marker(polyline.getCenter(), {
+              icon: skiing
+            }).addTo(map);
+            break;
+
+          default:
+            break;
+        }
+
+      } else if (routeType === "mountainTop" || routeType === "poi") {
+        //do the same for points
+        let coord = [];
+        coord.push(dbRoute.positions[0].latitude);
+        coord.push(dbRoute.positions[0].longitude);
+
+        map.setView(coord, 4);
+
+        switch (routeType) {
+          case "mountainTop":
+            marker = L.marker(coord, {
+              icon: mountainTop
+            }).addTo(map);
+
+            break;
+          case "poi":
+            marker = L.marker(coord, {
+              icon: poi
+            }).addTo(map);
+            break;
+
+          default:
+            break;
+        }
+        //marker.bindPopup(dbRoute.routeName);
+      } else {
+        console.log("ERROR: Ingen passande routeType hittades");
       }
 
-    }
+    })
+}
 
 
 
 
 
 
-  })
 
-});
+
+
 
 
 

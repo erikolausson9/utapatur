@@ -16,6 +16,12 @@ public class ServiceLayer {
     @Autowired
     MemberRepository memberRepository;
 
+    //instance variable used for temporarily storing the route we want to see in detail view
+    private Route routeToShow;
+
+    public Route getRouteToShow(){
+        System.out.println("in getRouteToShow i servicelagret. routeToShow: " + routeToShow);
+        return routeToShow;}
 
 
     //instance methods for member operations
@@ -89,13 +95,30 @@ public class ServiceLayer {
         return dbRepository.getPositions(routeID);
     }
 
+
+    //store the requested route info in the service layer
+    public void setRouteToShow(int routeID){
+        Route route = dbRepository.getRoute(routeID);
+        List <Position> positions = dbRepository.getPositions(routeID);
+
+        route.setPositions(positions);
+
+        routeToShow = route;
+    }
+
     public List<Route> getAllforMap() {
 
-        List<Route> routes = dbRepository.getAllRoutes();
+        List<Route> allRoutes = dbRepository.getAllRoutes();
         List<Position> allPositions = dbRepository.getAllPositions();
+        List<Route> routes = new ArrayList<>();
 
-        for (int i = 0; i < routes.size() ; i++) {
-            int routeId = routes.get(i).getRouteId();
+//        for (int i = 0; i < allPositions.size(); i++) {
+//            System.out.println("RouteID: " + allPositions.get(i).getRouteId() + ", LatLng: " + allPositions.get(i).getLatitude() +", " + allPositions.get(i).getLongitude());
+//
+//        }
+
+        for (int i = 0; i < allRoutes.size() ; i++) {
+            int routeId = allRoutes.get(i).getRouteId();
 
             List<Position> routePositions = new ArrayList<>();
 
@@ -104,26 +127,24 @@ public class ServiceLayer {
                     routePositions.add(allPositions.get(j));
                 }
             }
-                routes.get(i).setPositions(routePositions);
+
+            if(routePositions.size() > 0){
+                allRoutes.get(i).setPositions(routePositions);
+                routes.add(allRoutes.get(i));
+            }
+
+            //allRoutes.get(i).setPositions(routePositions);
+
+//            //Om inga positions hittades till routen så tas routen bort från listan som ska skickas iväg som JSON.
+//            if(routePositions.size() == 0){
+//                routes.remove(i);
+//            }
+//            else{
+//                routes.get(i).setPositions(routePositions);
+//            }
         }
 
-        //Ta bort detta när DB-kopplingen helt fungerar fungerar
-        List<Position> positions2 = new ArrayList<>();
-        positions2.add(new Position(67.900468, 18.516387, null, 99));
 
-        Route route2 = new Route(99, "Kebnekaises sydtopp", "mountaintop", 2034, "Svår", 8000, 0, 12.0, "Fantastisk utsikt från Sveriges högsta berg!", "2020-01-09", null, null, 99);
-        route2.setPositions(positions2);
-
-        List<Position> positions3 = new ArrayList<>();
-        positions3.add(new Position(67.983154, 18.462754, null, 100));
-
-        Route route3 = new Route(100, "Unna Räitasstugan", "poi", 2034, "lätt", 8000, 0, 12.0, "En fin stuga", "2020-01-09", null, null, 99);
-        route3.setPositions(positions3);
-
-        routes.add(route2);
-        routes.add(route3);
-
-        //Slut på ta bort!
 
         return routes;
 
