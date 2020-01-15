@@ -7,7 +7,7 @@ public class CreateNewRoute {
     private String routeName;
     private String routeType;
     private Integer height = 0;
-    private String difficulty;
+    private String difficulty = "Medel";
     private Integer length = 0;
     private Integer days = 0;
     private Double hours = 1.0;

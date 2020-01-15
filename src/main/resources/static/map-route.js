@@ -53,7 +53,7 @@ function onMapClick(e) {
 */
 
 //Code for custom icons
-var mountainTop = L.icon({
+var topp = L.icon({
   iconUrl: "/images/mountaintop_pin.png",
   shadowUrl: "",
 
@@ -65,7 +65,7 @@ var mountainTop = L.icon({
   className: "typeIcon"
 });
 
-var hiking = L.icon({
+var vandringstur = L.icon({
   iconUrl: "/images/hiking.png",
   shadowUrl: "",
 
@@ -76,7 +76,7 @@ var hiking = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-var skiing = L.icon({
+var skidtur = L.icon({
   iconUrl: "/images/skiing.png",
   shadowUrl: "",
 
@@ -87,7 +87,7 @@ var skiing = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-var poi = L.icon({
+var plats = L.icon({
   iconUrl: "/images/poi.png",
   shadowUrl: "",
 
@@ -128,7 +128,7 @@ function getRouteFromDatabase() {
       document.getElementById("description").innerText = dbRoute.description;
 
 
-      if (routeType === "hiking" || routeType === "skiing") {
+      if (routeType === "Vandringstur" || routeType === "Skidtur") {
         //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
         let coords = [];
         for (let index = 0; index < dbRoute.positions.length; index++) {
@@ -149,16 +149,16 @@ function getRouteFromDatabase() {
 
         //Switch-case for choosing the right icon for the route
         switch (routeType) {
-          case "hiking":
+          case "Vandringstur":
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
-              icon: hiking
+              icon: vandringstur
             }).addTo(map);
 
             break;
-          case "skiing":
+          case "Skidtur":
             marker = L.marker(polyline.getCenter(), {
-              icon: skiing
+              icon: skidtur
             }).addTo(map);
             break;
 
@@ -166,7 +166,7 @@ function getRouteFromDatabase() {
             break;
         }
 
-      } else if (routeType === "mountainTop" || routeType === "poi") {
+      } else if (routeType === "Topp" || routeType === "Plats") {
         //do the same for points
         let coord = [];
         coord.push(dbRoute.positions[0].latitude);
@@ -175,15 +175,15 @@ function getRouteFromDatabase() {
         map.setView(coord, 4);
 
         switch (routeType) {
-          case "mountainTop":
+          case "Topp":
             marker = L.marker(coord, {
-              icon: mountainTop
+              icon: topp
             }).addTo(map);
 
             break;
-          case "poi":
+          case "Plats":
             marker = L.marker(coord, {
-              icon: poi
+              icon: plats
             }).addTo(map);
             break;
 

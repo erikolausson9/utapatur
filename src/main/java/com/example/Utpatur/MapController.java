@@ -55,6 +55,7 @@ public class MapController {
         createNewRoute.setMemberId(member.getMemberId());
 
         serviceLayer.addRoute(createNewRoute);
+        System.out.println("typ av route vi sparar till databasen: " + createNewRoute.getRouteType());
 
         return "redirect:/profil";
     }

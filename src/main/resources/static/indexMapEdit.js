@@ -221,9 +221,7 @@ map.on('pm:create', e => {
 function setTypeForRouteCreation(typeOfRoute) {
     console.log(typeOfRoute);
 
-    if (typeOfRoute === "hiking" || typeOfRoute === "skiing") {
-
-        console.log("vi är på rad 13")
+    if (typeOfRoute === "Vandringstur") {
         map.pm.addControls({
             position: 'topleft',
             drawCircle: false,
@@ -237,7 +235,32 @@ function setTypeForRouteCreation(typeOfRoute) {
             editMode: false
 
         });
-    } else {
+        let label = document.getElementsByClassName("col-7 col-form-label");
+        label[0].innerText = "Datum då du vandrade: ";
+
+
+    }
+
+
+    else if (typeOfRoute === "Skidtur") {
+
+        map.pm.addControls({
+            position: 'topleft',
+            drawCircle: false,
+            dragMode: false,
+            drawPolygon: false,
+            drawMarker: false,
+            drawPolyline: true,
+            drawRectangle: false,
+            drawCircleMarker: false,
+            cutPolygon: false,
+            editMode: false
+
+        });
+        let label = document.getElementsByClassName("col-7 col-form-label");
+        label[0].innerText = "Datum då du skidade: ";
+
+    } else if (typeOfRoute === "Topp") {
 
         console.log("vi är i else")
         map.pm.addControls({
@@ -253,9 +276,35 @@ function setTypeForRouteCreation(typeOfRoute) {
             editMode: false
 
         });
-    }
+        let label = document.getElementsByClassName("col-7 col-form-label");
+        label[0].innerText = "Datum då du besökte toppen: ";
+    } else {
 
+        map.pm.addControls({
+            position: 'topleft',
+            drawCircle: false,
+            dragMode: false,
+            drawPolygon: false,
+            drawMarker: true,
+            drawPolyline: false,
+            drawRectangle: false,
+            drawCircleMarker: false,
+            cutPolygon: false,
+            editMode: false
+
+        });
+
+        document.getElementById("difficultyForm").innerText = "";
+        document.getElementById("durationForm").innerText = "";
+
+        let label = document.getElementsByClassName("col-7 col-form-label");
+        label[0].innerText = "Datum då du besökte platsen: ";
+    }
     document.getElementById("typeOfRoute").value = typeOfRoute;
+
+
+
+
 }
 
 function calculateDistance(routeObject) {
