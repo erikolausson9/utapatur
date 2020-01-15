@@ -1,7 +1,6 @@
 package com.example.Utpatur;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -17,6 +16,10 @@ public class DbRepository {
     private DataSource dataSource;
 
     private List<Route> routes;
+
+    private static final String SQL_DELETE_ROUTE = "DELETE FROM Route WHERE RouteID=?";
+
+    private static final String SQL_DELETE_POSITIONS = "DELETE FROM Position WHERE RouteID=?";
 
     /*public DbRepository() {
         routes = new ArrayList<>();
@@ -47,12 +50,12 @@ public class DbRepository {
 
     }
 
-    private static final String SQL_DELETE = "DELETE FROM Route WHERE RouteID=?";
+
 
     public void deleteRoute(int routeID) {
 
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement ps = conn.prepareStatement(SQL_DELETE)) {
+            PreparedStatement ps = conn.prepareStatement(SQL_DELETE_ROUTE)) {
 
             ps.setInt(1, routeID);
 
@@ -77,6 +80,21 @@ public class DbRepository {
             e.printStackTrace();
         }
         System.out.println("Position borde vara laddad till databasen nu?");
+    }
+
+
+    public void deletePositions (int routeID) {
+
+        try(Connection conn = dataSource.getConnection();
+            PreparedStatement ps = conn.prepareStatement(SQL_DELETE_POSITIONS)) {
+
+            ps.setInt(1, routeID);
+
+            int row = ps.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
 

@@ -61,6 +61,7 @@ public class MemberController {
        model.addAttribute("route", route);
 
        dbRepository.deleteRoute(route.getRouteId());
+       dbRepository.deletePositions(route.getRouteId());
 
        return"redirect:/profil";
    }
