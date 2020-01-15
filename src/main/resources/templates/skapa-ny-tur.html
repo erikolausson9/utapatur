@@ -143,10 +143,12 @@
                         <div class="form-group row">
                             <label class="col-sm-4 control-label">Tidsåtgång:</label>
                             <div class="col-sm-4">
+                                <label for="days">Dagar: </label>
                                 <input type="number" class="form-control" id="days" placeholder="Dagar"
                                     th:field="*{days}">
                             </div>
                             <div class="col-sm-4">
+                                <label for="hours">Timmar: </label>
                                 <input type="number" class="form-control" id="hours" placeholder="Timmar"
                                     th:field="*{hours}">
                             </div>
@@ -164,7 +166,7 @@
 
 
 
-                    <button type="submit" class="white-button">Avbryt</button>
+                    <button type="button" class="white-button" onclick="window.location.href='/'">Avbryt</button>
                     <button type="submit" class="primary-button" onclick="saveRouteToDatabase()">Spara tur</button>
 
                 </form>
