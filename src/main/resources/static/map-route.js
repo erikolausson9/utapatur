@@ -101,32 +101,33 @@ var poi = L.icon({
 
 
 
-function getRouteFromDatabase() { //TODO: check that this works. Should be called on page load, after mapController has fetched the specific route from db and stored the route in the service layer
+function getRouteFromDatabase() {
   console.log("in getRouteFromDatabase")
-  
+
 
   fetch("http://localhost:8080/show-specific-route")
     .then(test => test.json())
     .then(dbRoute => {
-      //dbRoutes is the JSON-object with the chosen route
+      //dbRoute is the JSON-object with the chosen route
 
 
 
       let routeType = dbRoute.routeType;
-      console.log("routeName: " + dbRoute.routeName)
 
+
+      //change content of page to show route info of requested route
       document.getElementById("nameOfRoute").innerText = dbRoute.routeName;
       document.getElementById("createdBy").innerText = dbRoute.memberId;
       document.getElementById("routeCreated").innerText = dbRoute.routeCreated;
       document.getElementById("dateOfCompletion").innerText = dbRoute.dateOfCompletion;
       document.getElementById("routeType").innerText = dbRoute.routeType;
-      document.getElementById("length").innerText = (dbRoute.length/ 1000).toFixed(1) + " km";
+      document.getElementById("length").innerText = (dbRoute.length / 1000).toFixed(1) + " km";
       document.getElementById("height").innerText = dbRoute.height;
       document.getElementById("difficulty").innerText = dbRoute.difficulty;
       document.getElementById("duration").innerText = dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
       document.getElementById("description").innerText = dbRoute.description;
 
-      
+
       if (routeType === "hiking" || routeType === "skiing") {
         //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
         let coords = [];
@@ -144,10 +145,10 @@ function getRouteFromDatabase() { //TODO: check that this works. Should be calle
           className: "polyline"
         }).addTo(map);
 
-        map.setView(coords[0], 4);
+        map.setView(coords[0], 4); //TODO: this should ideally be set to the center of the line, not the first point
 
-         //Switch-case for choosing the right icon for the route
-         switch (routeType) {
+        //Switch-case for choosing the right icon for the route
+        switch (routeType) {
           case "hiking":
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
@@ -166,6 +167,7 @@ function getRouteFromDatabase() { //TODO: check that this works. Should be calle
         }
 
       } else if (routeType === "mountainTop" || routeType === "poi") {
+        //do the same for points
         let coord = [];
         coord.push(dbRoute.positions[0].latitude);
         coord.push(dbRoute.positions[0].longitude);
@@ -188,29 +190,14 @@ function getRouteFromDatabase() { //TODO: check that this works. Should be calle
           default:
             break;
         }
-        marker.bindPopup(dbRoute.routeName);
+        //marker.bindPopup(dbRoute.routeName);
       } else {
         console.log("ERROR: Ingen passande routeType hittades");
       }
 
     })
-  }
-      /*
-
-
-       
-
-        //Code to run if route is only a point, similar as above.
-    
-    }
-    )
-    //Catch to handle errors of the API-call. Not really used anywhere.
-    .catch(err => {
-      throw err;
-    });
-    
 }
-*/
+
 
 
 

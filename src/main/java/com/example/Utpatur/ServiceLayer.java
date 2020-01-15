@@ -16,7 +16,7 @@ public class ServiceLayer {
     @Autowired
     MemberRepository memberRepository;
 
-    //instance variable used for storing the route we want to see in detail view
+    //instance variable used for temporarily storing the route we want to see in detail view
     private Route routeToShow;
 
     public Route getRouteToShow(){
@@ -96,13 +96,13 @@ public class ServiceLayer {
     }
 
 
-
+    //store the requested route info in the service layer
     public void setRouteToShow(int routeID){
         Route route = dbRepository.getRoute(routeID);
         List <Position> positions = dbRepository.getPositions(routeID);
 
         route.setPositions(positions);
-        //System.out.println("setRouteToShow: " + route.getRouteId());
+
         routeToShow = route;
     }
 
@@ -144,23 +144,7 @@ public class ServiceLayer {
 //            }
         }
 
-        //Ta bort detta när DB-kopplingen helt fungerar fungerar
-//        List<Position> positions2 = new ArrayList<>();
-//        positions2.add(new Position(67.900468, 18.516387, null, 99));
-//
-//        Route route2 = new Route(99, "Kebnekaises sydtopp", "mountaintop", 2034, "Svår", 8000, 0, 12.0, "Fantastisk utsikt från Sveriges högsta berg!", "2020-01-09", null, null, 99);
-//        route2.setPositions(positions2);
-//
-//        List<Position> positions3 = new ArrayList<>();
-//        positions3.add(new Position(67.983154, 18.462754, null, 100));
-//
-//        Route route3 = new Route(100, "Unna Räitasstugan", "poi", 2034, "lätt", 8000, 0, 12.0, "En fin stuga", "2020-01-09", null, null, 99);
-//        route3.setPositions(positions3);
-//
-//        routes.add(route2);
-//        routes.add(route3);
 
-        //Slut på ta bort!
 
         return routes;
 
