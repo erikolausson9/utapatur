@@ -45,11 +45,11 @@
                 <div class="navbar-nav ml-auto nav-flex-icons">
 
                     <!-- Todo: ordnar så att current page blir vit-->
-                    <a class="nav-item nav-link" href="kartvy">Karta</a>
+                    <a class="nav-item nav-link" href="/kartvy">Karta</a>
 
 
                     <span th:if="${#httpServletRequest.remoteUser} == null">
-                    <a class="nav-item nav-link" href="login"><i class="fas fa-user"></i></a>
+                    <a class="nav-item nav-link" href="/login"><i class="fas fa-user"></i></a>
                 </span>
 
                 <span th:if="${#httpServletRequest.remoteUser} != null">
@@ -60,7 +60,7 @@
                         </a>
 
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item logout-link" href="profil">Min profil</a>
+                    <a class="dropdown-item logout-link" href="/profil">Min profil</a>
 
                        <div class="dropdown-divider"></div>
 
@@ -74,7 +74,7 @@
             </div>
 
 
-            <a class="btn-newroute" href="skapa-ny-tur">Lägg till tur</a>
+            <a class="btn-newroute" href="/skapa-ny-tur">Lägg till tur</a>
         </div>
     </nav>
 </div>

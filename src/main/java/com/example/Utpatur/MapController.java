@@ -57,7 +57,7 @@ public class MapController {
         serviceLayer.addRoute(createNewRoute);
         System.out.println("typ av route vi sparar till databasen: " + createNewRoute.getRouteType());
 
-        return "index";
+        return "redirect:/profil";
     }
 
 
