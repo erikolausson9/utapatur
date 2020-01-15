@@ -54,6 +54,7 @@ public class MapController {
         createNewRoute.setMemberId(1);
 
         serviceLayer.addRoute(createNewRoute);
+        System.out.println("typ av route vi sparar till databasen: " + createNewRoute.getRouteType());
 
         return "index";
     }

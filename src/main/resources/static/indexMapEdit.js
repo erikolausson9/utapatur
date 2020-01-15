@@ -221,7 +221,7 @@ map.on('pm:create', e => {
 function setTypeForRouteCreation(typeOfRoute) {
     console.log(typeOfRoute);
 
-    if (typeOfRoute === "hiking" || typeOfRoute === "skiing") {
+    if (typeOfRoute === "Vandringstur" || typeOfRoute === "Skidtur") {
 
         console.log("vi är på rad 13")
         map.pm.addControls({
@@ -256,6 +256,14 @@ function setTypeForRouteCreation(typeOfRoute) {
     }
 
     document.getElementById("typeOfRoute").value = typeOfRoute;
+    if (typeOfRoute === "Plats") {
+        document.getElementById("difficultyForm").innerText = "";
+        document.getElementById("durationForm").innerText = "";
+
+        let label = document.getElementsByClassName("col-7 col-form-label");
+        label[0].innerText = "Datum då du besökte platsen: ";
+
+    }
 }
 
 function calculateDistance(routeObject) {
