@@ -77,10 +77,10 @@ public class MapController {
 
     @GetMapping("/tur/{routeID}")
     String turMedRouteID(@PathVariable int routeID){
-        //model.addAttribute("routeID", routeID);
+
 
         serviceLayer.setRouteToShow(routeID); //this will get the route and positions from db, then store it in the service layer for the restAPI-call
-        //System.out.println("in turMedRouteID");
+
         return "tur";
 
     }

@@ -25,9 +25,8 @@ public class MapAPIRestController {
         return routes;
     }
 
-    @GetMapping("/show-specific-route") //TODO: anropet ovan görs aldrig från en websida, bara en js-funktion. Men detta anrop görs från en websida. Är det då lämpligt att ha en path-variabel??
+    @GetMapping("/show-specific-route")
     public Route getRouteToShow(){
-        //System.out.println("in getRouteToShow");
         return serviceLayer.getRouteToShow();
     }
 
