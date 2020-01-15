@@ -192,7 +192,24 @@ function generateList() {
       // Create an unordered list
       let listOfRouteNames = document.createElement("ul");
 
-      listOfNames.forEach(function(name) {
+      for (let index = 0; index < dbRouteReturn.length; index++) {
+        let htmlString =
+          "<a href=/tur/" +
+          listOfRouteId[index] +
+          ">" +
+          listOfNames[index] +
+          "</a>";
+        console.log(htmlString);
+
+        let li = document.createElement("li");
+        li.innerHTML = htmlString;
+        listOfRouteNames.appendChild(li);
+      }
+
+      var app = document.querySelector("#routeobjects");
+      app.appendChild(listOfRouteNames);
+
+      /*listOfNames.forEach(function(name) {
         let x = 1;
         var li = document.createElement("li");
         li.innerHTML = "<a href=/tur/ " + x + ">" + name + "</a>";
@@ -200,7 +217,7 @@ function generateList() {
       });
 
       var app = document.querySelector("#routeobjects");
-      app.appendChild(listOfRouteNames);
+      app.appendChild(listOfRouteNames); */
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(error => {
