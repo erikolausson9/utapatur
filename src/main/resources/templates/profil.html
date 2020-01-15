@@ -56,8 +56,12 @@
                         </td>
                         <td>
                             <h1 class="white-heading">Min profil</h1>
-                            <h3 th:text="${#httpServletRequest.remoteUser}" class="white-heading">$MemberName</h3>
-                      <!--      <div th:each = "member : ${memberKey}"><span th:text="${member.email}">Här kommer din email</span></div> -->
+                            <!--<h3 th:text="${#httpServletRequest.remoteUser}" class="white-heading">$MemberName</h3>-->
+                            <!--<h3 th:text="${session.memberName}" class="white-heading">Bla di bla</h3>-->
+                            <div th:each="member : ${memberKey}"><h3 class="white-heading"
+                                                                     th:text="${member.memberName}">Här kommer ditt
+                                namn</h3></div>
+
                         </td>
                     </tr>
                 </table>
@@ -67,23 +71,29 @@
 </section>
 <section class="sec-light-bg pt-5 pb-5" id="profile-sec">
     <div class="container">
-            <div class="row">
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Sparade turer</h2>
-                    <span>$Inga sparade turer</span>
-                </div>
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Mina bidrag</h2>
-                    <span>$Inga bidrag</span>
-                    <a class="mini-primary-button" href="skapa-ny-tur">Lägg till tur</a>
+        <div class="row">
 
+            <div class="col-4 mt-5 mb-5">
+                <h2>Mina bidrag</h2>
+
+                <div th:if="${session.routeListSize == 0}">
+                    <a class="mini-primary-button" href="/skapa-ny-tur">Lägg till tur</a>
                 </div>
-                <div class="col-4 mt-5 mb-5">
-                    <h2>Mina kommentarer</h2>
-                    <span>$Inga kommentarer</span>
+
+                <div th:if="${session.routeList != null}">
+                    <div th:each="memberRoute : ${routeList}">
+                        <a th:href="'/tur/' + ${memberRoute.RouteId}"><span th:text="${memberRoute.RouteName}">Här är en rutt </span></a>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-4 mt-5 mb-5">
+                <h2>Sparade turer</h2>
+                <span>$Inga sparade turer</span>
+            </div>
+
         </div>
+    </div>
 </section>
 
 <div th:replace="fragments :: footer"></div>

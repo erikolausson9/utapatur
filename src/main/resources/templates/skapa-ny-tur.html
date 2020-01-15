@@ -64,19 +64,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="primary-button" id="hike" onclick="setTypeForRouteCreation('hiking')"
-                        data-dismiss="modal">
+                    <button type="button" class="primary-button" id="Vandringstur"
+                        onclick="setTypeForRouteCreation('Vandringstur')" data-dismiss="modal">
                         Vandringstur
                     </button>
-                    <button type="button" class="primary-button" id="skiing" onclick="setTypeForRouteCreation('skiing')"
-                        data-dismiss="modal">
+                    <button type="button" class="primary-button" id="Skidtur"
+                        onclick="setTypeForRouteCreation('Skidtur')" data-dismiss="modal">
                         Skidtur
                     </button>
-                    <button type="button" class="primary-button" id="mountainTop"
-                        onclick="setTypeForRouteCreation('mountainTop')" data-dismiss="modal">
+                    <button type="button" class="primary-button" id="Topp" onclick="setTypeForRouteCreation('Topp')"
+                        data-dismiss="modal">
                         Topp
                     </button>
-                    <button type="button" class="primary-button" id="poi" onclick="setTypeForRouteCreation('poi')"
+                    <button type="button" class="primary-button" id="Plats" onclick="setTypeForRouteCreation('Plats')"
                         data-dismiss="modal">
                         Intressant plats
                     </button>
@@ -124,42 +124,43 @@
                             placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
                     </div>
 
+                    <div id="difficultyForm">
+                        <div class="form-group">
+                            <label for="difficultySelect">Ange svårighetsgrad:</label>
+                            <select class="form-control" id="difficultySelect" th:field="*{difficulty}">
+                                <option value="Lätt">Lätt</option>
+                                <option value="Medel">Medel</option>
+                                <option value="Krävande">Krävande</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="form-group">
-                        <label for="difficultySelect">Ange svårighetsgrad:</label>
-                        <select class="form-control" id="difficultySelect" th:field="*{difficulty}">
-                            <option value="Lätt">Lätt</option>
-                            <option value="Medel">Medel</option>
-                            <option value="Krävande">Krävande</option>
-                        </select>
+                        <label class="lengthToShow"></label>
                     </div>
 
-
-
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 control-label">Tidsåtgång:</label>
-                        <div class="col-sm-4">
-                            <input type="number" class="form-control" id="days" placeholder="Dagar" th:field="*{days}">
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="number" class="form-control" id="hours" placeholder="Timmar"
-                                th:field="*{hours}">
+                    <div id="durationForm">
+                        <div class="form-group row">
+                            <label class="col-sm-4 control-label">Tidsåtgång:</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="days" placeholder="Dagar"
+                                    th:field="*{days}">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="hours" placeholder="Timmar"
+                                    th:field="*{hours}">
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="example-date-input" class="col-7 col-form-label">Datum då du gick/skidade turen:
+                        <label for="example-date-input" class="col-7 col-form-label">
+                            <span id="labelForDateOfCompletion">Datum då du gick/skidade turen: </span>
                         </label>
                         <div class="col-5">
                             <input class="form-control" type="date" id="datum" th:field="*{dateOfCompletion}">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div id="lengthToShow"></div>
-                    </div>
-
 
 
 

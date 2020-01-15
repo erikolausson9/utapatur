@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Repository
 public class MemberRepository {
     @Autowired
-     DataSource dataSource;
+    DataSource dataSource;
+
+    @Autowired
+    DbRepository dbRepository;
 /*
     @Autowired
     PasswordEncoder encoder;*/
@@ -42,29 +44,27 @@ public class MemberRepository {
     public void addMember(Member memberToAdd) {
         try (Connection conn = dataSource.getConnection();
              PreparedStatement ps = conn.prepareStatement("INSERT INTO Member (memberName, password, email) VALUES(?, ?, ?)")) {
-             ps.setString(1, memberToAdd.getMemberName());
-             ps.setString(2,memberToAdd.getPassword());
-             ps.setString(3, memberToAdd.getEmail());
-             ps.executeUpdate();
-        }
-        catch (SQLException e) {
+            ps.setString(1, memberToAdd.getMemberName());
+            ps.setString(2, memberToAdd.getPassword());
+            ps.setString(3, memberToAdd.getEmail());
+            ps.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
     //get members from database
-    public List<Member> getMembers(){
+    public List<Member> getMembers() {
         members.clear();
 
         try (Connection conn = dataSource.getConnection();
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Member")){
-            while(rs.next()){
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Member")) {
+            while (rs.next()) {
                 members.add(rsMember(rs));
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return members;
@@ -76,13 +76,12 @@ public class MemberRepository {
         Member member = null;
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE Email ='" + email +"'")) {     //Email el email? påverkar det?
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Member WHERE Email ='" + email + "'")) {     //Email el email? påverkar det?
             if (rs.next()) {
                 member = rsMember(rs);
 
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
 
             e.printStackTrace();
         }
@@ -90,16 +89,16 @@ public class MemberRepository {
     }
 
     //Get memberId
-    public Member getMemberById(int memberId){ //TODO: testa om denna funktion gör vad den ska!
+    public Member getMemberById(int memberId) { //TODO: testa om denna funktion gör vad den ska!
 
         Member member = new Member();
-        try(Connection conn = dataSource.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberID=" + memberId)){
-            if(rs.next()){
+        try (Connection conn = dataSource.getConnection();
+             Statement statement = conn.createStatement();
+             ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberID=" + memberId)) {
+            if (rs.next()) {
                 member = rsMember(rs);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return member;
@@ -107,15 +106,31 @@ public class MemberRepository {
 
     public Member getMemberByMemberName(String memberName) {
         Member member = new Member();
-        try(Connection conn = dataSource.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberName='" + memberName + "'")){
-            if(rs.next()){
+        try (Connection conn = dataSource.getConnection();
+             Statement statement = conn.createStatement();
+             ResultSet rs = statement.executeQuery("SELECT * FROM Member WHERE MemberName='" + memberName + "'")) {
+            if (rs.next()) {
                 member = rsMember(rs);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return member;
     }
+
+    public List<Route> getRoutesByMemberId(int memberId) {
+        List<Route> memberRouteLists = new ArrayList<>();
+
+        try (Connection conn = dataSource.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Route WHERE MemberID=" + memberId)) {
+            while (rs.next()) {
+                memberRouteLists.add(dbRepository.rsRoute(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return memberRouteLists;
+    }
+
 }
