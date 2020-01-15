@@ -126,6 +126,10 @@ function getAllRoutesFromDatabase() {
               break;
 
             default:
+              console.log(
+                "No routeType in Switch-case found for " + dbRoutes[i].routeId
+              );
+
               break;
           }
 
@@ -133,13 +137,13 @@ function getAllRoutesFromDatabase() {
           marker.bindPopup(dbRoutes[i].routeName);
 
           //Code to run if route is only a point, similar as above.
-        } else if (routeType === "mountaintop" || routeType === "poi") {
+        } else if (routeType === "mountainTop" || routeType === "poi") {
           let coord = [];
           coord.push(dbRoutes[i].positions[0].latitude);
           coord.push(dbRoutes[i].positions[0].longitude);
 
           switch (routeType) {
-            case "mountaintop":
+            case "mountainTop":
               marker = L.marker(coord, {
                 icon: mountainTop
               }).addTo(map);
@@ -152,16 +156,71 @@ function getAllRoutesFromDatabase() {
               break;
 
             default:
+              console.log(
+                "No routeType in Switch-case found for " + dbRoutes[i].routeId
+              );
               break;
           }
           marker.bindPopup(dbRoutes[i].routeName);
         } else {
           console.log("ERROR: Ingen passande routeType hittades");
+          console.log(dbRoutes[i].routeId);
         }
       }
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(err => {
       throw err;
+    });
+}
+
+function generateList() {
+  //Code for listing route objects
+  fetch("http://localhost:8080/getallfromdb")
+    .then(test => test.json())
+    .then(dbRouteReturn => {
+      let listOfNames = [];
+      let listOfRouteId = [];
+
+      for (let index = 0; index < dbRouteReturn.length; index++) {
+        //Loop through the array with routes
+        let routeName = dbRouteReturn[index].routeName;
+        listOfNames.push(routeName);
+        listOfRouteId.push(dbRouteReturn[index].routeId);
+      }
+
+      // Create an unordered list
+      let listOfRouteNames = document.createElement("ul");
+
+      for (let index = 0; index < dbRouteReturn.length; index++) {
+        let htmlString =
+          "<a href=/tur/" +
+          listOfRouteId[index] +
+          ">" +
+          listOfNames[index] +
+          "</a>";
+        console.log(htmlString);
+
+        let li = document.createElement("li");
+        li.innerHTML = htmlString;
+        listOfRouteNames.appendChild(li);
+      }
+
+      var app = document.querySelector("#routeobjects");
+      app.appendChild(listOfRouteNames);
+
+      /*listOfNames.forEach(function(name) {
+        let x = 1;
+        var li = document.createElement("li");
+        li.innerHTML = "<a href=/tur/ " + x + ">" + name + "</a>";
+        listOfRouteNames.appendChild(li);
+      });
+
+      var app = document.querySelector("#routeobjects");
+      app.appendChild(listOfRouteNames); */
+    })
+    //Catch to handle errors of the API-call. Not really used anywhere.
+    .catch(error => {
+      throw error;
     });
 }

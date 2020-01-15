@@ -70,7 +70,6 @@ public class DbRepository {
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery("SELECT * FROM Route")){
             while(rs.next()){
-                System.out.println("en rad till");
                 routes.add(rsRoute(rs));
             }
         }catch(SQLException e){
@@ -104,7 +103,6 @@ public class DbRepository {
             ResultSet rs = statement.executeQuery("SELECT * FROM Position WHERE RouteID=" + routeID)){
             while(rs.next()){
                 positionsToReturn.add(rsPosition(rs));
-                System.out.println("hittade rad");
             }
         }catch(SQLException e){
             e.printStackTrace();
