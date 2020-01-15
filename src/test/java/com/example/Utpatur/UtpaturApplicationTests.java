@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
 class UtpaturApplicationTests {
 
 	@Autowired
-    DbRepository repository;
+    DbRepository dbRepository;
 
 	@Autowired
 	MemberRepository memberRepository;
@@ -24,7 +23,7 @@ class UtpaturApplicationTests {
 
 	@Test
 	void testSQLServler() throws SQLException {
-		Assertions.assertTrue(repository.testDB());
+		Assertions.assertTrue(dbRepository.testDB());
 	}
 
 	@Test
@@ -33,8 +32,8 @@ class UtpaturApplicationTests {
 		testRoute.setRouteName("testRoute");
 		testRoute.setDifficulty("easy");
 		testRoute.setLength(100);
-		repository.addRoute(testRoute);
-		Route responseRoute = repository.getRoute(repository.getLastRouteID());
+		dbRepository.addRoute(testRoute);
+		Route responseRoute = dbRepository.getRoute(dbRepository.getLastRouteID());
 		Assertions.assertEquals(testRoute.getRouteName(), responseRoute.getRouteName());
 		Assertions.assertEquals(testRoute.getLength(), responseRoute.getLength());
 		Assertions.assertEquals(testRoute.getDifficulty(), responseRoute.getDifficulty());
@@ -51,5 +50,12 @@ class UtpaturApplicationTests {
 	void testGetRoutesByMemberId() {
 		List<Route> routes = memberRepository.getRoutesByMemberId(35);
 		Assertions.assertEquals(0, routes.size());
+	}
+
+	@Test
+	void testDeleteRouteByRouteId()  {
+		dbRepository.deleteRoute(65);
+		List<Route> routes = memberRepository.getRoutesByMemberId(30);
+		Assertions.assertEquals(4, routes.size());
 	}
 }

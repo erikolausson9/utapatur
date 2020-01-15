@@ -81,9 +81,22 @@
                 </div>
 
                 <div th:if="${session.routeList != null}">
-                    <div th:each="memberRoute : ${routeList}">
-                        <a th:href="'/tur/' + ${memberRoute.RouteId}"><span th:text="${memberRoute.RouteName}">Här är en rutt </span></a>
-                    </div>
+                    <table>
+                        <tr th:each="memberRoute : ${routeList}">
+                            <td>
+                                <a th:href="'/tur/' + ${memberRoute.RouteId}"><span th:text="${memberRoute.RouteName}">Här är en rutt </span></a>
+                            </td>
+                            <td>
+                                <form action="/taBortRutt" method="POST" th:object="${route}">
+                                    <input type="hidden" th:value="${memberRoute.RouteId}" name="RouteId">
+                                    <button type="submit" class="remove-route-btn">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </form>
+                            </td>
+
+                        </tr>
+                    </table>
                 </div>
             </div>
 
