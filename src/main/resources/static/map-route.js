@@ -111,15 +111,12 @@ function getRouteFromDatabase() {
       document.getElementById("nameOfRoute").innerText = dbRoute.routeName;
       document.getElementById("createdBy").innerText = dbRoute.memberName;
       document.getElementById("routeCreated").innerText = dbRoute.routeCreated;
-      document.getElementById("dateOfCompletion").innerText =
-        dbRoute.dateOfCompletion;
+      document.getElementById("dateOfCompletion").innerText = dbRoute.dateOfCompletion;
       document.getElementById("routeType").innerText = dbRoute.routeType;
-      document.getElementById("length").innerText =
-        (dbRoute.length / 1000).toFixed(1) + " km";
+      document.getElementById("length").innerText = (dbRoute.length / 1000).toFixed(1) + " km";
       document.getElementById("height").innerText = dbRoute.height;
       document.getElementById("difficulty").innerText = dbRoute.difficulty;
-      document.getElementById("duration").innerText =
-        dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
+      document.getElementById("duration").innerText = dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
       document.getElementById("description").innerText = dbRoute.description;
 
       if (routeType === "Vandringstur" || routeType === "Skidtur") {
@@ -140,6 +137,8 @@ function getRouteFromDatabase() {
         //Switch-case for choosing the right icon for the route
         switch (routeType) {
           case "Vandringstur":
+          document.getElementById("img-routeType").src = '../images/turbild.jpg';
+
            polyline = L.polyline(coords, {
                     className: "polyline-hike"
                   }).addTo(map);
@@ -151,6 +150,8 @@ function getRouteFromDatabase() {
 
             break;
           case "Skidtur":
+          document.getElementById("img-routeType").src = '../images/cross-country.jpeg';
+
           polyline = L.polyline(coords, {
             className: "polyline-ski"
             }).addTo(map);
@@ -173,12 +174,16 @@ function getRouteFromDatabase() {
 
         switch (routeType) {
           case "Topp":
+          document.getElementById("img-routeType").src = '../images/cross-country.jpeg';
+
             marker = L.marker(coord, {
               icon: topp
             }).addTo(map);
 
             break;
           case "Plats":
+          document.getElementById("img-routeType").src = '../images/cross-country.jpeg';
+
             marker = L.marker(coord, {
               icon: plats
             }).addTo(map);
