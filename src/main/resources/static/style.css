@@ -30,6 +30,10 @@ p {
   font-family: "Lora", serif;
 }
 
+span.popup-heading {
+    font: 16px/1.0 "Lora", serif;
+}
+
 span {
   font-size: 16px;
   font-family: "Lora", serif;
@@ -42,6 +46,10 @@ a {
 a:hover {
   color: #2d874c;
   text-decoration: underline;
+}
+
+a.popup-link {
+    color: #2d874c;
 }
 
 /* center headings*/
@@ -464,3 +472,9 @@ input:checked + .slider:before {
 }
 
 /* END OF Styling for switch */
+
+
+/* Popup-karta /kartvy  */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: rgba(255,255,255,0.9);
+}

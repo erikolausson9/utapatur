@@ -111,16 +111,20 @@ function drawRoutesOnMap() {
     //Loop through the array with routes
     let routeType = dbRoutes[i].routeType; //Define what type of route
 
-    let popup = L.popup().setContent(
-      "<p><a href='/tur/" +
-        dbRoutes[i].routeId +
-        "'>" +
-        dbRoutes[i].routeName +
-        "</a></p>"
-    );
+    let popup = L.popup();
     console.log(dbRoutes[i].routeId);
 
     if (routeType === "Vandringstur" || routeType === "Skidtur") {
+    popup.setContent(
+          "<span class='popup-heading'><a href='/tur/" +
+            dbRoutes[i].routeId +
+            "' class='popup-link'>" +
+            dbRoutes[i].routeName +
+            "</a></span><br><span class='small-desc'>Sträcka: "
+            + (dbRoutes[i].length / 1000).toFixed(1) + " km</span>"
+        );
+
+
       //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
       let coords = [];
       for (let index = 0; index < dbRoutes[i].positions.length; index++) {
@@ -189,6 +193,14 @@ function drawRoutesOnMap() {
 
       //Code to run if route is only a point, similar as above.
     } else if (routeType === "Topp" || routeType === "Plats") {
+         popup.setContent(
+                  "<p><a href='/tur/" +
+                    dbRoutes[i].routeId +
+                    "' class='popup-link'>" +
+                    dbRoutes[i].routeName +
+                    "</a></p>"
+                );
+
       let coord = [];
       coord.push(dbRoutes[i].positions[0].latitude);
       coord.push(dbRoutes[i].positions[0].longitude);
