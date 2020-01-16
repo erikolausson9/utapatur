@@ -1,142 +1,147 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
-
-<head>
+  <head>
     <title>Ut På Tur</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
 
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
-
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css"
+    />
     <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
-    <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
 
     <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
-        rel="stylesheet">
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
 
-</head>
+    <script
+      src="https://kit.fontawesome.com/9fea19c3fb.js"
+      crossorigin="anonymous"
+    ></script>
 
-<body onload="getRouteFromDatabase()">
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
+      rel="stylesheet"
+    />
 
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" />
+  </head>
 
+  <body onload="getRouteFromDatabase()">
     <div th:replace="fragments :: header"></div>
 
     <section class="sec-light-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-8 mt-5">
-                    <img src="../images/temp-img-tur.jpg" width="100%" height="400px">
-                </div>
-                <div class="col-4 mt-5">
-                    <div id="map-route"></div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-8 mt-5">
+            <img src="../images/turbild.jpg" width="100%" height="400px" />
+          </div>
+          <div class="col-4 mt-5">
+            <div id="map-route"></div>
+          </div>
+        </div>
 
-            <div class="row justify-content-start mt-5 mb-5">
-                <div class="col-8">
-                    <!-- Todo: Inför turlistan, olika ikoner beroende på om tur finns i turlistan eller ej
+        <div class="row justify-content-start mt-5 mb-5">
+          <div class="col-8">
+            <!-- Todo: Inför turlistan, olika ikoner beroende på om tur finns i turlistan eller ej
             <span th:if="ifallObjektetInteFinnsITurListan"><i class="far fa-star"></i></span>
             <span th:unless="ifallObjektetFinnsITurListan"><i class="fas fa-star"></i></span>
             -->
-                    <h1 id="nameOfRoute">$Namn på turen <i class="far fa-star"></i></h1>
+            <h1 id="nameOfRoute">$Namn på turen <i class="far fa-star"></i></h1>
 
-                    <span class="small-desc">Publicerad av <span id="createdBy">$username</span> <span
-                            id="routeCreated">$2019-12-29</span> · Turen utfördes <span
-                            id="dateOfCompletion">$2018-10-15</span></span>
-                </div>
-
-            </div>
-
-            <div class="row justify-content-start">
-                <div class="col-8">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Typ av tur</th>
-                                <td id="routeType">$Hiking</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Sträcka</th>
-                                <td id="length">$123 km</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">Höjd</th>
-                                <td id="height">$163 m</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Svårighetsgrad</th>
-                                <td id="difficulty">$Medel</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Tidsåtgång</th>
-                                <td id="duration">$2 dagar $ och 3 timmar</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="row justify-content-start">
-                <div class="col-8 mt-5 mb-5">
-                    <h2>Beskrivning</h2>
-                    <p id="description">
-                        $Lorem ipsum dolor sit amet.</p>
-
-                </div>
-            </div>
-
+            <span class="small-desc"
+              >Publicerad av <span id="createdBy">$username</span>
+              <span id="routeCreated">$2019-12-29</span> · Turen utfördes
+              <span id="dateOfCompletion">$2018-10-15</span></span
+            >
+          </div>
         </div>
+
+        <div class="row justify-content-start">
+          <div class="col-8">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Typ av tur</th>
+                  <td id="routeType">$Hiking</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sträcka</th>
+                  <td id="length">$123 km</td>
+                </tr>
+                <tr>
+                  <th scope="row">Höjd</th>
+                  <td id="height">$163 m</td>
+                </tr>
+                <tr>
+                  <th scope="row">Svårighetsgrad</th>
+                  <td id="difficulty">$Medel</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tidsåtgång</th>
+                  <td id="duration">$2 dagar $ och 3 timmar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row justify-content-start">
+          <div class="col-8 mt-5 mb-5">
+            <h2>Beskrivning</h2>
+            <p id="description">
+              $Lorem ipsum dolor sit amet.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
-
-
-
 
     <div th:replace="fragments :: footer"></div>
 
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
 
     <script type="text/javascript" src="/map-route.js"></script>
-
-
-</body>
-
+  </body>
 </html>

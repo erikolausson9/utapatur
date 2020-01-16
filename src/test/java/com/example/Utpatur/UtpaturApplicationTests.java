@@ -54,8 +54,10 @@ class UtpaturApplicationTests {
 
 	@Test
 	void testDeleteRouteByRouteId()  {
-		dbRepository.deleteRoute(65);
+		dbRepository.deleteRoute(80);
+		dbRepository.deletePositions(80);
 		List<Route> routes = memberRepository.getRoutesByMemberId(30);
-		Assertions.assertEquals(4, routes.size());
+		Assertions.assertEquals(1, routes.size());
 	}
+
 }
