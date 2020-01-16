@@ -174,7 +174,7 @@ public class DbRepository {
         route.setDays(rs.getInt("days"));
         route.setHours(rs.getDouble("hours"));
         route.setDescription(rs.getString("description"));
-        route.setDateOfCompletion(rs.getString("dateOfCompletion"));
+        route.setDateOfCompletion(rs.getString("dateOfCompletion").split(" ")[0]);
         route.setRouteCreated(rs.getString("routeCreated"));
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
         route.setMemberId(rs.getInt("MemberID"));
