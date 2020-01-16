@@ -61,7 +61,9 @@ var vandringstur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
+
 });
 
 var skidtur = L.icon({
@@ -72,7 +74,8 @@ var skidtur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var plats = L.icon({
@@ -83,7 +86,8 @@ var plats = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 function getAllRoutesFromDatabase() {

@@ -132,15 +132,14 @@ function getRouteFromDatabase() {
         }
 
         //Draw the line on the map
-        polyline = L.polyline(coords, {
-          className: "polyline"
-        }).addTo(map);
-
         map.setView(coords[0], 4); //TODO: this should ideally be set to the center of the line, not the first point
 
         //Switch-case for choosing the right icon for the route
         switch (routeType) {
           case "Vandringstur":
+           polyline = L.polyline(coords, {
+                    className: "polyline-hike"
+                  }).addTo(map);
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
               icon: vandringstur
@@ -148,6 +147,10 @@ function getRouteFromDatabase() {
 
             break;
           case "Skidtur":
+          polyline = L.polyline(coords, {
+            className: "polyline-ski"
+            }).addTo(map);
+
             marker = L.marker(polyline.getCenter(), {
               icon: skidtur
             }).addTo(map);
