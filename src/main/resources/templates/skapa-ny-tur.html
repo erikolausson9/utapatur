@@ -58,32 +58,39 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Vilken typ av tur vill du skapa?</h5>
+                    <h5 class="modal-title">Vad vill du lägga till?</h5>
+                    <!--
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button> -->
                 </div>
                 <div class="modal-body">
+                    <img src="../images/hiking.png">
                     <button type="button" class="primary-button" id="Vandringstur"
                         onclick="setTypeForRouteCreation('Vandringstur')" data-dismiss="modal">
                         Vandringstur
                     </button>
+                    <img src="../images/skiing.png">
                     <button type="button" class="primary-button" id="Skidtur"
                         onclick="setTypeForRouteCreation('Skidtur')" data-dismiss="modal">
                         Skidtur
                     </button>
+                    <br>
+                    <img src="../images/mountaintop.png">
                     <button type="button" class="primary-button" id="Topp" onclick="setTypeForRouteCreation('Topp')"
                         data-dismiss="modal">
                         Topp
                     </button>
+                    <img src="../images/poi.png">
                     <button type="button" class="primary-button" id="Plats" onclick="setTypeForRouteCreation('Plats')"
                         data-dismiss="modal">
                         Intressant plats
                     </button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        Tillbaka
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/profil'"
+                        data-dismiss="modal">
+                        Ångra
                     </button>
                 </div>
             </div>
@@ -119,7 +126,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Beskrivning</label>
+                        <label>Beskrivning:</label>
                         <textarea class="form-control" name="description" id="description"
                             placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
                     </div>
@@ -141,7 +148,7 @@
 
                     <div id="durationForm">
                         <div class="form-group row">
-                            <label class="col-sm-4 control-label">Tidsåtgång:</label>
+                            <label class="col-sm-4 control-label">Tidsåtgång</label>
                             <div class="col-sm-4">
                                 <label for="days">Dagar: </label>
                                 <input type="number" class="form-control" id="days" placeholder="Dagar"
@@ -166,7 +173,7 @@
 
 
 
-                    <button type="button" class="white-button" onclick="window.location.href='/'">Avbryt</button>
+                    <button type="button" class="white-button" onclick="window.location.href='/profil'">Avbryt</button>
                     <button type="submit" class="primary-button" onclick="saveRouteToDatabase()">Spara tur</button>
 
                 </form>

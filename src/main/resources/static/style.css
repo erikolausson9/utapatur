@@ -83,7 +83,14 @@ span.small-desc {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 12px;
     text-transform: uppercase;
-    font-weight 300;
+    font-weight: 300;
+}
+
+/* Modal box styling */
+.modal img{
+
+  width: 45px;
+
 }
 
 /*primary button*/
