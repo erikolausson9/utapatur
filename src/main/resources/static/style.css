@@ -462,6 +462,10 @@ td {
      padding: 16px 18px 14px 18px;
  }
 
+ #length-style {
+    font: 16px/1.0 "Lora", serif;
+ }
+
 #form-time {
    font: 16px/1.0 "Lora", serif;
 }
