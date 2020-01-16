@@ -239,7 +239,8 @@ function setTypeForRouteCreation(typeOfRoute) {
             drawRectangle: false,
             drawCircleMarker: false,
             cutPolygon: false,
-            editMode: false
+            editMode: false,
+            className: "form-info"
 
         });
         let label = document.getElementsByClassName("col-7 col-form-label");
@@ -261,7 +262,8 @@ function setTypeForRouteCreation(typeOfRoute) {
             drawRectangle: false,
             drawCircleMarker: false,
             cutPolygon: false,
-            editMode: false
+            editMode: false,
+            className: "form-info"
 
         });
         let label = document.getElementsByClassName("col-7 col-form-label");
@@ -280,7 +282,8 @@ function setTypeForRouteCreation(typeOfRoute) {
             drawRectangle: false,
             drawCircleMarker: false,
             cutPolygon: false,
-            editMode: false
+            editMode: false,
+            className: "form-info"
 
         });
         let label = document.getElementsByClassName("col-7 col-form-label");
@@ -297,7 +300,8 @@ function setTypeForRouteCreation(typeOfRoute) {
             drawRectangle: false,
             drawCircleMarker: false,
             cutPolygon: false,
-            editMode: false
+            editMode: false,
+            className: "form-info"
 
         });
 
@@ -305,6 +309,7 @@ function setTypeForRouteCreation(typeOfRoute) {
         document.getElementById("durationForm").innerText = "";
 
         let label = document.getElementsByClassName("col-7 col-form-label");
+
         label[0].innerText = "Datum då du besökte platsen: ";
     }
     document.getElementById("typeOfRoute").value = typeOfRoute;

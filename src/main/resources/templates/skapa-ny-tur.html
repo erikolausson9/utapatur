@@ -59,7 +59,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Vad vill du lägga till?</h5>
+                <h3 class="modal-title">Vad vill du lägga till?</h3>
                 <!--
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -90,7 +90,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" onclick="window.location.href='/profil'"
-                        data-dismiss="modal">
+                        data-dismiss="modal" id="primary-button">
                     Ångra
                 </button>
             </div>
@@ -108,7 +108,7 @@
         <div class="col-sm-4">
             <div class="ny-tur-form-container">
                 <h1>Lägg till ny tur</h1>
-                Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
+                <span>Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.</span>
                 <form action="/skapa-ny-tur" method="POST" th:object="${createNewRoute}">
 
                     <!-- avkommenterar tillfälligt
@@ -122,20 +122,19 @@
 
                     <div class="form-group">
 
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                               placeholder="Lägg till ett namn på turen" th:field="*{routeName}">
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Lägg till ett namn på turen" th:field="*{routeName}">
 
                     </div>
 
                     <div class="form-group">
-                        <label>Beskrivning:</label>
+                        <label class="form-info">Beskrivning:</label>
                         <textarea class="form-control" name="description" id="description"
                                   placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
                     </div>
 
                     <div id="difficultyForm">
                         <div class="form-group">
-                            <label for="difficultySelect">Ange svårighetsgrad:</label>
+                            <label for="difficultySelect" class="form-info">Ange svårighetsgrad:</label>
                             <select class="form-control" id="difficultySelect" th:field="*{difficulty}">
                                 <option value="Lätt">Lätt</option>
                                 <option value="Medel">Medel</option>
@@ -150,21 +149,21 @@
 
                     <div id="durationForm">
                         <div class="form-group row">
-                            <label class="col-sm-4 control-label">Tidsåtgång</label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-4 control-label" id="form-time">Tidsåtgång</label>
+                            <div class="col-sm-4" id="form-day">
                                 <label for="days">Dagar: </label>
                                 <input type="number" class="form-control" id="days" placeholder="Dagar"
                                        th:field="*{days}">
                             </div>
                             <div class="col-sm-4">
-                                <label for="hours">Timmar: </label>
+                                <label for="hours" class="form-info">Timmar: </label>
                                 <input type="number" class="form-control" id="hours" placeholder="Timmar"
                                        th:field="*{hours}">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="form-date">
                         <label for="example-date-input" class="col-7 col-form-label">
                             <span id="labelForDateOfCompletion">Datum då du gick/skidade turen: </span>
                         </label>

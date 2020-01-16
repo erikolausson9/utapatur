@@ -25,9 +25,6 @@ h4 {
   font-size: 16px;
 }
 
-h5 {
-    font-size: 20px;
-}
 
 p {
   font-size: 16px;
@@ -136,6 +133,30 @@ span.small-desc {
   text-decoration: none;
 }
 
+#primary-button {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #2d874c;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #2d874c;
+  text-align: center;
+  line-height: 0px;
+}
+
+#primary-button:hover {
+  background-color: transparent;
+  color: #2d874c;
+  text-decoration: none;
+}
+
 .mini-primary-button {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 9px;
@@ -212,13 +233,7 @@ span.small-desc {
 
 }
 
-.form-info {
-   font: 16px/1.0 "Lora", serif;
-}
 
-::placeholder {
-    font: 16px/1.0 "Lora", serif;
-}
 
 logout-link {
     background-color: #2d874c;
@@ -429,9 +444,38 @@ td {
 }
 
 /*SKAPA NY TUR*/
-#description {
-    padding: 16px 18px 14px 18px;
+.form-info {
+   font: 16px/1.0 "Lora", serif;
 }
+
+#name {
+     width: 500px;
+     padding: 0 16px;
+ }
+
+ ::placeholder {
+     font: 16px/1.0 "Lora", serif;
+     line-height: 3;
+ }
+
+ #description {
+     padding: 16px 18px 14px 18px;
+ }
+
+#form-time {
+   font: 16px/1.0 "Lora", serif;
+}
+
+#form-day {
+   font: 16px/1.0 "Lora", serif;
+}
+
+#form-date {
+   font: 16px/1.0 "Lora", serif;
+}
+
+
+
 
 /* FOOTER */
 footer {
