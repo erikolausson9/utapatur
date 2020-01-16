@@ -70,41 +70,55 @@
   </head>
 
   <body onload="getAllRoutesFromDatabase()">
-    <div th:replace="fragments :: header"></div>
+    <div th:replace="fragments :: header">
+    </div>
 
     <div class="row">
       <!-- left column with filter/search results-->
-      <div class="col-md-2">
-        <h3>Filter</h3>
-        Dölj vandringsturer
-        <label class="switch">
-          <input type="checkbox" onclick="toggleShowHiking(),clearMap()" />
-          <span class="slider round"></span> </label
-        ><br />
-        Dölj skidturer
-        <label class="switch">
-          <input type="checkbox" onclick="toggleShowSkiing(),clearMap()" />
-          <span class="slider round"></span> </label
-        ><br />
-        Dölj bergstoppar
-        <label class="switch">
-          <input type="checkbox" onclick="toggleShowMountainTop(),clearMap()" />
-          <span class="slider round"></span> </label
-        ><br />
-        Dölj intressanta platser
-        <label class="switch">
-          <input type="checkbox" onclick="toggleShowPoi(), clearMap()" />
-          <span class="slider round"></span> </label
-        ><br />
-        <br />
-        <h3>Resultat</h3>
-        <div id="routeobjects"></div>
+      <div class="col text-center">
+        <div id="mapview">
+        </div>
+
+        <div class="kartvy-top-content">
+          <span class="filter-kartvy">Vandringsturer
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" checked onclick="toggleShowHiking(),clearMap()" />
+            <span class="slider round">
+            </span>
+          </label>&nbsp;
+
+          <span class="filter-kartvy">Skidturer
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" checked onclick="toggleShowSkiing(),clearMap()" />
+            <span class="slider round">
+            </span>
+          </label>&nbsp;
+
+          <span class="filter-kartvy">Toppar
+          </span>
+
+          <label class="switch">
+            <input type="checkbox" checked onclick="toggleShowMountainTop(),clearMap()" />
+            <span class="slider round">
+            </span>
+          </label>&nbsp;
+
+          <span class="filter-kartvy">Platser
+          </span>
+          <label class="switch">
+            <input type="checkbox" checked onclick="toggleShowPoi(), clearMap()" />
+            <span class="slider round">
+            </span>
+          </label>
+
+        </div>
+
       </div>
 
-      <!--right column with map-->
-      <div class="col-md-10">
-        <div id="mapview"></div>
-      </div>
     </div>
 
     <script
