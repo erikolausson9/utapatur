@@ -69,7 +69,8 @@ var vandringstur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var skidtur = L.icon({
@@ -80,7 +81,8 @@ var skidtur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var plats = L.icon({
@@ -91,7 +93,8 @@ var plats = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 function getRouteFromDatabase() {
@@ -140,6 +143,7 @@ function getRouteFromDatabase() {
            polyline = L.polyline(coords, {
                     className: "polyline-hike"
                   }).addTo(map);
+
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
               icon: vandringstur
@@ -152,7 +156,7 @@ function getRouteFromDatabase() {
             }).addTo(map);
 
             marker = L.marker(polyline.getCenter(), {
-              icon: skidtur
+              icon: skidtur,
             }).addTo(map);
             break;
 
