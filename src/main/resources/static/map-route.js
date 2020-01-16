@@ -32,16 +32,12 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-
-
 //map.pm.setPathOptions({
 //  color: 'orange',
 //  fillColor: 'green',
 //});
 
 //hard-coded routes to start with
-
-
 
 /*
 function onMapClick(e) {
@@ -98,35 +94,30 @@ var plats = L.icon({
   popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
-
-
-
 function getRouteFromDatabase() {
-  console.log("in getRouteFromDatabase")
-
+  console.log("in getRouteFromDatabase");
 
   fetch("http://localhost:8080/show-specific-route")
     .then(test => test.json())
     .then(dbRoute => {
       //dbRoute is the JSON-object with the chosen route
 
-
-
       let routeType = dbRoute.routeType;
-
 
       //change content of page to show route info of requested route
       document.getElementById("nameOfRoute").innerText = dbRoute.routeName;
-      document.getElementById("createdBy").innerText = dbRoute.memberId;
+      document.getElementById("createdBy").innerText = dbRoute.memberName;
       document.getElementById("routeCreated").innerText = dbRoute.routeCreated;
-      document.getElementById("dateOfCompletion").innerText = dbRoute.dateOfCompletion;
+      document.getElementById("dateOfCompletion").innerText =
+        dbRoute.dateOfCompletion;
       document.getElementById("routeType").innerText = dbRoute.routeType;
-      document.getElementById("length").innerText = (dbRoute.length / 1000).toFixed(1) + " km";
+      document.getElementById("length").innerText =
+        (dbRoute.length / 1000).toFixed(1) + " km";
       document.getElementById("height").innerText = dbRoute.height;
       document.getElementById("difficulty").innerText = dbRoute.difficulty;
-      document.getElementById("duration").innerText = dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
+      document.getElementById("duration").innerText =
+        dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
       document.getElementById("description").innerText = dbRoute.description;
-
 
       if (routeType === "Vandringstur" || routeType === "Skidtur") {
         //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
@@ -165,7 +156,6 @@ function getRouteFromDatabase() {
           default:
             break;
         }
-
       } else if (routeType === "Topp" || routeType === "Plats") {
         //do the same for points
         let coord = [];
@@ -194,18 +184,5 @@ function getRouteFromDatabase() {
       } else {
         console.log("ERROR: Ingen passande routeType hittades");
       }
-
-    })
+    });
 }
-
-
-
-
-
-
-
-
-
-
-
-
