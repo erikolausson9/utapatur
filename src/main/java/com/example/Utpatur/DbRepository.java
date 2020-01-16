@@ -152,7 +152,7 @@ public class DbRepository {
         int id=0;
         try {Connection conn = dataSource.getConnection();
              Statement statement = conn.createStatement();
-             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;");
+             ResultSet rs = statement.executeQuery("select routeid as C from route order by routeid desc limit 1;");
             if(rs.next()){
                 id = rs.getInt("C");
             }

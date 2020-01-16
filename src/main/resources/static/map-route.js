@@ -4,6 +4,7 @@
 //import '@geoman-io/leaflet-geoman-free';
 //import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
+//let path = "https://utpatur.cfapps.io";
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
@@ -100,7 +101,7 @@ var plats = L.icon({
 function getRouteFromDatabase() {
   console.log("in getRouteFromDatabase");
 
-  fetch("http://localhost:8080/show-specific-route")
+  fetch("/show-specific-route")
     .then(test => test.json())
     .then(dbRoute => {
       //dbRoute is the JSON-object with the chosen route

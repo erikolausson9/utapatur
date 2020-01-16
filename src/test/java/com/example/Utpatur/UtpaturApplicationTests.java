@@ -17,9 +17,11 @@ class UtpaturApplicationTests {
 	@Autowired
 	MemberRepository memberRepository;
 
+	/*
 	@Test
 	void contextLoads() {
 	}
+
 
 	@Test
 	void testSQLServler() throws SQLException {
@@ -59,5 +61,7 @@ class UtpaturApplicationTests {
 		List<Route> routes = memberRepository.getRoutesByMemberId(30);
 		Assertions.assertEquals(1, routes.size());
 	}
+
+	 */
 
 }
