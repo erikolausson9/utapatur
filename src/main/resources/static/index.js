@@ -32,7 +32,7 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-map.setView([67.893153, 18.75682], 7);
+map.setView([67.899153, 18.75682], 7);
 
 //map.pm.setPathOptions({
 //  color: 'orange',
