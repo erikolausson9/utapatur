@@ -100,8 +100,13 @@ public class ServiceLayer {
     public void setRouteToShow(int routeID){
         Route route = dbRepository.getRoute(routeID);
         List <Position> positions = dbRepository.getPositions(routeID);
+        Member member = memberRepository.getMemberById(route.getMemberId());
+
+        System.out.println(member.getMemberId());
+        System.out.println(member.getMemberName());
 
         route.setPositions(positions);
+        route.setMemberName(member.getMemberName());
 
         routeToShow = route;
     }
