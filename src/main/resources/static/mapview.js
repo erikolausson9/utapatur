@@ -1,3 +1,4 @@
+//let path = "https://utpatur.cfapps.io";
 //JS-script to show route objects on map
 
 //Defining "global?" variables
@@ -91,7 +92,7 @@ var plats = L.icon({
 });
 
 function getAllRoutesFromDatabase() {
-  fetch("http://localhost:8080/getallfromdb")
+  fetch("/getallfromdb")
     .then(test => test.json())
     .then(tempDbRoutes => {
       //dbRoutes is the JSON-object with all routes
