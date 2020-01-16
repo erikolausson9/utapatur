@@ -142,7 +142,7 @@ function drawRoutesOnMap() {
           //IF-statement for filtering
           if (showHiking) {
             polyline = L.polyline(coords, {
-              className: "polyline"
+              className: "polyline-hike"
             });
 
             //Draw the line on the map
@@ -164,7 +164,7 @@ function drawRoutesOnMap() {
         case "Skidtur":
           if (showSkiing) {
             polyline = L.polyline(coords, {
-              className: "polyline"
+              className: "polyline-ski"
             });
 
             polyline.bindPopup(popup);
