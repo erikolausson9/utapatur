@@ -64,7 +64,6 @@ var vandringstur = L.icon({
   shadowAnchor: [0, 0], // the same for the shadow
   popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
   className: "typeIcon"
-
 });
 
 var skidtur = L.icon({
@@ -85,9 +84,9 @@ var plats = L.icon({
 
   iconSize: [50, 50], // size of the icon
   shadowSize: [0, 0], // size of the shadow
-  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
   className: "typeIcon"
 });
 
@@ -120,15 +119,15 @@ function drawRoutesOnMap() {
     console.log(dbRoutes[i].routeId);
 
     if (routeType === "Vandringstur" || routeType === "Skidtur") {
-    popup.setContent(
-          "<span class='popup-heading'><a href='/tur/" +
-            dbRoutes[i].routeId +
-            "' class='popup-link'>" +
-            dbRoutes[i].routeName +
-            "</a></span><br><span class='small-desc'>Sträcka: "
-            + (dbRoutes[i].length / 1000).toFixed(1) + " km</span>"
-        );
-
+      popup.setContent(
+        "<span class='popup-heading'><a href='/tur/" +
+          dbRoutes[i].routeId +
+          "' class='popup-link'>" +
+          dbRoutes[i].routeName +
+          "</a></span><br><span class='small-desc'>Sträcka: " +
+          (dbRoutes[i].length / 1000).toFixed(1) +
+          " km</span>"
+      );
 
       //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
       let coords = [];
@@ -198,13 +197,13 @@ function drawRoutesOnMap() {
 
       //Code to run if route is only a point, similar as above.
     } else if (routeType === "Topp" || routeType === "Plats") {
-         popup.setContent(
-                  "<p><a href='/tur/" +
-                    dbRoutes[i].routeId +
-                    "' class='popup-link'>" +
-                    dbRoutes[i].routeName +
-                    "</a></p>"
-                );
+      popup.setContent(
+        "<p><a href='/tur/" +
+          dbRoutes[i].routeId +
+          "' class='popup-link'>" +
+          dbRoutes[i].routeName +
+          "</a></p>"
+      );
 
       let coord = [];
       coord.push(dbRoutes[i].positions[0].latitude);
