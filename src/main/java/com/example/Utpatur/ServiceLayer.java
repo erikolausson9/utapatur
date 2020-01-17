@@ -20,7 +20,7 @@ public class ServiceLayer {
     private Route routeToShow;
 
     public Route getRouteToShow(){
-        System.out.println("in getRouteToShow i servicelagret. routeToShow: " + routeToShow);
+        //System.out.println("in getRouteToShow i servicelagret. routeToShow: " + routeToShow);
         return routeToShow;}
 
 
@@ -73,8 +73,8 @@ public class ServiceLayer {
             System.out.println("Error! Latitude array and longitude array differs in length.");
         }else{
             for(int ii=0; ii<tempLatitudes.length; ii++){
-                System.out.println("tempLatitudes[" + ii  + "]: " + tempLatitudes[ii]);
-                System.out.println("tempLongitudes[" + ii  + "]: " + tempLongitudes[ii]);
+                //System.out.println("tempLatitudes[" + ii  + "]: " + tempLatitudes[ii]);
+                //System.out.println("tempLongitudes[" + ii  + "]: " + tempLongitudes[ii]);
                 //add positions to the database. For now, set altitude to 0 in all cases
                 Position newPosition = new Position(Double.parseDouble(tempLatitudes[ii]), Double.parseDouble(tempLongitudes[ii]), 0, routeId);
                 dbRepository.addPosition(newPosition);
