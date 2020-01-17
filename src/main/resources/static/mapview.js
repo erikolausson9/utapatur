@@ -1,3 +1,4 @@
+//let path = "https://utpatur.cfapps.io";
 //JS-script to show route objects on map
 
 //Defining "global?" variables
@@ -61,7 +62,9 @@ var vandringstur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
+
 });
 
 var skidtur = L.icon({
@@ -72,7 +75,8 @@ var skidtur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var plats = L.icon({
@@ -83,18 +87,19 @@ var plats = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 function getAllRoutesFromDatabase() {
-  fetch("http://localhost:8080/getallfromdb")
+  fetch("/getallfromdb")
     .then(test => test.json())
     .then(tempDbRoutes => {
       //dbRoutes is the JSON-object with all routes
 
       dbRoutes = tempDbRoutes;
       drawRoutesOnMap();
-      generateList();
+      //generateList();
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(err => {
@@ -111,16 +116,20 @@ function drawRoutesOnMap() {
     //Loop through the array with routes
     let routeType = dbRoutes[i].routeType; //Define what type of route
 
-    let popup = L.popup().setContent(
-      "<p><a href='/tur/" +
-        dbRoutes[i].routeId +
-        "'>" +
-        dbRoutes[i].routeName +
-        "</a></p>"
-    );
+    let popup = L.popup();
     console.log(dbRoutes[i].routeId);
 
     if (routeType === "Vandringstur" || routeType === "Skidtur") {
+    popup.setContent(
+          "<span class='popup-heading'><a href='/tur/" +
+            dbRoutes[i].routeId +
+            "' class='popup-link'>" +
+            dbRoutes[i].routeName +
+            "</a></span><br><span class='small-desc'>Sträcka: "
+            + (dbRoutes[i].length / 1000).toFixed(1) + " km</span>"
+        );
+
+
       //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
       let coords = [];
       for (let index = 0; index < dbRoutes[i].positions.length; index++) {
@@ -138,7 +147,7 @@ function drawRoutesOnMap() {
           //IF-statement for filtering
           if (showHiking) {
             polyline = L.polyline(coords, {
-              className: "polyline"
+              className: "polyline-hike"
             });
 
             //Draw the line on the map
@@ -160,7 +169,7 @@ function drawRoutesOnMap() {
         case "Skidtur":
           if (showSkiing) {
             polyline = L.polyline(coords, {
-              className: "polyline"
+              className: "polyline-ski"
             });
 
             polyline.bindPopup(popup);
@@ -189,6 +198,14 @@ function drawRoutesOnMap() {
 
       //Code to run if route is only a point, similar as above.
     } else if (routeType === "Topp" || routeType === "Plats") {
+         popup.setContent(
+                  "<p><a href='/tur/" +
+                    dbRoutes[i].routeId +
+                    "' class='popup-link'>" +
+                    dbRoutes[i].routeName +
+                    "</a></p>"
+                );
+
       let coord = [];
       coord.push(dbRoutes[i].positions[0].latitude);
       coord.push(dbRoutes[i].positions[0].longitude);

@@ -37,7 +37,7 @@
           rel="stylesheet">
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 
-    <title>Registrering</title>
+    <title>Bli medlem</title>
 </head>
 <body>
 <div th:replace="fragments :: header"></div>
@@ -53,17 +53,17 @@
                     <div class="form-group">
                       <!-- Avkommenterar tillfälligt
                       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
-                        <label for="exampleUsername">Ange användarnamn</label>
+                        <label for="exampleUsername" class="form-info">Ange användarnamn</label>
                         <input type="text" class="form-control" placeholder="Användarnamn"  id="exampleUsername" th:field="*{memberName}"
                                th:errorclass="fieldError"/>
                     </div>
                     <div class="form-group">
-                        <label for="exampleEmail">Ange e-postadress</label>
+                        <label for="exampleEmail" class="form-info">Ange e-postadress</label>
                         <input type="text" class="form-control" placeholder="E-postadress" id="exampleEmail" th:field="*{email}"
                                th:errorclass="fieldError"/>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword">Ange lösenord</label>
+                        <label for="exampleInputPassword" class="form-info">Ange lösenord</label>
                         <input type="password" class="form-control" placeholder="Lösenord" id="exampleInputPassword" th:field="*{password}"
                                th:errorclass="fieldError"/>
                     </div>

@@ -5,7 +5,7 @@ section {
 }
 
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 34px;
     text-transform: uppercase;
@@ -25,14 +25,25 @@ h4 {
   font-size: 16px;
 }
 
+
 p {
   font-size: 16px;
   font-family: "Lora", serif;
 }
 
+span.popup-heading {
+    font: 16px/1.0 "Lora", serif;
+}
+
+
 span {
   font-size: 16px;
   font-family: "Lora", serif;
+}
+
+.filter-kartvy {
+    font-size: 14px;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 a {
@@ -42,6 +53,10 @@ a {
 a:hover {
   color: #2d874c;
   text-decoration: underline;
+}
+
+a.popup-link {
+    color: #2d874c;
 }
 
 /* center headings*/
@@ -72,7 +87,7 @@ p.white-p {
 }
 
 p.ingress {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 span.white-s {
@@ -113,6 +128,30 @@ span.small-desc {
 }
 
 .primary-button:hover {
+  background-color: transparent;
+  color: #2d874c;
+  text-decoration: none;
+}
+
+#primary-button {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #2d874c;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #2d874c;
+  text-align: center;
+  line-height: 0px;
+}
+
+#primary-button:hover {
   background-color: transparent;
   color: #2d874c;
   text-decoration: none;
@@ -160,7 +199,31 @@ span.small-desc {
 
 .white-button:hover {
   background-color: transparent;
-  color: #359c58;
+  color: #fff;
+  text-decoration: none;
+}
+
+.white-button-green-borders {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #2d874c;
+  background-color: white;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 16px 18px 14px 18px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid white;
+  text-align: center;
+  line-height: 0px;
+}
+
+.white-button-green-borders:hover {
+  background-color: transparent;
+  border: 2px solid #2d874c;
   text-decoration: none;
 }
 
@@ -169,6 +232,8 @@ span.small-desc {
     background-color: transparent;
 
 }
+
+
 
 logout-link {
     background-color: #2d874c;
@@ -204,7 +269,7 @@ i.fa-user {
 /* Gäller endast på startsida*/
 .sec-bg {
   background-color: #f7f6eb;
-  margin-top: 120px;
+  margin-top: 88px;
   position: static;
 }
 
@@ -280,12 +345,13 @@ i.fa-user {
 
 .top-content {
     margin: auto;
-    width: 60%;
+    width: 70%;
     position: relative;
     z-index: 2;
     background-color: #2d874c;
     padding: 40px;
     margin-top: 100px;
+    border-radius: 25px;
 }
 #map-new-route {
   height: 100%;
@@ -294,8 +360,24 @@ i.fa-user {
 }
 
 #mapview {
-  height: 100vh;
+  height: 92.5vh;
   width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.kartvy-top-content {
+    margin: auto;
+    width: 45%;
+    position: relative;
+    z-index: 2;
+    background-color: #f7f6eb;
+    padding: 10px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 1px solid #e3a209;
+    border-top: none;
+
 }
 
 
@@ -304,17 +386,30 @@ i.fa-user {
   width: 100%;
 }
 
-.polyline {
-    stroke: blue;
+.polyline-hike {
+    stroke: #2d874c;
     fill: none; 
     stroke-width: 5;  
 }
 
-.polyline:hover {
-    stroke: blue;
+.polyline-hike:hover {
+    stroke: #36a15b;
     fill: none; 
     border: black;
     stroke-width: 7;  
+}
+
+.polyline-ski {
+    stroke: #e3a209;
+    fill: none;
+    stroke-width: 5;
+}
+
+.polyline-ski:hover {
+    stroke: #f2ac07;
+    fill: none;
+    border: black;
+    stroke-width: 7;
 }
 
 .typeIcon {
@@ -322,7 +417,7 @@ i.fa-user {
 }
 
 .typeIcon:hover { 
-    width: 40px;
+    padding: 2px 4px 2px 4px;
 }
 
 /* Profil */
@@ -349,9 +444,42 @@ td {
 }
 
 /*SKAPA NY TUR*/
-#description {
-    padding: 16px 18px 14px 18px;
+.form-info {
+   font: 16px/1.0 "Lora", serif;
 }
+
+#name {
+     width: 500px;
+     padding: 0 16px;
+ }
+
+ ::placeholder {
+     font: 16px/1.0 "Lora", serif;
+     line-height: 3;
+ }
+
+ #description {
+     padding: 16px 18px 14px 18px;
+ }
+
+ #length-style {
+    font: 16px/1.0 "Lora", serif;
+ }
+
+#form-time {
+   font: 16px/1.0 "Lora", serif;
+}
+
+#form-day {
+   font: 16px/1.0 "Lora", serif;
+}
+
+#form-date {
+   font: 16px/1.0 "Lora", serif;
+}
+
+
+
 
 /* FOOTER */
 footer {
@@ -404,8 +532,8 @@ p#footer-copyright {
 .switch {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 27px;
+  width: 38px;
+  height: 22px;
 }
 
 /* Hide default HTML checkbox */
@@ -431,9 +559,9 @@ p#footer-copyright {
 .slider:before {
   position: absolute;
   content: "";
-  height: 21px;
-  width: 21px;
-  left: 3px;
+  height: 17px;
+  width: 17px;
+  left: 2px;
   bottom: 3px;
   background-color: white;
   -webkit-transition: .4s;
@@ -441,7 +569,7 @@ p#footer-copyright {
 }
 
 input:checked + .slider {
-  background-color: #2d874c;
+  background-color: #e3a209;
 }
 
 input:focus + .slider {
@@ -449,9 +577,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(21px);
-  -ms-transform: translateX(21px);
-  transform: translateX(21px);
+  -webkit-transform: translateX(17px);
+  -ms-transform: translateX(17px);
+  transform: translateX(17px);
 }
 
 /* Rounded sliders */
@@ -464,3 +592,9 @@ input:checked + .slider:before {
 }
 
 /* END OF Styling for switch */
+
+
+/* Popup-karta /kartvy  */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: rgba(255,255,255,0.9);
+}

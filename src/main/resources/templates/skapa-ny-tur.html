@@ -4,109 +4,111 @@
 <head>
     <title>Skapa ny tur</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
 
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css"/>
     <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/9fea19c3fb.js" crossorigin="anonymous"></script>
     <link
-        href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i|Lora:400,400i,700,700i&display=swap"
+            rel="stylesheet">
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 
     <script type="text/javascript">
         $(window).on("load", function () {
             $("#myModal").modal("show");
         });
+
     </script>
 </head>
 
 <body>
-    <div th:replace="fragments :: header"></div>
+<div th:replace="fragments :: header"></div>
 
-    <!---Modal: popup-box to choose type of route--->
-    <div class="modal" id="myModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vad vill du lägga till?</h5>
-                    <!--
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
-                <div class="modal-body">
-                    <img src="../images/hiking.png">
-                    <button type="button" class="primary-button" id="Vandringstur"
+<!---Modal: popup-box to choose type of route--->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Vad vill du lägga till?</h3>
+                <!--
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <img src="../images/hiking.png">
+                <button type="button" class="primary-button" id="Vandringstur"
                         onclick="setTypeForRouteCreation('Vandringstur')" data-dismiss="modal">
-                        Vandringstur
-                    </button>
-                    <img src="../images/skiing.png">
-                    <button type="button" class="primary-button" id="Skidtur"
+                    Vandringstur
+                </button>
+                <img src="../images/skiing.png">
+                <button type="button" class="primary-button" id="Skidtur"
                         onclick="setTypeForRouteCreation('Skidtur')" data-dismiss="modal">
-                        Skidtur
-                    </button>
-                    <br>
-                    <img src="../images/mountaintop.png">
-                    <button type="button" class="primary-button" id="Topp" onclick="setTypeForRouteCreation('Topp')"
+                    Skidtur
+                </button>
+                <br>
+                <img src="../images/mountaintop.png">
+                <button type="button" class="primary-button" id="Topp" onclick="setTypeForRouteCreation('Topp')"
                         data-dismiss="modal">
-                        Topp
-                    </button>
-                    <img src="../images/poi.png">
-                    <button type="button" class="primary-button" id="Plats" onclick="setTypeForRouteCreation('Plats')"
+                    Topp
+                </button>
+                <img src="../images/poi.png">
+                <button type="button" class="primary-button" id="Plats" onclick="setTypeForRouteCreation('Plats')"
                         data-dismiss="modal">
-                        Intressant plats
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/profil'"
-                        data-dismiss="modal">
-                        Ångra
-                    </button>
-                </div>
+                    Intressant plats
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='/profil'"
+                        data-dismiss="modal" id="primary-button">
+                    Ångra
+                </button>
             </div>
         </div>
     </div>
-    <!--end of modal -->
-
+</div>
+<!--end of modal -->
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-8">
-            <div id="map-new-route"></div>
+            <div id="map-new-route">
+            </div>
         </div>
         <!-- form on right colum-->
         <div class="col-sm-4">
             <div class="ny-tur-form-container">
                 <h1>Lägg till ny tur</h1>
-                Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.
+                <span>Använd knapparna längst till vänster för att markera en plats eller rutt på kartan.</span>
                 <form action="/skapa-ny-tur" method="POST" th:object="${createNewRoute}">
 
                     <!-- avkommenterar tillfälligt
@@ -120,20 +122,19 @@
 
                     <div class="form-group">
 
-                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                            placeholder="Lägg till ett namn på turen" th:field="*{routeName}">
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Lägg till ett namn på turen" th:field="*{routeName}">
 
                     </div>
 
                     <div class="form-group">
-                        <label>Beskrivning:</label>
+                        <label class="form-info">Beskrivning:</label>
                         <textarea class="form-control" name="description" id="description"
-                            placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
+                                  placeholder="Lägg till en beskrivning av turen" th:field="*{description}"></textarea>
                     </div>
 
                     <div id="difficultyForm">
                         <div class="form-group">
-                            <label for="difficultySelect">Ange svårighetsgrad:</label>
+                            <label for="difficultySelect" class="form-info">Ange svårighetsgrad:</label>
                             <select class="form-control" id="difficultySelect" th:field="*{difficulty}">
                                 <option value="Lätt">Lätt</option>
                                 <option value="Medel">Medel</option>
@@ -142,27 +143,27 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" id="length-style">
                         <label class="lengthToShow"></label>
                     </div>
 
                     <div id="durationForm">
                         <div class="form-group row">
-                            <label class="col-sm-4 control-label">Tidsåtgång</label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-4 control-label" id="form-time">Tidsåtgång</label>
+                            <div class="col-sm-4" id="form-day">
                                 <label for="days">Dagar: </label>
                                 <input type="number" class="form-control" id="days" placeholder="Dagar"
-                                    th:field="*{days}">
+                                       th:field="*{days}">
                             </div>
                             <div class="col-sm-4">
-                                <label for="hours">Timmar: </label>
+                                <label for="hours" class="form-info">Timmar: </label>
                                 <input type="number" class="form-control" id="hours" placeholder="Timmar"
-                                    th:field="*{hours}">
+                                       th:field="*{hours}">
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="form-date">
                         <label for="example-date-input" class="col-7 col-form-label">
                             <span id="labelForDateOfCompletion">Datum då du gick/skidade turen: </span>
                         </label>
@@ -172,8 +173,8 @@
                     </div>
 
 
-
-                    <button type="button" class="white-button" onclick="window.location.href='/profil'">Avbryt</button>
+                    <button type="button" class="white-button-green-borders" onclick="window.location.href = '/profil';">Avbryt
+                    </button>
                     <button type="submit" class="primary-button" onclick="saveRouteToDatabase()">Spara tur</button>
 
                 </form>
@@ -184,18 +185,16 @@
         <!-- end of form on right column-->
 
     </div>
+</div>
+
+<div th:replace="fragments :: footer"></div>
 
 
-    <div th:replace="fragments :: footer"></div>
-
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="/indexMapEdit.js"></script>
+<script type="text/javascript" src="/indexMapEdit.js"></script>
 
 
 </body>

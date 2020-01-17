@@ -152,7 +152,7 @@ public class DbRepository {
         int id=0;
         try {Connection conn = dataSource.getConnection();
              Statement statement = conn.createStatement();
-             ResultSet rs = statement.executeQuery("select top 1 RouteID as C from Route order by RouteID desc;");
+             ResultSet rs = statement.executeQuery("select routeid as C from route order by routeid desc limit 1;");
             if(rs.next()){
                 id = rs.getInt("C");
             }
@@ -174,7 +174,7 @@ public class DbRepository {
         route.setDays(rs.getInt("days"));
         route.setHours(rs.getDouble("hours"));
         route.setDescription(rs.getString("description"));
-        route.setDateOfCompletion(rs.getString("dateOfCompletion"));
+        route.setDateOfCompletion(rs.getString("dateOfCompletion").split(" ")[0]);
         route.setRouteCreated(rs.getString("routeCreated"));
         route.setRouteLastUpdated(rs.getString("routeLastUpdated"));
         route.setMemberId(rs.getInt("MemberID"));

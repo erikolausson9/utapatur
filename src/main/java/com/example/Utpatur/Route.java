@@ -16,7 +16,9 @@ public class Route {
     private String routeCreated;
     private String routeLastUpdated;
     private Integer memberId;
+    private String memberName;
     private List<Position> positions;
+
 
     public Route(){
         
@@ -148,5 +150,13 @@ public class Route {
 
     public void setPositions(List<Position> positions) {
         this.positions = positions;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
     }
 }

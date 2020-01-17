@@ -4,6 +4,7 @@
 //import '@geoman-io/leaflet-geoman-free';
 //import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
+//let path = "https://utpatur.cfapps.io";
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
@@ -32,16 +33,12 @@ new L.TileLayer(
   }
 ).addTo(map);
 
-
-
 //map.pm.setPathOptions({
 //  color: 'orange',
 //  fillColor: 'green',
 //});
 
 //hard-coded routes to start with
-
-
 
 /*
 function onMapClick(e) {
@@ -73,7 +70,8 @@ var vandringstur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var skidtur = L.icon({
@@ -84,7 +82,8 @@ var skidtur = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var plats = L.icon({
@@ -95,38 +94,34 @@ var plats = L.icon({
   shadowSize: [0, 0], // size of the shadow
   iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
   shadowAnchor: [0, 0], // the same for the shadow
-  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
-
-
-
 function getRouteFromDatabase() {
-  console.log("in getRouteFromDatabase")
+  console.log("in getRouteFromDatabase");
 
-
-  fetch("http://localhost:8080/show-specific-route")
+  fetch("/show-specific-route")
     .then(test => test.json())
     .then(dbRoute => {
       //dbRoute is the JSON-object with the chosen route
 
-
-
       let routeType = dbRoute.routeType;
-
 
       //change content of page to show route info of requested route
       document.getElementById("nameOfRoute").innerText = dbRoute.routeName;
-      document.getElementById("createdBy").innerText = dbRoute.memberId;
+      document.getElementById("createdBy").innerText = dbRoute.memberName;
       document.getElementById("routeCreated").innerText = dbRoute.routeCreated;
-      document.getElementById("dateOfCompletion").innerText = dbRoute.dateOfCompletion;
+      document.getElementById("dateOfCompletion").innerText =
+        dbRoute.dateOfCompletion;
       document.getElementById("routeType").innerText = dbRoute.routeType;
-      document.getElementById("length").innerText = (dbRoute.length / 1000).toFixed(1) + " km";
+      document.getElementById("length").innerText =
+        (dbRoute.length / 1000).toFixed(1) + " km";
       document.getElementById("height").innerText = dbRoute.height;
       document.getElementById("difficulty").innerText = dbRoute.difficulty;
-      document.getElementById("duration").innerText = dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
+      document.getElementById("duration").innerText =
+        dbRoute.days + " dagar och " + dbRoute.hours + " timmar";
       document.getElementById("description").innerText = dbRoute.description;
-
 
       if (routeType === "Vandringstur" || routeType === "Skidtur") {
         //A For-loop in order to create a nested JS-array with coordinates that Leaflet requires. The recieved JSON-object only contains a "normal(non-nested)" array
@@ -141,15 +136,18 @@ function getRouteFromDatabase() {
         }
 
         //Draw the line on the map
-        polyline = L.polyline(coords, {
-          className: "polyline"
-        }).addTo(map);
-
         map.setView(coords[0], 4); //TODO: this should ideally be set to the center of the line, not the first point
 
         //Switch-case for choosing the right icon for the route
         switch (routeType) {
           case "Vandringstur":
+            document.getElementById("img-routeType").src =
+              "../images/vandringstur.jpg";
+
+            polyline = L.polyline(coords, {
+              className: "polyline-hike"
+            }).addTo(map);
+
             marker = L.marker(polyline.getCenter(), {
               //The getCenter-method returns the center point of the route, i.e. the place where the icon should be.
               icon: vandringstur
@@ -157,6 +155,13 @@ function getRouteFromDatabase() {
 
             break;
           case "Skidtur":
+            document.getElementById("img-routeType").src =
+              "../images/vintertur.jpeg";
+
+            polyline = L.polyline(coords, {
+              className: "polyline-ski"
+            }).addTo(map);
+
             marker = L.marker(polyline.getCenter(), {
               icon: skidtur
             }).addTo(map);
@@ -165,7 +170,6 @@ function getRouteFromDatabase() {
           default:
             break;
         }
-
       } else if (routeType === "Topp" || routeType === "Plats") {
         //do the same for points
         let coord = [];
@@ -176,12 +180,18 @@ function getRouteFromDatabase() {
 
         switch (routeType) {
           case "Topp":
+            document.getElementById("img-routeType").src =
+              "../images/topp.jpeg";
+
             marker = L.marker(coord, {
               icon: topp
             }).addTo(map);
 
             break;
           case "Plats":
+            document.getElementById("img-routeType").src =
+              "../images/plats.JPEG";
+
             marker = L.marker(coord, {
               icon: plats
             }).addTo(map);
@@ -194,18 +204,5 @@ function getRouteFromDatabase() {
       } else {
         console.log("ERROR: Ingen passande routeType hittades");
       }
-
-    })
+    });
 }
-
-
-
-
-
-
-
-
-
-
-
-
