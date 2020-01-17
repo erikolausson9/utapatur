@@ -30,8 +30,8 @@ const map = new L.Map("mapview", {
 new L.TileLayer(
   `https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/1.0.0/topowebb/default/3006/{z}/{y}/{x}.png`,
   {
-    maxZoom: 18,
-    minZoom: 0,
+    maxZoom: 9,
+    minZoom: 2,
     continuousWorld: true,
     attribution:
       '&copy; <a href="https://www.lantmateriet.se/en/">Lantmäteriet</a> Topografisk Webbkarta Visning, CCB'
