@@ -1,54 +1,53 @@
-
 //Code for custom icons
 var mountainTop = L.icon({
-    iconUrl: "/images/mountaintop_pin.png",
-    shadowUrl: "",
+  iconUrl: "/images/mountaintop_pin.png",
+  shadowUrl: "",
 
-    iconSize: [50, 50], // size of the icon
-    shadowSize: [0, 0], // size of the shadow
-    iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
-    shadowAnchor: [0, 0], // the same for the shadow
-    popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
-    className: "typeIcon"
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 55], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -55], // point from which the popup should open relative to the iconAnchor
+  className: "typeIcon"
 });
 
 var poi = L.icon({
-    iconUrl: "/images/poi.png",
-    shadowUrl: "",
+  iconUrl: "/images/poi.png",
+  shadowUrl: "",
 
-    iconSize: [50, 50], // size of the icon
-    shadowSize: [0, 0], // size of the shadow
-    iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-    shadowAnchor: [0, 0], // the same for the shadow
-    popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
+  iconSize: [50, 50], // size of the icon
+  shadowSize: [0, 0], // size of the shadow
+  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+  shadowAnchor: [0, 0], // the same for the shadow
+  popupAnchor: [0, -25] // point from which the popup should open relative to the iconAnchor
 });
 
 const apiKey = "abcf678d-570f-3e84-ace0-3dae82ae4ebe";
 
 const crs = new L.Proj.CRS(
-    "EPSG:3006",
-    "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
-    {
-        resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8],
-        origin: [-1200000.0, 8500000.0],
-        bounds: L.bounds([-1200000.0, 8500000.0], [4305696.0, 2994304.0])
-    }
+  "EPSG:3006",
+  "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
+  {
+    resolutions: [4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8],
+    origin: [-1200000.0, 8500000.0],
+    bounds: L.bounds([-1200000.0, 8500000.0], [4305696.0, 2994304.0])
+  }
 );
 
 const map = new L.Map("map-new-route", {
-    crs: crs,
-    continuousWorld: true
+  crs: crs,
+  continuousWorld: true
 });
 
 new L.TileLayer(
-    `https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/1.0.0/topowebb/default/3006/{z}/{y}/{x}.png`,
-    {
-        maxZoom: 18,
-        minZoom: 0,
-        continuousWorld: true,
-        attribution:
-            '&copy; <a href="https://www.lantmateriet.se/en/">Lantmäteriet</a> Topografisk Webbkarta Visning, CCB'
-    }
+  `https://api.lantmateriet.se/open/topowebb-ccby/v1/wmts/token/${apiKey}/1.0.0/topowebb/default/3006/{z}/{y}/{x}.png`,
+  {
+    maxZoom: 9,
+    minZoom: 2,
+    continuousWorld: true,
+    attribution:
+      '&copy; <a href="https://www.lantmateriet.se/en/">Lantmäteriet</a> Topografisk Webbkarta Visning, CCB'
+  }
 ).addTo(map);
 
 map.setView([65.104326, 16.875124], 1.5);
@@ -107,22 +106,20 @@ let route3 = [
 
 // adding leaflet-geoman controls/toolbar with some options to the map
 map.pm.addControls({
-    position: "topleft",
-    drawCircle: false,
-    dragMode: false,
-    drawPolygon: false,
-    drawPolyline: true,
-    drawMarker: true,
-    drawRectangle: false,
-    drawCircleMarker: false,
-    cutPolygon: false,
-    editMode: false,
-    removalMode: false
+  position: "topleft",
+  drawCircle: false,
+  dragMode: false,
+  drawPolygon: false,
+  drawPolyline: true,
+  drawMarker: true,
+  drawRectangle: false,
+  drawCircleMarker: false,
+  cutPolygon: false,
+  editMode: false,
+  removalMode: false
 });
 
 //map.pm.enableDraw('Marker', { icon: MountainTop });
-
-
 
 //let position = [];
 //let userRouteArray = [];
@@ -140,227 +137,194 @@ map.pm.addControls({
 let latitudes = "";
 let longitudes = "";
 
-map.on('pm:drawstart', ({ workingLayer }) => {
-    workingLayer.on('pm:vertexadded', e => {
-        console.log("vertex added");
-        updateDistance(calculateDistance(workingLayer));
-
-    });
+map.on("pm:drawstart", ({ workingLayer }) => {
+  workingLayer.on("pm:vertexadded", e => {
+    console.log("vertex added");
+    updateDistance(calculateDistance(workingLayer));
+  });
 });
 
-map.on('pm:create', e => {
+map.on("pm:create", e => {
+  let totaldistance = 0;
+  //console.log("draw end")
+  map.pm.addControls({
+    position: "topleft",
+    drawCircle: false,
+    dragMode: false,
+    drawPolygon: false,
+    drawMarker: false,
+    drawPolyline: false,
+    drawRectangle: false,
+    drawCircleMarker: false,
+    cutPolygon: false,
+    editMode: true
+  });
 
-    let totaldistance = 0;
-    //console.log("draw end")
-    map.pm.addControls({
-        position: 'topleft',
-        drawCircle: false,
-        dragMode: false,
-        drawPolygon: false,
-        drawMarker: false,
-        drawPolyline: false,
-        drawRectangle: false,
-        drawCircleMarker: false,
-        cutPolygon: false,
-        editMode: true
+  if (e.shape === "Marker") {
+    console.log("creating marker");
+    //console.log(e.layer._latlng)
+    map.pm.disableDraw("Marker");
+    saveMarkerPostion(e.layer);
+  } else if (e.shape === "Line") {
+    console.log("creating line");
+    //console.log("first point: " + e.layer._latlngs[0])
+    //console.log("lenght of points array: " + e.layer._latlngs.length)
+    //console.log("second point: " + e.layer._latlngs[1])
+    //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
 
-    });
+    //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
+    // for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
 
-    if (e.shape === "Marker") {
-        console.log("creating marker");
-        //console.log(e.layer._latlng)
-        map.pm.disableDraw("Marker");
-        saveMarkerPostion(e.layer)
-    } else if (e.shape === "Line") {
-        console.log("creating line");
-        //console.log("first point: " + e.layer._latlngs[0])
-        //console.log("lenght of points array: " + e.layer._latlngs.length)
-        //console.log("second point: " + e.layer._latlngs[1])
-        //console.log("distance: " + (e.layer._latlngs[0]).distanceTo(e.layer._latlngs[1]))
+    //    totaldistance += (e.layer._latlngs[ii]).distanceTo(e.layer._latlngs[ii + 1])
 
+    //}
+    console.log("total distance: " + totaldistance);
+    updateDistance(calculateDistance(e.layer));
+    saveRoutePositions(e.layer);
+  } else {
+    console.log("Error, no marker or line");
+  }
 
+  e.layer.on("pm:edit", e => {
+    //console.log("new position(s): ")
+    //console.log(e.target._latlngs)
+    if (!e.target._latlngs) {
+      console.log("Editing marker");
+      console.log(e.target._latlng);
+      saveMarkerPosition(e.target);
+    } else {
+      console.log("Editing line");
+      //totaldistance = 0;
 
-        //console.log(e.layer._latlngs[0].lat + " och " + e.layer._latlngs[0].lng)
-        // for (let ii = 0; ii < e.layer._latlngs.length - 1; ii++) {
+      //console.log("distance between first two points: " + e.target._latlngs[0].distanceTo(e.taget._latlngs[1]))
 
-        //    totaldistance += (e.layer._latlngs[ii]).distanceTo(e.layer._latlngs[ii + 1])
-
-        //}
-        console.log("total distance: " + totaldistance)
-        updateDistance(calculateDistance(e.layer));
-        saveRoutePositions(e.layer);
-
-
-
-
+      //for (let ii = 0; ii < e.target._latlngs.length - 1; ii++) {
+      //    totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
+      //}
+      updateDistance(calculateDistance(e.target));
+      saveRoutePositions(e.target);
     }
-    else {
-        console.log("Error, no marker or line")
-    }
-
-
-    e.layer.on('pm:edit', e => {
-        //console.log("new position(s): ")
-        //console.log(e.target._latlngs)
-        if (!e.target._latlngs) {
-            console.log("Editing marker")
-            console.log(e.target._latlng)
-            saveMarkerPosition(e.target);
-        } else {
-            console.log("Editing line")
-            //totaldistance = 0;
-
-            //console.log("distance between first two points: " + e.target._latlngs[0].distanceTo(e.taget._latlngs[1]))
-
-            //for (let ii = 0; ii < e.target._latlngs.length - 1; ii++) {
-            //    totaldistance += (e.target._latlngs[ii]).distanceTo(e.target._latlngs[ii + 1])
-            //}
-            updateDistance(calculateDistance(e.target));
-            saveRoutePositions(e.target);
-
-        }
-
-    })
-
+  });
 });
 
 //Modal (Select type of route)
 function setTypeForRouteCreation(typeOfRoute) {
-    console.log(typeOfRoute);
+  console.log(typeOfRoute);
 
-    if (typeOfRoute === "Vandringstur") {
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: false,
-            drawPolyline: true,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false,
-            className: "form-info"
+  if (typeOfRoute === "Vandringstur") {
+    map.pm.addControls({
+      position: "topleft",
+      drawCircle: false,
+      dragMode: false,
+      drawPolygon: false,
+      drawMarker: false,
+      drawPolyline: true,
+      drawRectangle: false,
+      drawCircleMarker: false,
+      cutPolygon: false,
+      editMode: false,
+      className: "form-info"
+    });
+    let label = document.getElementsByClassName("col-7 col-form-label");
+    label[0].innerText = "Datum då du vandrade: ";
+  } else if (typeOfRoute === "Skidtur") {
+    map.pm.addControls({
+      position: "topleft",
+      drawCircle: false,
+      dragMode: false,
+      drawPolygon: false,
+      drawMarker: false,
+      drawPolyline: true,
+      drawRectangle: false,
+      drawCircleMarker: false,
+      cutPolygon: false,
+      editMode: false,
+      className: "form-info"
+    });
+    let label = document.getElementsByClassName("col-7 col-form-label");
+    label[0].innerText = "Datum då du skidade: ";
+  } else if (typeOfRoute === "Topp") {
+    console.log("vi är i else");
+    map.pm.addControls({
+      position: "topleft",
+      drawCircle: false,
+      dragMode: false,
+      drawPolygon: false,
+      drawMarker: true,
+      drawPolyline: false,
+      drawRectangle: false,
+      drawCircleMarker: false,
+      cutPolygon: false,
+      editMode: false,
+      className: "form-info"
+    });
+    let label = document.getElementsByClassName("col-7 col-form-label");
+    label[0].innerText = "Datum då du besökte toppen: ";
+  } else {
+    map.pm.addControls({
+      position: "topleft",
+      drawCircle: false,
+      dragMode: false,
+      drawPolygon: false,
+      drawMarker: true,
+      drawPolyline: false,
+      drawRectangle: false,
+      drawCircleMarker: false,
+      cutPolygon: false,
+      editMode: false,
+      className: "form-info"
+    });
 
-        });
-        let label = document.getElementsByClassName("col-7 col-form-label");
-        label[0].innerText = "Datum då du vandrade: ";
+    document.getElementById("difficultyForm").innerText = "";
+    document.getElementById("durationForm").innerText = "";
 
+    let label = document.getElementsByClassName("col-7 col-form-label");
 
-    }
-
-
-    else if (typeOfRoute === "Skidtur") {
-
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: false,
-            drawPolyline: true,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false,
-            className: "form-info"
-
-        });
-        let label = document.getElementsByClassName("col-7 col-form-label");
-        label[0].innerText = "Datum då du skidade: ";
-
-    } else if (typeOfRoute === "Topp") {
-
-        console.log("vi är i else")
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: true,
-            drawPolyline: false,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false,
-            className: "form-info"
-
-        });
-        let label = document.getElementsByClassName("col-7 col-form-label");
-        label[0].innerText = "Datum då du besökte toppen: ";
-    } else {
-
-        map.pm.addControls({
-            position: 'topleft',
-            drawCircle: false,
-            dragMode: false,
-            drawPolygon: false,
-            drawMarker: true,
-            drawPolyline: false,
-            drawRectangle: false,
-            drawCircleMarker: false,
-            cutPolygon: false,
-            editMode: false,
-            className: "form-info"
-
-        });
-
-        document.getElementById("difficultyForm").innerText = "";
-        document.getElementById("durationForm").innerText = "";
-
-        let label = document.getElementsByClassName("col-7 col-form-label");
-
-        label[0].innerText = "Datum då du besökte platsen: ";
-    }
-    document.getElementById("typeOfRoute").value = typeOfRoute;
-
-
-
-
+    label[0].innerText = "Datum då du besökte platsen: ";
+  }
+  document.getElementById("typeOfRoute").value = typeOfRoute;
 }
 
 function calculateDistance(routeObject) {
-    let returnDistance = 0;
-    for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
-        returnDistance += (routeObject._latlngs[ii]).distanceTo(routeObject._latlngs[ii + 1])
-    }
-    return returnDistance;
-
+  let returnDistance = 0;
+  for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
+    returnDistance += routeObject._latlngs[ii].distanceTo(
+      routeObject._latlngs[ii + 1]
+    );
+  }
+  return returnDistance;
 }
 
 function updateDistance(totalDistance) {
-
-    let labels = document.getElementsByClassName("lengthToShow")
-    labels[0].innerHTML = "Längd på markerad tur: <strong>" + (totalDistance / 1000).toFixed(1) + " km</strong>"
-    document.getElementById("length").value = Math.round(totalDistance) //distance will be saved in meters
-    document.getElementById("height").value = 0; //todo: replace with actual height
+  let labels = document.getElementsByClassName("lengthToShow");
+  labels[0].innerHTML =
+    "Längd på markerad tur: <strong>" +
+    (totalDistance / 1000).toFixed(1) +
+    " km</strong>";
+  document.getElementById("length").value = Math.round(totalDistance); //distance will be saved in meters
+  document.getElementById("height").value = 0; //todo: replace with actual height
 }
 
 function saveMarkerPostion(routeObject) {
-    latitudes = routeObject._latlng.lat;
-    longitudes = routeObject._latlng.lng;
-
+  latitudes = routeObject._latlng.lat;
+  longitudes = routeObject._latlng.lng;
 }
 
 function saveRoutePositions(routeObject) {
-    //erase any old positions
-    latitudes = "";
-    longitudes = "";
+  //erase any old positions
+  latitudes = "";
+  longitudes = "";
 
-    for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
-        latitudes += routeObject._latlngs[ii].lat + ", ";
-        longitudes += routeObject._latlngs[ii].lng + ", ";
-    }
-    latitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lat + ", ";
-    longitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lng + ", ";
+  for (let ii = 0; ii < routeObject._latlngs.length - 1; ii++) {
+    latitudes += routeObject._latlngs[ii].lat + ", ";
+    longitudes += routeObject._latlngs[ii].lng + ", ";
+  }
+  latitudes += routeObject._latlngs[routeObject._latlngs.length - 1].lat + ", ";
+  longitudes +=
+    routeObject._latlngs[routeObject._latlngs.length - 1].lng + ", ";
 }
 
 function saveRouteToDatabase() {
-
-    document.getElementById("latitudes").value = latitudes;
-    document.getElementById("longitudes").value = longitudes;
+  document.getElementById("latitudes").value = latitudes;
+  document.getElementById("longitudes").value = longitudes;
 }
-
-
-
-
