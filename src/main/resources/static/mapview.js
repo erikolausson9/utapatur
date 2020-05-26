@@ -325,3 +325,5 @@ map.on("dragend", function onDragEnd() {
   console.log("East: " + east);
   console.log("West: " + west);
 });
+
+//added this comment for tutorial purposes
