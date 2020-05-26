@@ -98,7 +98,7 @@ function getAllRoutesFromDatabase() {
 
       dbRoutes = tempDbRoutes;
       drawRoutesOnMap();
-      //generateList();
+      
     })
     //Catch to handle errors of the API-call. Not really used anywhere.
     .catch(err => {
